@@ -2,7 +2,7 @@
 /* -
 name = "order_statistic_tree"
 [info]
-time = "$cal(O)(log n)$"
+time = "$O(log n)$"
 - */
 #include <bits/extc++.h>
 using namespace __gnu_pbds;

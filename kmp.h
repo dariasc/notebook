@@ -1,8 +1,8 @@
 /* -
 name = "kmp"
 [info]
-time = "$cal(O)(n)$"
-description = "Description: pi[x] computes the length of the longest prefix of s that ends at x, other than s[0...x] itself (abacaba -> 0010123). Can be used to find all occurrences of a string."
+description = "`pi[x]` computes the length of the longest prefix of `s` that ends at `x`, other than `s[0...x]` itself (`abacaba` $->$ `0010123`). Can be used to find all occurrences of a string."
+time = "$O(n)$"
 - */
 vector<int> pi(const string& s) {
 	vi p(s.size());

@@ -14,11 +14,11 @@
   let metadata = extract_metadata(contents)
   return [
     #block[
-      #v(-0.5em)
+      #v(-0.25em)
       #heading(metadata.name)
       #v(0.25em)
       #if metadata.info.keys().len() == 0 {
-        v(-0.75em)
+        v(-1em)
       }
       #block(
         for (key, value) in metadata.info {
