@@ -11,6 +11,7 @@
   set par(justify: true)
 
   show raw.where(block: true): set par(justify: false)
+  set raw(theme: "theme.xml")
 
   body
 }

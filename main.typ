@@ -14,8 +14,8 @@
   let metadata = extract_metadata(contents)
   return [
     #block[
-      #v(-0.25em)
-      #heading(metadata.name)
+      #v(-0.75em)
+      #heading(text(metadata.name, weight: "regular",))
       #v(0.25em)
       #if metadata.info.keys().len() == 0 {
         v(-1em)
@@ -29,8 +29,8 @@
       )
     ]
     #raw(extract_code(contents), lang: "cpp", block: true)
-    #v(0.5em)
     #line(length: 100%, stroke: 0.2pt)
+    #v(0.5em)
   ]
 }
 
