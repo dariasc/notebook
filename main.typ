@@ -3,7 +3,7 @@
 #show: project.with()
 
 #let extract_code(contents) = {
-  return contents.split("- */\n").at(-1)
+  return contents.split("- */\n").at(-1).replace("#include <template.h>\n", "")
 }
 #let extract_metadata(contents) = {
   return toml.decode(contents.split("- */\n").at(0).replace("/* -\n", ""))
@@ -14,27 +14,32 @@
   let metadata = extract_metadata(contents)
   return [
     #block[
-      #v(-0.75em)
-      #heading(text(metadata.name, weight: "regular",))
-      #v(0.25em)
-      #if metadata.info.keys().len() == 0 {
-        v(-1em)
-      }
-      #block(
-        for (key, value) in metadata.info {
-          text(key + ": ", weight: "bold")
-          eval(value, mode: "markup")
-          linebreak()
-        }
-      )
+      #v(0.75em)
+      #block(breakable: false)[
+        #heading(text(metadata.name, weight: "regular"))
+        #block(
+          for (key, value) in metadata.info {
+            text(key + ": ", weight: "bold")
+            eval(value, mode: "markup")
+            linebreak()
+          }
+        )
+      ]
+      #raw(extract_code(contents), lang: "cpp", block: true)
+      #line(length: 100%, stroke: 0.4pt)
     ]
-    #raw(extract_code(contents), lang: "cpp", block: true)
-    #line(length: 100%, stroke: 0.2pt)
-    #v(0.5em)
+  ]
+}
+
+#let section_title(title) = {
+  return [
+    = #text(title, size: 1.15em)
   ]
 }
 
 #insert("template.h")
+#section_title("data structures")
 #insert("hashmap.h")
-#insert("kmp.h")
 #insert("order_statistic_tree.h")
+#section_title("strings")
+#insert("kmp.h")

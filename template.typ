@@ -4,7 +4,7 @@
     #line(
         length: 94%, 
         angle: 90deg, 
-        stroke: 0.2pt
+        stroke: 0.0pt
     )
   ])
   set text(font: "Linux Libertine", lang: "en")
