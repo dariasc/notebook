@@ -37,9 +37,19 @@
   ]
 }
 
+#block(width: 100%, height: 2.5em)[
+  #align(bottom)[
+    = #text("Team Notebook", size: 1.25em)
+  ]
+  #place(top + right)[
+    #image("logo.svg", height: 3em)
+  ]
+]
+#line(length: 100%, stroke: 0.4pt)
+#v(-1em)
 #insert("template.h")
-#section_title("data structures")
+#section_title("Data Structures")
 #insert("hashmap.h")
 #insert("order_statistic_tree.h")
-#section_title("strings")
+#section_title("Strings")
 #insert("kmp.h")
