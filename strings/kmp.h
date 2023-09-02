@@ -17,7 +17,7 @@ vec<int> pi(const string& s) {
 
 vec<int> match(const string& s, const string& pat) {
 	vec<int> p = pi(pat + '\0' + s), res;
-	for (int i = 0; i < p.size(); i += p.size()-s.size()) {
+	for (int i = p.size()-s.size(); i < p.size(); i++) {
 		if (p[i] == pat.size()) 
 			res.push_back(i - 2 * pat.size());
 	}
