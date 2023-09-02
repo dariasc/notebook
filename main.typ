@@ -55,3 +55,5 @@
 #insert("ds/convex_hull_trick.h")
 #section_title("Strings")
 #insert("strings/kmp.h")
+#section_title("Graphs")
+#insert("graph/topo_sort.h")
