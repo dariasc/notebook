@@ -51,5 +51,7 @@
 #section_title("Data Structures")
 #insert("hashmap.h")
 #insert("order_statistic_tree.h")
+#insert("uf.h")
+#insert("convex_hull_trick.h")
 #section_title("Strings")
 #insert("kmp.h")
