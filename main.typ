@@ -54,6 +54,7 @@
 #insert("ds/order_statistic_tree.h")
 #insert("ds/uf.h")
 #insert("ds/convex_hull_trick.h")
+#insert("ds/sparse_table.h")
 #section_title("Strings")
 #insert("strings/kmp.h")
 #section_title("Graphs")
