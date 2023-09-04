@@ -10,7 +10,11 @@
   set text(font: "Linux Libertine", lang: "en")
   set par(justify: true)
 
-  show raw.where(block: true): set par(justify: false)
+  show raw.where(block: true): it => {
+    set text(8pt)
+    set par(justify: false)
+    it
+  }
   set raw(theme: "theme.xml")
 
   body
