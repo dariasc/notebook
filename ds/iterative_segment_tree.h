@@ -3,8 +3,7 @@
 name = "iterative_segment_tree"
 [info]
 - */
-template <class T, T unit, T F(T, T)>
-struct segment_tree {
+template <class T, T unit, T F(T, T)> struct segment_tree {
   vector<T> s;
   int n;
   segment_tree(int n = 0, T def = unit) : s(2 * n, def), n(n) {}
