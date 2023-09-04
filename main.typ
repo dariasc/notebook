@@ -3,10 +3,10 @@
 #show: project.with()
 
 #let extract_code(contents) = {
-  return contents.split("- */\n").at(-1).replace("#include <template.h>\n", "")
+  return contents.split("- */\n").at(-1)
 }
 #let extract_metadata(contents) = {
-  return toml.decode(contents.split("- */\n").at(0).replace("/* -\n", ""))
+  return toml.decode(contents.split("- */\n").at(0).split("/* -\n").at(-1))
 }
 
 #let insert(filename) = {
@@ -47,6 +47,7 @@
 ]
 #line(length: 100%, stroke: 0.4pt)
 #v(-1em)
+
 #insert("template.h")
 #section_title("Data Structures")
 #insert("ds/hashmap.h")
@@ -57,3 +58,4 @@
 #insert("strings/kmp.h")
 #section_title("Graphs")
 #insert("graph/topo_sort.h")
+#insert("graph/dinic.h")
