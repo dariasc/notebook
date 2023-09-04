@@ -79,7 +79,7 @@
         }
       ]
       #raw(extract_code(contents), lang: "cpp", block: true)
-      #line(length: 110%, stroke: 0.4pt)
+      #line(length: 100%, stroke: 0.4pt)
     ]
   ]
 }
