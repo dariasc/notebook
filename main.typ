@@ -16,7 +16,7 @@
     #block[
       #v(0.75em)
       #block(breakable: false)[
-        #heading(text(metadata.name, weight: "regular"))
+        #heading(text(metadata.name, weight: "regular", size: 1.1em), level: 2)
         #block(
           for (key, value) in metadata.info {
             text(key + ": ", weight: "bold")
