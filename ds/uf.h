@@ -1,13 +1,13 @@
+#include "../template.h"
 /* -
 name = "union_find"
 [info]
 time = "$O(alpha(n))$"
 - */
-#include <template.h>
 struct union_find {
 	vec<int> e;
 	union_find(int n) : e(n, -1) {}
-	bool sameSet(int a, int b) { 
+	bool same(int a, int b) { 
     return find(a) == find(b); 
   }
 	int size(int x) { 

@@ -1,4 +1,4 @@
-
+#include "../template.h"
 /* -
 name = "order_statistic_tree"
 [info]

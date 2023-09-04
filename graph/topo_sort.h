@@ -1,9 +1,9 @@
+#include "../template.h"
 /* -
 name = "topological_sort"
 [info]
 time = "$O(V + E)$"
 - */
-#include <template.h>
 vec<int> topoSort(const vec<vec<int>> &gr){
   vec<int> indeg(gr.size()), ret;
   for (auto &li : gr)

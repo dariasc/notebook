@@ -1,10 +1,10 @@
+#include "../template.h"
 /* -
 name = "convex_hull_trick"
 [info]
 description = "Container where you can add lines of the form $k x+m$, and query maximum values at points $x$."
 time = "$O(log n)$"
 - */
-#include <template.h>
 struct line {
 	mutable ll k, m, p;
 	bool operator<(const line& o) const { return k < o.k; }

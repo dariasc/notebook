@@ -1,3 +1,4 @@
+#include "../template.h"
 /* -
 name = "hashmap"
 [info]
