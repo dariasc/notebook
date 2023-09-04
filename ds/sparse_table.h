@@ -3,7 +3,6 @@
 name = "sparse_table"
 [info]
 time = "$O(n log n)$ preprocessing and $O(1)$ queries"
-example = "`.query(inclusive, exclusive)`"
 - */
 template <class T> struct sparse_table {
   vec<vec<T>> jmp;
@@ -15,9 +14,9 @@ template <class T> struct sparse_table {
         jmp[k][j] = f(jmp[k - 1][j], jmp[k - 1][j + pw]);
     }
   }
-  T query(int a, int b) {
-    assert(a < b); // or return inf if a == b
-    int dep = 31 - __builtin_clz(b - a);
-    return f(jmp[dep][a], jmp[dep][b - (1 << dep)]);
+  T query(int b, int e) { // query [b, e)
+    assert(b < e); // or return inf if b == e
+    int dep = 31 - __builtin_clz(e - b);
+    return f(jmp[dep][b], jmp[dep][e - (1 << dep)]);
   }
 };

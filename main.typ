@@ -55,6 +55,7 @@
 #insert("ds/uf.h")
 #insert("ds/convex_hull_trick.h")
 #insert("ds/sparse_table.h")
+#insert("ds/iterative_segment_tree.h")
 #section_title("Strings")
 #insert("strings/kmp.h")
 #section_title("Graphs")
