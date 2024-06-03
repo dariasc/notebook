@@ -1,1 +1,11 @@
 template.pdf
+
+testing/test
+
+zig-cache/
+zig-out/
+/release/
+/debug/
+/build/
+/build-*/
+/docgen_tmp/

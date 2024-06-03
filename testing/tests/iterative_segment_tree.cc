@@ -1,8 +1,9 @@
-#include "../ds/iterative_segment_tree.h"
+#include "../../ds/iterative_segment_tree.h"
+#include "../test.h"
 
 ll add(ll a, ll b) { return a + b; }
 
-bool test(ll seed) {
+bool test(ull seed) {
   const ll mod = 5;
   mt19937_64 gen(seed);
   int n = 1000;
