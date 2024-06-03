@@ -1,0 +1,30 @@
+name: typst
+
+on:
+  workflow_run:
+    workflows: ["testing"]
+    types:
+      - completed
+
+jobs:
+  typst:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Install Typst
+      run: |
+        curl -Lo typst.tar.gz https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz
+        tar xf typst.tar.gz
+    - name: Compile notebook file
+      run: ./typst-x86_64-unknown-linux-musl/typst compile main.typ notebook.pdf
+    - name: Delete old release
+      continue-on-error: true
+      run: |
+        gh release delete master -y --cleanup-tag
+    - name: Create release
+      run: |
+        gh release create master notebook.pdf
