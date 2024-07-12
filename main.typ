@@ -11,8 +11,8 @@
 #insert("ds/convex_hull_trick.h")
 #insert("ds/sparse_table.h")
 #insert("ds/iterative_segment_tree.h")
-= Strings 
+= Strings
 #insert("strings/kmp.h")
-= Graphs 
+= Graphs
 #insert("graph/topo_sort.h")
 #insert("graph/dinic.h")

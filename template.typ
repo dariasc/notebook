@@ -1,10 +1,9 @@
 #let project(body) = {
   set document(title: "Notebook")
   set page(
-    paper: "us-letter", 
-    flipped: true, 
-    columns: 2, 
-    margin: ( left: 1cm, right: 1cm, bottom: 1cm, top: 1.25cm ), 
+    paper: "a4",
+    flipped: true,
+    margin: ( left: 1cm, right: 1cm, bottom: 1cm, top: 1.25cm ),
     header-ascent: 40%,
     header: locate(loc => {
       let headings = query(
@@ -20,20 +19,21 @@
   )
   set text(font: "Linux Libertine", lang: "en")
   set par(justify: true)
- 
-  show heading.where(level: 1): it => [ 
+  show: columns.with(3, gutter: 1%)
+
+  show heading.where(level: 1): it => [
     #set block(above: 0em)
     #smallcaps[
       #it.body
     ]
   ]
-  show heading.where(level: 2): it => [ 
+  show heading.where(level: 2): it => [
     #set text(weight: "regular")
     #it.body
   ]
 
   show raw.where(block: true): it => {
-    set text(8pt)
+    set text(7pt)
     set par(justify: false)
     it
   }
@@ -44,7 +44,7 @@
 
 #let title() = {
   return {
-    block(width: 100%, height: 2.5em, { 
+    block(width: 100%, height: 2.5em, {
       set text(size: 1.25em)
       align(bottom)[
         = Team Notebook
@@ -69,6 +69,7 @@
   let metadata = extract_metadata(contents)
   return [
     #block[
+      #set text(9pt)
       #block(breakable: false)[
         == #metadata.name
         #linebreak()
