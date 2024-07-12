@@ -7,7 +7,7 @@ template <class T, T F(T, T)> struct segment_tree {
   vec<T> s;
   int n;
   segment_tree(int n = 0) : s(2 * n), n(n) {}
-  void build(vec<T> a) {
+  void build(vec<T> &a) {
     for (int i = 0; i < n; i++)
       s[i + n] = a[i];
     for (int i = n - 1; i > 0; --i)
