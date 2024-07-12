@@ -5,12 +5,12 @@ name = "topological_sort"
 time = "$O(V + E)$"
 - */
 vec<int> topoSort(const vec<vec<int>> &gr) {
-  vec<int> indeg(gr.size()), ret;
+  vec<int> indeg(sz(gr)), ret;
   for (auto &li : gr)
     for (int x : li)
       indeg[x]++;
   queue<int> q;
-  for (int i = 0; i < gr.size(); i++)
+  for (int i = 0; i < sz(gr); i++)
     if (indeg[i] == 0)
       q.push(i);
   while (!q.empty()) {
