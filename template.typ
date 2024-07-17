@@ -3,7 +3,7 @@
   set page(
     paper: "a4",
     flipped: true,
-    margin: ( left: 1cm, right: 1cm, bottom: 1cm, top: 1.25cm ),
+    margin: ( left: 0.75cm, right: 0.75cm, bottom: 0.75cm, top: 1.25cm ),
     header-ascent: 40%,
     header: locate(loc => {
       let headings = query(
@@ -15,11 +15,29 @@
         .map((it) => it.body);
 
       return align(right, text(this.join(", "), size: 9pt, weight: "semibold"))
-    })
+    }),
+    background: [
+      #place(
+        top + left,
+        line(
+          start: (34%, 5%),
+          end: (34%, 97%),
+          stroke: 0.5pt + gray
+        ),
+      )
+      #place(
+        top + right,
+        line(
+          start: (-34%, 5%),
+          end: (-34%, 97%),
+          stroke: 0.5pt + gray
+        ),
+      )
+    ]
   )
   set text(font: "Linux Libertine", lang: "en")
   set par(justify: true)
-  show: columns.with(3, gutter: 1%)
+  show: columns.with(3, gutter: 2%)
 
   show heading.where(level: 1): it => [
     #set block(above: 0em)
@@ -53,7 +71,7 @@
         #image("logo.svg", height: 32pt)
       ]
     })
-    line(length: 100%, stroke: 0.4pt)
+    line(length: 100%, stroke: 0.5pt + gray)
   }
 }
 
@@ -67,20 +85,18 @@
 #let insert(filename) = {
   let contents = read(filename)
   let metadata = extract_metadata(contents)
-  return [
-    #block[
-      #set text(9pt)
-      #block(breakable: false)[
-        == #metadata.name
-        #linebreak()
-        #for (key, value) in metadata.info {
-          text(key + ": ", weight: "bold")
-          eval(value, mode: "markup")
-          linebreak()
-        }
-      ]
-      #raw(extract_code(contents), lang: "cpp", block: true)
-      #line(length: 100%, stroke: 0.4pt)
+  return block[
+    #set text(9pt)
+    #block(breakable: false)[
+      == #metadata.name
+      #linebreak()
+      #for (key, value) in metadata.info {
+        text(key + ": ", weight: "bold")
+        eval(value, mode: "markup")
+        linebreak()
+      }
     ]
+    #raw(extract_code(contents), lang: "cpp", block: true)
+    #line(length: 100%, stroke: 0.5pt + gray)
   ]
 }
