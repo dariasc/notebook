@@ -11,6 +11,8 @@
 #insert("ds/convex_hull_trick.h")
 #insert("ds/sparse_table.h")
 #insert("ds/iterative_segment_tree.h")
+#insert("ds/lazy_segment_tree.h")
+#insert("ds/persistent_segment_tree.h")
 = Number Theory
 #insert("nt/modpow.h")
 = Strings
