@@ -9,12 +9,8 @@ struct value {
   ll x;
   value() : x(0) {}
   value(ll x) : x(x) {}
-  value(value &a, value &b) {
-    x = a.x + b.x;
-  }
-  void update(value &b) {
-    x = b.x;
-  }
+  value(value &a, value &b) { x = a.x + b.x; }
+  void update(value &b) { x = b.x; }
 };
 
 template <class T> struct segment_tree {
@@ -24,7 +20,7 @@ template <class T> struct segment_tree {
     for (int pos = 0; pos < n; pos++) {
       s[pos + n] = a[pos];
     }
-    for (int pos = n-1; pos >= 0; pos--) {
+    for (int pos = n - 1; pos >= 0; pos--) {
       s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
     }
   }
