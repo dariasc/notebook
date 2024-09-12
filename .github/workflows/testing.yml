@@ -16,16 +16,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Download and install Zig
-        run: |
-          ZIG_VERSION="0.12.0"
-          wget https://ziglang.org/download/${{env.ZIG_VERSION}}/zig-linux-x86_64-${{env.ZIG_VERSION}}.tar.xz
-          tar -xf zig-linux-x86_64-${{env.ZIG_VERSION}}.tar.xz
-      - name: Build test runner
-        run: |
-          cd testing
-          ../zig-linux-x86_64-${{env.ZIG_VERSION}}/zig build
       - name: Run tests
         run: |
           cd testing
-          ./zig-out/bin/testing
+          bash test.sh

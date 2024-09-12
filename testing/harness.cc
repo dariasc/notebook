@@ -1,4 +1,4 @@
-#include "test.h"
+#include "harness.h"
 
 int main() {
   ull seed = 42;

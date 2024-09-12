@@ -1,5 +1,5 @@
 #include "../../ds/iterative_segment_tree.h"
-#include "../test.h"
+#include "../harness.h"
 
 bool test(ull seed) {
   const ll mod = 5;
