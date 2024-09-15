@@ -9,6 +9,13 @@ struct value {
   value() : x(0) {}
   value(ll x) : x(x) {}
   value(value &a, value &b) { x = a.x + b.x; }
+  /* used for search() */
+  bool cond(value &a) {
+    return x >= a.x;
+  }
+  value inv() {
+    return {-x};
+  }
 };
 
 struct tag {
@@ -71,5 +78,17 @@ template <class T, class U> struct node {
       l->update(lo, hi, tag), r->update(lo, hi, tag);
       tag = U();
     }
+  }
+  /* search() implementation over T.cond() */
+  int search(int from, T target) {
+    return search(T(query(0, from), target));
+  }
+  int search(T target) {
+    if (!eval().cond(target)) return -1;
+    if (lo + 1 == hi) return lo;
+    push();
+    if (l->eval().cond(target))
+      return l->search(target);
+    return r->search(T(l->eval().inv(), target));
   }
 };
