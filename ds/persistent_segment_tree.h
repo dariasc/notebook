@@ -8,7 +8,7 @@ template <class T, class U> struct node {
   node *l = 0, *r = 0;
   int lo, hi;
   T val;
-  U tag = tag();
+  U tag = U();
   node(node &o) {
     l = o.l, r = o.r;
     lo = o.lo, r = o.hi;
@@ -51,7 +51,7 @@ template <class T, class U> struct node {
   node *push() {
     if (tag != U()) {
       auto N = new node(this);
-      N->val = val();
+      N->val = eval();
       N->l = l->update(lo, hi, tag);
       N->r = r->update(lo, hi, tag);
       N->tag = U();

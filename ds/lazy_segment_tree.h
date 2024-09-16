@@ -6,22 +6,21 @@ time = "$O(log n)$"
 - */
 struct value {
   ll x;
-  value() : x(0) {}
-  value(ll x) : x(x) {}
-  value(value &a, value &b) { x = a.x + b.x; }
-  /* used for search() */
-  bool cond(value &a) {
-    return x >= a.x;
+  value() : x(0) {} // identity
+  value(ll x) : x(x) {} // constructor
+  value(value a, value b) { // merge
+    x = a.x + b.x;
   }
-  value inv() {
-    return {-x};
+  // predicate for search()
+  bool pred(value target) {
+    return x >= target.x;
   }
 };
 
 struct tag {
   ll set, add;
-  tag() : set(0), add(0) {}
-  void update(tag &op) {
+  tag() : set(0), add(0) {} // empty update
+  void update(tag op) {
     if (op.set) {
       set = op.set;
       add = 0;
@@ -29,7 +28,7 @@ struct tag {
       add += op.add;
     }
   }
-  value eval(int lo, int hi, value &val) {
+  value eval(int lo, int hi, value val) {
     if (set) {
       return {(set + add) * (hi - lo)};
     }
@@ -41,7 +40,7 @@ template <class T, class U> struct node {
   node *l = 0, *r = 0;
   int lo, hi;
   T val;
-  U tag = tag();
+  U tag = U();
   node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
     if (lo + 1 < hi) {
       int mid = lo + (hi - lo) / 2;
@@ -74,21 +73,32 @@ template <class T, class U> struct node {
   }
   void push() {
     if (tag != U()) {
-      val = val();
+      val = eval();
       l->update(lo, hi, tag), r->update(lo, hi, tag);
       tag = U();
     }
   }
-  /* search() implementation over T.cond() */
-  int search(int from, T target) {
-    return search(T(query(0, from), target));
+  // search for first prefix in [L, R) satisfying T.pred()
+  int search(int L, int R, T target) {
+    T left();
+    return search(L, R, target, left);
   }
-  int search(T target) {
-    if (!eval().cond(target)) return -1;
-    if (lo + 1 == hi) return lo;
+  int search(int L, int R, T target, T &left) {
+    if (R <= lo || hi <= L)
+      return -1;
+    if (L <= lo && hi <= R) {
+      if (not T(left, eval()).pred(target)) {
+        left = T(left, eval());
+        return -1;
+      }
+      if (lo + 1 == hi) {
+        return lo;
+      }
+    }
     push();
-    if (l->eval().cond(target))
-      return l->search(target);
-    return r->search(T(l->eval().inv(), target));
+    int i = l->search(L, R, target, left);
+    if (i != -1)
+      return i;
+    return r->search(L, R, target, left);
   }
 };
