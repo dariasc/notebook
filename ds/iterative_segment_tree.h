@@ -7,10 +7,12 @@ time = "$O(log n)$"
 - */
 struct value {
   ll x;
-  value() : x(0) {}
-  value(ll x) : x(x) {}
-  value(value &a, value &b) { x = a.x + b.x; }
-  void update(value &b) { x = b.x; }
+  value() : x(0) {} // identity
+  value(ll x) : x(x) {} // constructor
+  value(value a, value b) { // merge
+    x = a.x + b.x;
+  }
+  void update(value b) { x = b.x; }
 };
 
 template <class T> struct segment_tree {
@@ -29,8 +31,7 @@ template <class T> struct segment_tree {
       s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
     }
   }
-  T query(int b, int e) { // query [b, e)
-    assert(b < e);
+  T query(int b, int e) {
     T ra, rb;
     for (b += n, e += n; b < e; b /= 2, e /= 2) {
       if (b % 2)
