@@ -5,11 +5,11 @@ bool test(ull seed) {
   const ll mod = 5;
   mt19937_64 gen(seed);
   int n = 1000;
-  vec<value> a(n);
+  vec<Value> a(n);
   for (int i = 0; i < n; i++) {
     a[i] = {gen() % mod};
   }
-  segment_tree<value> tree(a);
+  SegmentTree<Value> tree(a);
   int m = 10000;
   while (m--) {
     int t = gen() % 2;
