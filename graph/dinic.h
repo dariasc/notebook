@@ -4,15 +4,15 @@ name = "dinic"
 [info]
 time = "$O(V E log U)$"
 - */
-struct dinic {
-  struct edge_flow {
+struct Dinic {
+  struct EdgeFlow {
     int to, rev;
     ll c, oc;
     ll flow() { return max(oc - c, 0LL); } // if you need flows
   };
   vec<int> lvl, ptr, q;
-  vec<vec<edge_flow>> adj;
-  dinic(int n) : lvl(n), ptr(n), q(n), adj(n) {}
+  vec<vec<EdgeFlow>> adj;
+  Dinic(int n) : lvl(n), ptr(n), q(n), adj(n) {}
   void addEdge(int a, int b, ll c, ll rcap = 0) {
     adj[a].push_back({b, sz(adj[b]), c, c});
     adj[b].push_back({a, sz(adj[a]) - 1, rcap, rcap});
@@ -21,7 +21,7 @@ struct dinic {
     if (v == t || !f)
       return f;
     for (int &i = ptr[v]; i < sz(adj[v]); i++) {
-      edge_flow &e = adj[v][i];
+      EdgeFlow &e = adj[v][i];
       if (lvl[e.to] == lvl[v] + 1)
         if (ll p = dfs(e.to, t, min(f, e.c))) {
           e.c -= p, adj[e.to][e.rev].c += p;
@@ -39,7 +39,7 @@ struct dinic {
         int qi = 0, qe = lvl[s] = 1;
         while (qi < qe && !lvl[t]) {
           int v = q[qi++];
-          for (edge_flow e : adj[v])
+          for (EdgeFlow e : adj[v])
             if (!lvl[e.to] && e.c >> (30 - L))
               q[qe++] = e.to, lvl[e.to] = lvl[v] + 1;
         }

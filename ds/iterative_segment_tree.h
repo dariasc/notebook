@@ -5,20 +5,20 @@ name = "iterative_segment_tree"
 description = "Iterative segment tree, with point update and range queries."
 time = "$O(log n)$"
 - */
-struct value {
+struct Value {
   ll x;
-  value() : x(0) {} // identity
-  value(ll x) : x(x) {} // constructor
-  value(value a, value b) { // merge
+  Value() : x(0) {} // identity
+  Value(ll x) : x(x) {} // constructor
+  Value(Value a, Value b) { // merge
     x = a.x + b.x;
   }
-  void update(value b) { x = b.x; }
+  void update(Value b) { x = b.x; }
 };
 
-template <class T> struct segment_tree {
+template <class T> struct SegmentTree {
   vector<T> s;
   int n;
-  segment_tree(vec<T> &a) : s(2 * sz(a)), n(sz(a)) {
+  SegmentTree(vec<T> &a) : s(2 * sz(a)), n(sz(a)) {
     for (int pos = 0; pos < n; pos++) {
       s[pos + n] = a[pos];
     }

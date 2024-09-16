@@ -5,13 +5,13 @@ name = "convex_hull_trick"
 description = "Container where you can add lines of the form $k x+m$, and query maximum values at points $x$."
 time = "$O(log n)$"
 - */
-struct line {
+struct Line {
   mutable ll k, m, p;
-  bool operator<(const line &o) const { return k < o.k; }
+  bool operator<(const Line &o) const { return k < o.k; }
   bool operator<(ll x) const { return p < x; }
 };
 
-struct line_container : multiset<line, less<>> {
+struct LineContainer : multiset<Line, less<>> {
   // (for doubles, use inf = 1/.0, div(a,b) = a/b)
   static const ll inf = LLONG_MAX;
   ll div(ll a, ll b) { // floored division
@@ -36,7 +36,6 @@ struct line_container : multiset<line, less<>> {
       isect(x, erase(y));
   }
   ll query(ll x) {
-    assert(!empty());
     auto l = *lower_bound(x);
     return l.k * x + l.m;
   }

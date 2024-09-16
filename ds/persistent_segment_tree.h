@@ -4,21 +4,21 @@ name = "persistent_segment_tree"
 description = "Persistent segment tree, same as `lazy_segment_tree` but with history."
 time = "$O(log n)$"
 - */
-template <class T, class U> struct node {
-  node *l = 0, *r = 0;
+template <class T, class U> struct Node {
+  Node *l = 0, *r = 0;
   int lo, hi;
   T val;
   U tag = U();
-  node(node &o) {
+  Node(Node &o) {
     l = o.l, r = o.r;
     lo = o.lo, r = o.hi;
     val = o.val, tag = o.tag;
   }
-  node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
+  Node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
     if (lo + 1 < hi) {
       int mid = lo + (hi - lo) / 2;
-      l = new node(v, lo, mid);
-      r = new node(v, mid, hi);
+      l = new Node(v, lo, mid);
+      r = new Node(v, mid, hi);
       val = T(l->eval(), r->eval());
       return;
     }
@@ -33,12 +33,12 @@ template <class T, class U> struct node {
     auto N = push();
     return T(N->l->query(L, R), N->r->query(L, R));
   }
-  node *update(int L, int R, U x) {
+  Node *update(int L, int R, U x) {
     if (R <= lo || hi <= L)
       return this;
-    node *N;
+    Node *N;
     if (L <= lo && hi <= R) {
-      N = new node(this);
+      N = new Node(this);
       N->tag.update(x);
     } else {
       N = push();
@@ -48,9 +48,9 @@ template <class T, class U> struct node {
     }
     return N;
   }
-  node *push() {
+  Node *push() {
     if (tag != U()) {
-      auto N = new node(this);
+      auto N = new Node(this);
       N->val = eval();
       N->l = l->update(lo, hi, tag);
       N->r = r->update(lo, hi, tag);

@@ -4,23 +4,23 @@ name = "lazy_segment_tree"
 description = "Lazy segment tree, implemented with pointers, supports range queries and updates. Example has range `add` and `set`."
 time = "$O(log n)$"
 - */
-struct value {
+struct Value {
   ll x;
-  value() : x(0) {} // identity
-  value(ll x) : x(x) {} // constructor
-  value(value a, value b) { // merge
+  Value() : x(0) {} // identity
+  Value(ll x) : x(x) {} // constructor
+  Value(Value a, Value b) { // merge
     x = a.x + b.x;
   }
   // predicate for search()
-  bool pred(value target) {
+  bool pred(Value target) {
     return x >= target.x;
   }
 };
 
-struct tag {
+struct Tag {
   ll set, add;
-  tag() : set(0), add(0) {} // empty update
-  void update(tag op) {
+  Tag() : set(0), add(0) {} // empty update
+  void update(Tag op) {
     if (op.set) {
       set = op.set;
       add = 0;
@@ -28,7 +28,7 @@ struct tag {
       add += op.add;
     }
   }
-  value eval(int lo, int hi, value val) {
+  Value eval(int lo, int hi, Value val) {
     if (set) {
       return {(set + add) * (hi - lo)};
     }
@@ -36,16 +36,16 @@ struct tag {
   }
 };
 
-template <class T, class U> struct node {
-  node *l = 0, *r = 0;
+template <class T, class U> struct Node {
+  Node *l = 0, *r = 0;
   int lo, hi;
   T val;
   U tag = U();
-  node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
+  Node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
     if (lo + 1 < hi) {
       int mid = lo + (hi - lo) / 2;
-      l = new node(v, lo, mid);
-      r = new node(v, mid, hi);
+      l = new Node(v, lo, mid);
+      r = new Node(v, mid, hi);
       val = T(l->eval(), r->eval());
       return;
     }
