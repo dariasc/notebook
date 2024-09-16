@@ -1,3 +1,4 @@
+#include "../template.h"
 /* -
 name = "lazy_segment_tree"
 [info]
@@ -19,17 +20,18 @@ struct Value {
 
 struct Tag {
   ll set, add;
-  Tag() : set(0), add(0) {} // empty update
+  Tag() : set(-1), add(0) {} // empty update
+  Tag(ll set, ll add) : set(set), add(add) {}
+  auto operator<=>(const Tag&) const = default;
   void update(Tag op) {
-    if (op.set) {
+    if (op.set != -1) {
       set = op.set;
       add = 0;
-    } else {
-      add += op.add;
     }
+    add += op.add;
   }
   Value eval(int lo, int hi, Value val) {
-    if (set) {
+    if (set != -1) {
       return {(set + add) * (hi - lo)};
     }
     return {val.x + add * (hi - lo)};
@@ -80,7 +82,7 @@ template <class T, class U> struct Node {
   }
   // search for first prefix in [L, R) satisfying T.pred()
   int search(int L, int R, T target) {
-    T left();
+    T left;
     return search(L, R, target, left);
   }
   int search(int L, int R, T target, T &left) {

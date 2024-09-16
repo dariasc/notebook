@@ -5,7 +5,7 @@ compile_and_call_test() {
   local source_code="tests/$filename"
 
   # Compile test
-  g++ -fsanitize=address "$source_code" ./harness.cc -o test
+  g++ -std=c++20 -fsanitize=address "$source_code" ./harness.cc -o test
   if [ $? -ne 0 ]; then
     echo "error g++ non-zero exit code"
     return 1
