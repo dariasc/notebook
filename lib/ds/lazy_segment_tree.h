@@ -1,4 +1,6 @@
 #include "../template.h"
+#include "value.h"
+#include "tag.h"
 /* -
 name = "Lazy Segment Tree"
 [info]

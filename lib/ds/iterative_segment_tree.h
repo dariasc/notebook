@@ -1,4 +1,5 @@
 #include "../template.h"
+#include "value.h"
 /* -
 name = "Iterative Segment Tree"
 [info]

@@ -1,4 +1,4 @@
-#include "../../ds/iterative_segment_tree.h"
+#include "../../lib/ds/iterative_segment_tree.h"
 #include "../harness.h"
 
 bool test(ull seed) {

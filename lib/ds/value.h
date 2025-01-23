@@ -11,4 +11,5 @@ struct Value {
   Value(Value a, Value b) { // merge
     x = a.x + b.x;
   }
+  void update(Value b) { x = b.x; }
 };

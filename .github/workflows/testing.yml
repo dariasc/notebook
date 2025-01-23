@@ -17,4 +17,4 @@ jobs:
       - name: Run tests
         run: |
           cd testing
-          bash test.sh
+          ./test.sh

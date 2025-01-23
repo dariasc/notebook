@@ -1,4 +1,4 @@
-#include "../../ds/lazy_segment_tree.h"
+#include "../../lib/ds/lazy_segment_tree.h"
 #include "../harness.h"
 
 bool test(ull seed) {
