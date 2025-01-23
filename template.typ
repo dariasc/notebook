@@ -1,5 +1,3 @@
-#import "@preview/jumble:0.0.1": bytes-to-hex, md5
-
 #let project(body) = {
   let vertical-line(anchor, x) = {
     place(
