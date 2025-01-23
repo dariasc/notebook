@@ -1,43 +1,10 @@
 #include "../template.h"
 /* -
-name = "lazy_segment_tree"
+name = "Lazy Segment Tree"
 [info]
-description = "Lazy segment tree, implemented with pointers, supports range queries and updates. Example has range `add` and `set`."
+description = "Lazy segment tree, implemented with pointers, supports range queries and updates."
 time = "$O(log n)$"
 - */
-struct Value {
-  ll x;
-  Value() : x(0) {} // identity
-  Value(ll x) : x(x) {} // constructor
-  Value(Value a, Value b) { // merge
-    x = a.x + b.x;
-  }
-  // predicate for search()
-  bool pred(Value target) {
-    return x >= target.x;
-  }
-};
-
-struct Tag {
-  ll set, add;
-  Tag() : set(-1), add(0) {} // empty update
-  Tag(ll set, ll add) : set(set), add(add) {}
-  auto operator<=>(const Tag&) const = default;
-  void update(Tag op) {
-    if (op.set != -1) {
-      set = op.set;
-      add = 0;
-    }
-    add += op.add;
-  }
-  Value eval(int lo, int hi, Value val) {
-    if (set != -1) {
-      return {(set + add) * (hi - lo)};
-    }
-    return {val.x + add * (hi - lo)};
-  }
-};
-
 template <class T, class U> struct Node {
   Node *l = 0, *r = 0;
   int lo, hi;

@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "union_find"
+name = "Union Find"
 [info]
 time = "$O(alpha(n))$"
 - */
@@ -9,7 +9,9 @@ struct UnionFind {
   UnionFind(int n) : e(n, -1) {}
   bool same(int a, int b) { return find(a) == find(b); }
   int size(int x) { return -e[find(x)]; }
-  int find(int x) { return e[x] < 0 ? x : e[x] = find(e[x]); }
+  int find(int x) { 
+	  return e[x] < 0 ? x : e[x] = find(e[x]);
+  }
   bool join(int a, int b) {
     a = find(a), b = find(b);
     if (a == b)

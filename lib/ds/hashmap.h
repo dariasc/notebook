@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "hashmap"
+name = "Faster Hashmap"
 [info]
 description = "Hash map with mostly the same API as unordered_map, but \\~3x faster. Uses 1.5x memory. Initial capacity must be a power of 2 (if provided)."
 - */

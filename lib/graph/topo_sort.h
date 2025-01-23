@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "topological_sort"
+name = "Topological Sort"
 [info]
 time = "$O(V + E)$"
 - */

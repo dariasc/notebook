@@ -1,8 +1,8 @@
 #include "../template.h"
 /* -
-name = "dinic"
+name = "Dinic"
 [info]
-time = "$O(V E log U)$"
+time = "$O(V E log U)$ where $U = max thin |\"cap\"|$. $O\\(E min\\(E^(1/2), V^(2/3)\\)\\)$ if $U = 1$. $O\\(sqrt(V)E\\)$ for bipartite matching." 
 - */
 struct Dinic {
   struct EdgeFlow {

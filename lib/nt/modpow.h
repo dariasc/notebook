@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "modpow"
+name = "Modpow"
 [info]
 time = "$O(log(e))$"
 - */

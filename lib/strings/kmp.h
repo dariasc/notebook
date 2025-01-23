@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "kmp"
+name = "KMP"
 [info]
 description = "`pi[x]` computes the length of the longest prefix of `s` that ends at `x`, other than `s[0...x]` itself (`abacaba` $->$ `0010123`). Can be used to find all occurrences of a string."
 time = "$O(n)$"

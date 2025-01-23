@@ -1,5 +1,5 @@
 /* -
-name = "persistent_segment_tree"
+name = "Persistent Segment Tree"
 [info]
 description = "Persistent segment tree, same as `lazy_segment_tree` but with history."
 time = "$O(log n)$"

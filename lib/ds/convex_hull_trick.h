@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "convex_hull_trick"
+name = "Convex Hull Trick"
 [info]
 description = "Container where you can add lines of the form $k x+m$, and query maximum values at points $x$."
 time = "$O(log n)$"

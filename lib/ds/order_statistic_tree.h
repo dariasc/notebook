@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "order_statistic_tree"
+name = "Order Statistic Tree"
 [info]
 time = "$O(log n)$"
 - */
