@@ -5,21 +5,21 @@ bool test(ull seed) {
   const ll mod = 5;
   mt19937_64 gen(seed);
   int n = 1000;
-  vec<Value> a(n);
+  vec<ll> a(n);
   for (int i = 0; i < n; i++) {
-    a[i] = {gen() % mod};
+    a[i] = random(gen, mod);
   }
   SegmentTree<Value> tree(a);
   int m = 10000;
   while (m--) {
     int t = gen() % 2;
     if (t == 0) {
-      int i = gen() % n;
-      a[i] = {gen() % mod};
-      tree.update(i, {a[i]});
+      int i = random(gen, n);
+      a[i] = random(gen, mod);
+      tree.update(i, a[i]);
     } else {
-      int i = gen() % n;
-      int j = gen() % (n + 1);
+      int i = random(gen, n);
+      int j = random(gen, n+1);
       if (j < i) {
         swap(i, j);
       }
@@ -28,9 +28,9 @@ bool test(ull seed) {
       }
       ll sum = 0;
       for (int k = i; k < j; k++) {
-        sum += a[k].x;
+        sum += a[k];
       }
-      if (sum != tree.query(i, j).x) {
+      if (sum != tree.query(i, j)) {
         return 0;
       }
     }

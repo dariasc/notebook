@@ -12,7 +12,16 @@ template <class T, class U> struct Node {
   int lo, hi;
   T val;
   U tag = U();
-  Node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
+  Node(int lo, int hi) : lo(lo), hi(hi) {
+		val = T();
+    if (lo + 1 < hi) {
+      int mid = lo + (hi - lo) / 2;
+      l = new Node(lo, mid);
+      r = new Node(mid, hi);
+    }
+	}
+	template <typename V>
+  Node(vec<V> &v, int lo, int hi) : lo(lo), hi(hi) {
     if (lo + 1 < hi) {
       int mid = lo + (hi - lo) / 2;
       l = new Node(v, lo, mid);
@@ -20,7 +29,7 @@ template <class T, class U> struct Node {
       val = T(l->eval(), r->eval());
       return;
     }
-    val = v[lo];
+    val = T(v[lo]);
   }
   T eval() { return tag.eval(lo, hi, val); }
   T query(int L, int R) {

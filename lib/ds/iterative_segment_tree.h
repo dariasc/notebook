@@ -7,11 +7,13 @@ description = "Iterative segment tree, with point update and range queries."
 time = "$O(log n)$"
 - */
 template <class T> struct SegmentTree {
-  vector<T> s;
+  vec<T> s;
   int n;
-  SegmentTree(vec<T> &a) : s(2 * sz(a)), n(sz(a)) {
+  SegmentTree(int n) : s(2 * n), n(n) {}
+  template <typename V>
+  SegmentTree(vec<V> &a) : s(2 * sz(a)), n(sz(a)) {
     for (int pos = 0; pos < n; pos++) {
-      s[pos + n] = a[pos];
+      s[pos + n] = T(a[pos]);
     }
     for (int pos = n - 1; pos >= 0; pos--) {
       s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
