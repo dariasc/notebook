@@ -5,7 +5,7 @@ name = "Sub Matrix"
 description = "Calculate submatrix sums."
 time = "$O(1)$"
 - */
-template<class T>
+template <class T>
 struct SubMatrix {
 	vec<vec<T>> p;
 	SubMatrix(vec<vec<T>>& v) {
