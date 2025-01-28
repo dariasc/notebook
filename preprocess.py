@@ -28,23 +28,26 @@ def process_header_file(input_file: Path, output_file: Path, interval: int = 8) 
         lines = content.splitlines()
 
     # Calculate positions and hashes
-    positions = list(range(interval, len(lines), interval)) + [len(lines)+1]
+    positions = list(range(0, len(lines), interval))
 
+    ends = []
     prefix_hashes = []
     hashes = []
     for pos in positions:
-        # Join lines up to position and compute hash
-        prefix = '\n'.join(lines[:pos])
+        # Join lines from position up to position+interval and compute hash
+        r = min(len(lines), pos+interval)
+        ends.append(r)
+        prefix = '\n'.join(lines[:r])
         prefix_hashes.append(hash_content(prefix))
 
-        segment = '\n'.join(lines[(pos-interval):pos])
+        segment = '\n'.join(lines[pos:r])
         hashes.append(hash_content(segment))
 
     # Write results
     with open(output_file, 'w') as f:
         f.write(f"hashes = {hashes}\n")
         f.write(f"prefix-hashes = {prefix_hashes}\n")
-        f.write(f"positions = {positions}\n")
+        f.write(f"positions = {ends}\n")
 
 def main():
     # Configuration

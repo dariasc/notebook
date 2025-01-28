@@ -72,7 +72,7 @@
 }
 
 #let extract-code(contents) = {
-  return contents.split("- */\n").at(-1)
+  return contents.split("- */\n").at(-1).trim("\n")
 }
 
 #let extract-metadata(contents) = {
