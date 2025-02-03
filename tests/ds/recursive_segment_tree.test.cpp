@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum" 
-#include "../lib/template.h"
-#include "../lib/ds/value.h"
-#include "../lib/ds/recursive_segment_tree.h"
+#include "../../lib/template.h"
+#include "../../lib/ds/value.h"
+#include "../../lib/ds/recursive_segment_tree.h"
 
 int main() {
 	cin.tie(0)->sync_with_stdio(0);

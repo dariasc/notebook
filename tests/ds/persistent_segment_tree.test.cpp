@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
-#include "../lib/template.h"
-#include "../lib/ds/value.h"
-#include "../lib/ds/persistent_segment_tree.h"
+#include "../../lib/template.h"
+#include "../../lib/ds/value.h"
+#include "../../lib/ds/persistent_segment_tree.h"
 
 void make_unique(vec<int> &a) {
   sort(all(a));

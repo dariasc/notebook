@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_range_affine_range_sum"
-#include "../lib/template.h"
-#include "../lib/ds/persistent_lazy_segment_tree.h"
+#include "../../lib/template.h"
+#include "../../lib/ds/persistent_lazy_segment_tree.h"
 
 const ll mod = 998244353;
 
