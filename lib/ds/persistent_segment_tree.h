@@ -1,62 +1,45 @@
+#include "../template.h"
 /* -
 name = "Persistent Segment Tree"
 [info]
-description = "Persistent segment tree, same as `lazy_segment_tree` but with history."
 time = "$O(log n)$"
 - */
-template <class T, class U> struct Node {
-  Node *l = 0, *r = 0;
-  int lo, hi;
-  T val;
-  U tag = U();
-  Node(Node &o) {
-    l = o.l, r = o.r;
-    lo = o.lo, r = o.hi;
-    val = o.val, tag = o.tag;
+template <class T> struct SegmentTree {
+  struct Node {
+    int l = 0, r = 0; 
+    T x;
+  };
+  int n;
+  vec<Node> s;
+  vec<int> roots;
+  SegmentTree(int n) : n(n), s(1), roots(1) {}
+  T query(int i, int l, int r, int tl, int tr) {
+    if (i == 0 || r <= tl || tr <= l) return T();
+    if (l <= tl && tr <= r) return s[i].x;
+    int tm = (tl+tr)/2;
+    return T(query(s[i].l, l, r, tl, tm), 
+             query(s[i].r, l, r, tm, tr));
   }
-  Node(vec<T> &v, int lo, int hi) : lo(lo), hi(hi) {
-    if (lo + 1 < hi) {
-      int mid = lo + (hi - lo) / 2;
-      l = new Node(v, lo, mid);
-      r = new Node(v, mid, hi);
-      val = T(l->eval(), r->eval());
-      return;
-    }
-    val = v[lo];
+  T query(int ver, int l, int r) { // [l, r)
+    return query(roots[ver], l, r, 0, n); 
   }
-  T eval() { return tag.eval(lo, hi, val); }
-  T query(int L, int R) {
-    if (R <= lo || hi <= L)
-      return T();
-    if (L <= lo && hi <= R)
-      return eval();
-    auto N = push();
-    return T(N->l->query(L, R), N->r->query(L, R));
-  }
-  Node *update(int L, int R, U x) {
-    if (R <= lo || hi <= L)
-      return this;
-    Node *N;
-    if (L <= lo && hi <= R) {
-      N = new Node(this);
-      N->tag.update(x);
+  int update(int i, int pos, T u, int tl, int tr) {
+    s.push_back(s[i]);
+    int j = sz(s) - 1;
+    if (tr - tl == 1) {
+      s[j].x.update(u);
     } else {
-      N = push();
-      N->l = l->update(L, R, x);
-      N->r = r->update(L, R, x);
-      N->val = T(l->eval(), r->eval());
+      int tm = (tl+tr)/2;
+      if (pos < tm)
+        s[j].l = update(s[j].l, pos, u, tl, tm);
+      else
+        s[j].r = update(s[j].r, pos, u, tm, tr);
+      s[j].x = T(s[s[j].l].x, s[s[j].r].x);
     }
-    return N;
+    return j;
   }
-  Node *push() {
-    if (tag != U()) {
-      auto N = new Node(this);
-      N->val = eval();
-      N->l = l->update(lo, hi, tag);
-      N->r = r->update(lo, hi, tag);
-      N->tag = U();
-      return N;
-    }
-    return this;
+  int update(int ver, int pos, T u) {
+    roots.push_back(update(roots[ver], pos, u, 0, n));
+    return sz(roots) - 1;
   }
 };

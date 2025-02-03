@@ -2,7 +2,7 @@ name: typst
 
 on:
   workflow_run:
-    workflows: ["testing"]
+    workflows: ["verify"]
     types:
       - completed
 

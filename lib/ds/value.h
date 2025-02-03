@@ -13,6 +13,6 @@ struct Value {
     x = a.x + b.x;
   }
   void update(Value b) { 
-		x = b.x; 
+    x += b.x; 
   }
 };
