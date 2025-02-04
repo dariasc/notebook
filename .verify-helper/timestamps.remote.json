@@ -1,9 +1,0 @@
-{
-"tests/ds/fenwick_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/iterative_segment_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/lazy_segment_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/persistent_lazy_segment_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/persistent_segment_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/recursive_segment_tree.test.cpp": "2025-02-03 21:10:15 -0300",
-"tests/ds/treap.test.cpp": "2025-02-03 21:10:15 -0300"
-}
