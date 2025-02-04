@@ -47,7 +47,7 @@
   ]
 
   show raw.where(block: true): it => {
-    set text(7pt)
+    set text(6.5pt)
     set par(justify: false)
     it
   }
@@ -132,11 +132,12 @@
             align: (auto, bottom + right),
             body,
             [
-              #place(bottom + right, dy: 5.5pt)[
-                #box(fill: white, width: 39pt)[
-                  #set text(size: 5pt)
-                  #hash,#text(prefix-hash, weight: "bold")
-                ]
+              #place(bottom + right, dy: 5pt, dx: 2.5pt)[
+                #rect(fill: white, width: 42pt, height: 2pt) 
+              ]
+              #place(bottom + right, dy: 5.5pt, dx: 2.5pt)[
+                #set text(size: 5pt)
+                #hash,#text(prefix-hash, weight: "bold")
               ]
             ]
           ),
