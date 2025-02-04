@@ -132,8 +132,12 @@
             align: (auto, bottom + right),
             body,
             [
-              #set text(size: 5pt)
-              #hash,#text(prefix-hash, weight: "bold")
+              #place(bottom + right, dy: 5.5pt)[
+                #box(fill: white, width: 39pt)[
+                  #set text(size: 5pt)
+                  #hash,#text(prefix-hash, weight: "bold")
+                ]
+              ]
             ]
           ),
           stroke: stroke,
