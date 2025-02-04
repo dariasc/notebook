@@ -5,7 +5,8 @@ name = "Treap"
 description = "Can easily be extended to an implicit treap, and to support range queries and updates."
 time = "$O(log n)$"
 - */
-mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
+mt19937 rng(chrono::high_resolution_clock::now()
+            .time_since_epoch().count());
 template <class T> struct Treap {
   struct Node {
     int l = -1, r = -1, c = 1;

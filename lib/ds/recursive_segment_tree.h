@@ -16,7 +16,8 @@ template <class T> struct SegmentTree {
     if (r <= tl || tr <= l) return T();
     if (l <= tl && tr <= r) return s[v(tl,tr)];
     int tm = (tl+tr)/2;
-    return T(query(l, r, tl, tm), query(l, r, tm, tr));
+    return T(query(l, r, tl, tm),
+             query(l, r, tm, tr));
   }
   T query(int l, int r) { // [l, r)
     return query(l, r, 0, n); 

@@ -19,7 +19,8 @@ template <class T, class U> struct SegmentTree {
       return s[v(tl,tr)];
     int tm = (tl+tr)/2;
     push(tl, tr);
-    return T(query(l, r, tl, tm), query(l, r, tm, tr));
+    return T(query(l, r, tl, tm),
+             query(l, r, tm, tr));
   }
   T query(int l, int r) { // [l, r)
     return query(l, r, 0, n);
