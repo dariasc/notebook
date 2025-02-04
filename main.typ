@@ -32,4 +32,5 @@
 #insert("graph/dinic.h")
 #insert("graph/push_relabel.h")
 #insert("graph/maxflow_with_demands.h")
+#insert("graph/mcmf.h")
 #insert("graph/weighted_matching.h")
