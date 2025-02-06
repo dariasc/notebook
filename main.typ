@@ -29,6 +29,7 @@
 #insert("strings/kmp.h")
 = Graphs
 #insert("graph/topo_sort.h")
+#insert("graph/hopcroft_karp.h")
 #insert("graph/dinic.h")
 #insert("graph/push_relabel.h")
 #insert("graph/maxflow_with_demands.h")

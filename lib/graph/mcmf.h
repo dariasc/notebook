@@ -3,7 +3,7 @@
 name = "Min Cost Max Flow"
 [info]
 description = "To obtain the actual flow, look at positive values only."
-time = "$O(F E log(V))$ where F is max flow. $O(V E)$ for setpi." 
+time = "$O(F E log V)$ where F is max flow. $O(V E)$ for setpi." 
 - */
 #include <bits/extc++.h>
 const ll INF = numeric_limits<ll>::max() / 4;
