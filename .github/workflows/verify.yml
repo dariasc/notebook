@@ -20,5 +20,5 @@ jobs:
       run: pip3 install -U online-judge-verify-helper
 
     - name: Run tests
-      run: oj-verify all
+      run: oj-verify all -j 4
 
