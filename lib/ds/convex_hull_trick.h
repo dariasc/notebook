@@ -2,7 +2,7 @@
 /* -
 name = "Convex Hull Trick"
 [info]
-description = "Container where you can add lines of the form $k x+m$, and query maximum values at points $x$."
+description = "Add lines of the form $k x+m$, and query the maximum value at some point $x$."
 time = "$O(log n)$"
 - */
 struct Line {
@@ -10,7 +10,6 @@ struct Line {
   bool operator<(const Line &o) const { return k < o.k; }
   bool operator<(ll x) const { return p < x; }
 };
-
 struct LineContainer : multiset<Line, less<>> {
   // (for doubles, use inf = 1/.0, div(a,b) = a/b)
   static const ll inf = LLONG_MAX;
