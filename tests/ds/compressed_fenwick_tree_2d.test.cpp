@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 #include "../../lib/template.h"
-#include "../../lib/ds/value.h"
-#include "../../lib/ds/persistent_segment_tree.h"
+#include "../../lib/ds/compressed_fenwick_tree_2d.h"
 
 void make_unique(vec<int> &a) {
   sort(all(a));
@@ -14,35 +13,36 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<int> X(n), Y(n);
+  vec<int> X(n);
   vec<array<int, 3>> P(n);
   for (int i = 0; i < n; i++) {
     int x, y, w;
     cin >> x >> y >> w;
     X[i] = x;
-    Y[i] = y;
-    P[i] = {y,x,w};
+    P[i] = {x,y,w};
   }
   make_unique(X);
-  make_unique(Y);
-  sort(all(P));
-  vec<int> last(sz(Y));
-  SegmentTree<Value> tree(sz(X));
-  int ver = 0;
-  for (auto [y, x, w] : P) {
+  FT2 ft2(sz(X));
+  for (auto [x,y,w] : P) {
     int xi = lower_bound(all(X), x) - X.begin();
-    int yi = lower_bound(all(Y), y) - Y.begin();
-    ver = tree.update(ver, xi, w);
-    last[yi] = ver;
+    ft2.fakeUpdate(xi, y);
+  }
+  ft2.init();
+  for (auto [x,y,w] : P) {
+    int xi = lower_bound(all(X), x) - X.begin();
+    ft2.update(xi, y, w);
   }
   while (q--) {
     int l, d, r, u;
     cin >> l >> d >> r >> u;
     int li = lower_bound(all(X), l) - X.begin();
     int ri = lower_bound(all(X), r) - X.begin();
-    int di = lower_bound(all(Y), d) - Y.begin() - 1;
-    int ui = lower_bound(all(Y), u) - Y.begin() - 1;
-    cout << tree.query(last[ui], li, ri) - tree.query(last[di], li, ri) << "\n"; 
+    ll ans = 0;
+    ans += ft2.query(ri, u);
+    ans -= ft2.query(ri, d);
+    ans -= ft2.query(li, u);
+    ans += ft2.query(li, d);
+    cout << ans << '\n';
   }
 }
 

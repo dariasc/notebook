@@ -17,6 +17,7 @@
 #insert("ds/sparse_table.h")
 #insert("ds/iterative_segment_tree.h")
 #insert("ds/fenwick_tree.h")
+#insert("ds/compressed_fenwick_tree_2d.h")
 #insert("ds/recursive_segment_tree.h")
 #insert("ds/persistent_segment_tree.h")
 #insert("ds/tag.h")
