@@ -11,10 +11,12 @@
   }
 
   set document(title: "Notebook")
+  let margin = 0.6cm
+  let gutter = 1.5%
   set page(
     paper: "a4",
     flipped: true,
-    margin: ( left: 0.75cm, right: 0.75cm, bottom: 0.75cm, top: 1.25cm ),
+    margin: ( left: margin, right: margin, bottom: margin, top: 1.25cm ),
     header-ascent: 40%,
     header: context {
       let headings = query(
@@ -26,14 +28,14 @@
       return align(right, text(this.join(", "), size: 9pt, weight: "semibold"))
     },
     background: [
-      #vertical-line(left, 34%)
-      #vertical-line(right, -34%)
+      #vertical-line(left, margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3)
+      #vertical-line(right, -(margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3))
     ]
   )
 
   set text(font: "Libertinus Serif", lang: "en")
   set par(justify: true)
-  show: columns.with(3, gutter: 2%)
+  show: columns.with(3, gutter: gutter)
 
   show heading.where(level: 1): it => [
     #set block(above: 0em)
@@ -122,33 +124,29 @@
         let index = hash-metadata.positions.position(i => i == it.number)
         let hash = hash-metadata.hashes.at(index)
         let prefix-hash = hash-metadata.prefix-hashes.at(index)
-        let stroke = (bottom: (paint: gray.lighten(50%), thickness: 0.5pt, dash: "dashed"))
+        let stroke = (paint: gray.lighten(50%), thickness: 0.5pt, dash: "dashed")
         if it.number == line-count {
-          stroke = (bottom: 0.5pt + black)
+          stroke = 0.5pt + black
         }
-        box(
-          grid(
-            columns: (1fr, 20pt),
-            align: (auto, bottom + right),
-            body,
-            [
-              #place(bottom + right, dy: 5pt, dx: 2.5pt)[
-                #rect(fill: white, width: 42pt, height: 2pt) 
-              ]
-              #place(bottom + right, dy: 5.5pt, dx: 2.5pt)[
-                #set text(size: 5pt)
-                #hash,#text(prefix-hash, weight: "bold")
-              ]
+        let divisor-padding = 1.5pt
+        box(inset: (bottom: divisor-padding))[
+          #body
+          #v(divisor-padding)
+          #place(bottom + left, dy: 2.5pt)[
+            #line(stroke: stroke, length: 100% - 40pt)
+          ]
+          #place(bottom + right, dy: 4pt)[
+            #rect(fill: white, inset: 0pt)[
+              #set text(size: 5pt)
+              #hash,#text(prefix-hash, weight: "bold")
             ]
-          ),
-          stroke: stroke,
-          inset: (bottom: 3pt),
-          outset: (bottom: 1pt)
-        )
+          ]
+        ]
       } else {
-        box(body)
+        body
       }
     }
     #block(raw(code, lang: "cpp", block: true))
   ]
 }
+
