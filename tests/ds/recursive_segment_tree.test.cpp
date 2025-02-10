@@ -13,7 +13,7 @@ int main() {
     cin >> a[i];
   }
   SegmentTree<Value> tree(n);
-  tree.build(a, 0, n);
+  tree.build(a);
   while (q--) {
     int t, a, b;
     cin >> t >> a >> b;

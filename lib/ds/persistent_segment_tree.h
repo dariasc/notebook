@@ -11,35 +11,32 @@ template <class T> struct SegmentTree {
   };
   int n;
   vec<Node> s;
-  vec<int> roots;
-  SegmentTree(int n) : n(n), s(1), roots(1) {}
-  T query(int i, int l, int r, int tl, int tr) {
-    if (i == 0 || r <= tl || tr <= l) return T();
-    if (l <= tl && tr <= r) return s[i].x;
-    int tm = (tl+tr)/2;
-    return T(query(s[i].l, l, r, tl, tm), 
-             query(s[i].r, l, r, tm, tr));
+  SegmentTree(int n) : n(n), s(1) {}
+#define L s[v].l
+#define R s[v].r
+#define tm (tl+tr)/2
+  T query(int l, int r, int v, int tl=0, int tr=0) { // [l, r)
+    if (tr == 0) tr = n;
+    if (r <= tl || tr <= l) return T();
+    if (l <= tl && tr <= r) return s[v].x;
+    return T(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
-  T query(int ver, int l, int r) { // [l, r)
-    return query(roots[ver], l, r, 0, n); 
-  }
-  int update(int i, int pos, T u, int tl, int tr) {
-    s.push_back(s[i]);
-    int j = sz(s) - 1;
+  int update(int pos, T u, int v, int tl=0, int tr=0) {
+    if (tr == 0) tr = n;
+    s.push_back(s[v]);
+    v = sz(s) - 1;
     if (tr - tl == 1) {
-      s[j].x.update(u);
+      s[v].x.update(u);
     } else {
-      int tm = (tl+tr)/2;
       if (pos < tm)
-        s[j].l = update(s[j].l, pos, u, tl, tm);
+        L = update(pos, u, L, tl, tm);
       else
-        s[j].r = update(s[j].r, pos, u, tm, tr);
-      s[j].x = T(s[s[j].l].x, s[s[j].r].x);
+        R = update(pos, u, R, tm, tr);
+      s[v].x = T(s[L].x, s[R].x);
     }
-    return j;
+    return v;
   }
-  int update(int ver, int pos, T u) {
-    roots.push_back(update(roots[ver], pos, u, 0, n));
-    return sz(roots) - 1;
-  }
+#undef L
+#undef R
+#undef tm
 };

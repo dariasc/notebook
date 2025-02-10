@@ -8,44 +8,40 @@ time = "$O(log n)$"
 template <class T> struct SegmentTree {
   int n;
   vec<T> s;
-  SegmentTree(int n) : n(n), s(2 * n) {}
-  int v(int tl, int tr) {
-    return tr-tl > 1 ? (tl+tr)/2*2-1 : 2*tl;
-  }
-  T query(int l, int r, int tl, int tr) {
+  SegmentTree(int n) : n(n), s(2*n-1) {}
+#define L v+1
+#define R v+2*(tm-tl)
+#define tm (tl+tr)/2
+  T query(int l, int r, int v=0, int tl=0, int tr=0) { // [l, r)
+    if (tr == 0) tr = n;
     if (r <= tl || tr <= l) return T();
-    if (l <= tl && tr <= r) return s[v(tl,tr)];
-    int tm = (tl+tr)/2;
-    return T(query(l, r, tl, tm),
-             query(l, r, tm, tr));
+    if (l <= tl && tr <= r) return s[v];
+    return T(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
-  T query(int l, int r) { // [l, r)
-    return query(l, r, 0, n); 
-  }
-  void update(int pos, T x, int tl, int tr) {
+  void update(int pos, T x, int v=0, int tl=0, int tr=0) {
+    if (tr == 0) tr = n;
     if (tr - tl == 1) {
-      s[v(tl,tr)].update(x);
+      s[v].update(x);
     } else {
-      int tm = (tl+tr)/2;
       if (pos < tm)
-        update(pos, x, tl, tm);
+        update(pos, x, L, tl, tm);
       else
-        update(pos, x, tm, tr);
-      s[v(tl,tr)] = T(s[v(tl,tm)], s[v(tm,tr)]);
+        update(pos, x, R, tm, tr);
+      s[v] = T(s[L], s[R]);
     }
-  }
-  void update(int pos, T x) {
-    return update(pos, x, 0, n);
   }
   template <class V>
-  void build(vec<V> &a, int tl, int tr) {
+  void build(vec<V> &a, int v=0, int tl=0, int tr=0) {
+    if (tr == 0) tr = n;
     if (tr - tl == 1) {
-      s[v(tl,tr)] = a[tl];
+      s[v] = a[tl];
     } else {
-      int tm = (tl+tr)/2;
-      build(a, tl, tm);
-      build(a, tm, tr);
-      s[v(tl,tr)] = T(s[v(tl,tm)], s[v(tm,tr)]);
+      build(a, L, tl, tm);
+      build(a, R, tm, tr);
+      s[v] = T(s[L], s[R]);
     }
   }
+#undef L
+#undef R
+#undef tm
 };

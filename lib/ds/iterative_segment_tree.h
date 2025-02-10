@@ -9,15 +9,6 @@ template <class T> struct SegmentTree {
   vec<T> s;
   int n;
   SegmentTree(int n) : s(2 * n), n(n) {}
-  template <class V>
-  void build(vec<V> &a) {
-    for (int pos = 0; pos < n; pos++) {
-      s[pos + n] = a[pos];
-    }
-    for (int pos = n - 1; pos >= 0; pos--) {
-      s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
-    }
-  }
   void update(int pos, T val) {
     for (s[pos += n].update(val); pos /= 2;) {
       s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
@@ -32,5 +23,14 @@ template <class T> struct SegmentTree {
         rb = T(s[--e], rb);
     }
     return T(ra, rb);
+  }
+  template <class V>
+  void build(vec<V> &a) {
+    for (int pos = 0; pos < n; pos++) {
+      s[pos + n] = a[pos];
+    }
+    for (int pos = n - 1; pos >= 0; pos--) {
+      s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
+    }
   }
 };

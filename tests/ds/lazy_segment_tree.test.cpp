@@ -38,7 +38,7 @@ int main() {
     cin >> a[i];
   }
   SegmentTree<Value, Tag> tree(n);
-  tree.build(a, 0, n);
+  tree.build(a);
   while (q--) {
     int t, l, r;
     cin >> t >> l >> r;

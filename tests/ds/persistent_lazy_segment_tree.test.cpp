@@ -29,28 +29,29 @@ struct Tag {
   }
 };
 
-int path_copy(auto &t, int i, int k, int l, int r, int tl, int tr) {
+#define L s[v].l
+#define R s[v].r
+#define tm (tl+tr)/2
+int path_copy(auto &t, int l, int r, int k, int v, int tl=0, int tr=0) {
+  if (tr == 0) tr = t.n;
   if (r <= tl || tr <= l) 
-    return i;
-  t.s.push_back(t.s[i]);
-  int j = sz(t.s) - 1;
+    return v;
+  t.s.push_back(t.s[v]);
+  v = sz(t.s) - 1;
   if (l <= tl && tr <= r) {
     return k;
   } else {
-    int tm = (tl+tr)/2;
-    t.push(j, tl, tr);
+    t.push(v, tl, tr);
     t.push(k, tl, tr);
-    t.s[j].l = path_copy(t, t.s[j].l, t.s[k].l, l, r, tl, tm);
-    t.s[j].r = path_copy(t, t.s[j].r, t.s[k].r, l, r, tm, tr);
-    t.s[j].x = Value(t.s[t.s[j].l].x, t.s[t.s[j].r].x);
+    t.L = path_copy(t, l, r, t.s[k].l, t.L, tl, tm);
+    t.R = path_copy(t, l, r, t.s[k].r, t.R, tm, tr);
+    t.s[v].x = Value(t.s[t.L].x, t.s[t.R].x);
   }
-  return j;
+  return v;
 }
-
-int path_copy(auto &t, int ver, int src, int l, int r) {
-  t.roots.push_back(path_copy(t, t.roots[ver], t.roots[src], l, r, 0, t.n));
-  return sz(t.roots) - 1;
-}
+#undef L
+#undef R
+#undef tm
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
@@ -62,11 +63,10 @@ int main() {
     cin >> a[i];
   }
   SegmentTree<Value, Tag> tree(n);
-  for (int i = 0; i < n; i++) {
-    tree.update(i, i, i+1, {0, a[i]});
-  }
   vec<int> ver(q+1);
-  ver[0] = n;
+  for (int i = 0; i < n; i++) {
+    ver[0] = tree.update(i, i+1, {0, a[i]}, ver[0]);
+  }
   int i = 1;
   while (q--) {
     int t, k;
@@ -77,18 +77,18 @@ int main() {
       cin >> l >> r;
       int b, c;
       cin >> b >> c;
-      ver[i] = tree.update(ver[k], l, r, {b, c});
+      ver[i] = tree.update(l, r, {b, c}, ver[k]);
     } else if (t == 1) {
       int s;
       cin >> s;
       s++;
       int l, r;
       cin >> l >> r;
-      ver[i] = path_copy(tree, ver[k], ver[s], l, r);
+      ver[i] = path_copy(tree, l, r, ver[s], ver[k]);
     } else if (t == 2) {
       int l, r;
       cin >> l >> r;
-      cout << tree.query(ver[k], l, r) << "\n";
+      cout << tree.query(l, r, ver[k]) << "\n";
     }
     i++;
   }

@@ -8,54 +8,44 @@ template <class T, class U> struct SegmentTree {
   int n;
   vec<T> s;
   vec<U> lz;
-  SegmentTree(int n) : n(n), s(2 * n), lz(2 * n) {}
-  int v(int tl, int tr) {
-    return tr-tl > 1 ? (tl+tr)/2*2-1 : 2*tl;
+  SegmentTree(int n) : n(n), s(2*n-1), lz(2*n-1) {}
+#define L v+1
+#define R v+2*(tm-tl)
+#define tm (tl+tr)/2
+  T query(int l, int r, int v=0, int tl=0, int tr=0) { // [l, r)
+    if (tr == 0) tr = n;
+    if (r <= tl || tr <= l) return T();
+    if (l <= tl && tr <= r) return s[v];
+    push(v, tl, tr);
+    return T(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
-  T query(int l, int r, int tl, int tr) {
-    if (r <= tl || tr <= l) 
-      return T();
-    if (l <= tl && tr <= r) 
-      return s[v(tl,tr)];
-    int tm = (tl+tr)/2;
-    push(tl, tr);
-    return T(query(l, r, tl, tm),
-             query(l, r, tm, tr));
-  }
-  T query(int l, int r) { // [l, r)
-    return query(l, r, 0, n);
-  }
-  void update(int l, int r, U x, int tl, int tr) { 
-    if (r <= tl || tr <= l) 
-      return;
+  void update(int l, int r, U x, int v=0, int tl=0, int tr=0) { 
+    if (tr == 0) tr = n;
+    if (r <= tl || tr <= l) return;
     if (l <= tl && tr <= r)
-      return s[v(tl,tr)] = x.apply(s[v(tl,tr)], tl, tr), 
-             lz[v(tl,tr)].update(x);
-    int tm = (tl+tr)/2;
-    push(tl, tr);
-    update(l, r, x, tl, tm);
-    update(l, r, x, tm, tr);
-    s[v(tl,tr)] = T(s[v(tl,tm)], s[v(tm,tr)]);
+      return s[v] = x.apply(s[v], tl, tr), lz[v].update(x);
+    push(v, tl, tr);
+    update(l, r, x, L, tl, tm);
+    update(l, r, x, R, tm, tr);
+    s[v] = T(s[L], s[R]);
   }
-  void update(int l, int r, U x) { // [l, r)
-    update(l, r, x, 0, n);
-  }
-  void push(int tl, int tr) {
-    int tm = (tl+tr)/2;
-    U x = lz[v(tl,tr)];
-    update(tl, tm, x, tl, tm);
-    update(tm, tr, x, tm, tr);
-    lz[v(tl,tr)] = U();
+  void push(int v, int tl, int tr) {
+    update(tl, tm, lz[v], L, tl, tm);
+    update(tm, tr, lz[v], R, tm, tr);
+    lz[v] = U();
   }
   template <class V>
-  void build(vec<V> &a, int tl, int tr) {
+  void build(vec<V> &a, int v=0, int tl=0, int tr=0) {
+    if (tr == 0) tr = n;
     if (tr - tl == 1) {
-      s[v(tl,tr)] = a[tl];
+      s[v] = a[tl];
     } else {
-      int tm = (tl+tr)/2;
-      build(a, tl, tm);
-      build(a, tm, tr);
-      s[v(tl,tr)] = T(s[v(tl,tm)], s[v(tm,tr)]);
+      build(a, L, tl, tm);
+      build(a, R, tm, tr);
+      s[v] = T(s[L], s[R]);
     }
   }
+#undef L
+#undef R
+#undef tm
 };

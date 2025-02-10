@@ -32,7 +32,7 @@ int main() {
   for (auto [y, x, w] : P) {
     int xi = lower_bound(all(X), x) - X.begin();
     int yi = lower_bound(all(Y), y) - Y.begin();
-    ver = tree.update(ver, xi, w);
+    ver = tree.update(xi, w, ver);
     last[yi] = ver;
   }
   while (q--) {
@@ -42,7 +42,7 @@ int main() {
     int ri = lower_bound(all(X), r) - X.begin();
     int di = lower_bound(all(Y), d) - Y.begin() - 1;
     int ui = lower_bound(all(Y), u) - Y.begin() - 1;
-    cout << tree.query(last[ui], li, ri) - tree.query(last[di], li, ri) << "\n"; 
+    cout << tree.query(li, ri, last[ui]) - tree.query(li, ri, last[di]) << "\n"; 
   }
 }
 
