@@ -1,50 +1,60 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
+#define PROBLEM "https://judge.yosupo.jp/problem/range_reverse_range_sum"
 #include "../../lib/template.h"
 #include "../../lib/ds/treap.h"
-
-int smallest(auto &t, int &v) {
-  if (t.s[v].l == -1) {
-    int x = t.s[v].x;
-    v = t.s[v].r;
-    return x;
+struct FlipNode {
+  FlipNode *l = 0, *r = 0;
+  int y, c = 1;
+  ll x;
+  ll sum;
+  int flip = 0;
+  FlipNode(ll x) : y(int(rng())), x(x), sum(x) {}
+  FlipNode* pull() {
+    c = 1;
+    sum = x;
+    if (l) c += l->c, sum += l->sum;
+    if (r) c += r->c, sum += r->sum;
+    return this;
   }
-  return smallest(t, t.s[v].l);
-}
-
-int biggest(auto &t, int &v) {
-  if (t.s[v].r == -1) {
-    int x = t.s[v].x;
-    v = t.s[v].l;
-    return x;
+  void push() {
+    if (flip) {
+      swap(l, r);
+      if (l) l->flip ^= 1;
+      if (r) r->flip ^= 1;
+    }
+    flip = 0;
   }
-  return biggest(t, t.s[v].r);
-}
-
+};
 int main() {
   cin.tie(0)->sync_with_stdio(0);
   cin.exceptions(cin.failbit);
-  Treap<int> tree;
+  Treap<FlipNode> tree;
   int n, q;
   cin >> n >> q;
   for (int i = 0; i < n; i++) {
     int x;
     cin >> x;
-    tree.insert(x);
+    tree.insert(tree.make_node(x), i);
   }
   while (q--) {
-    int t;
-    cin >> t;
+    int t, l, r;
+    cin >> t >> l >> r;
     if (t == 0) {
-      n++;
-      int x;
-      cin >> x;
-      tree.insert(x);
+      if (l == r) {
+        continue;
+      }
+      auto [b, c] = tree.split(tree.root, r);
+      auto [a, m] = tree.split(b, l);
+      m->flip ^= 1;
+      tree.root = tree.merge(tree.merge(a, m), c);
     } else if (t == 1) {
-      n--;
-      cout << smallest(tree, tree.root) << "\n";
-    } else if (t == 2) {
-      n--;
-      cout << biggest(tree, tree.root) << "\n";
+      if (l == r) {
+        cout << 0 << '\n';
+        continue;
+      }
+      auto [b, c] = tree.split(tree.root, r);
+      auto [a, m] = tree.split(b, l);
+      cout << m->sum << endl;
+      tree.root = tree.merge(tree.merge(a, m), c);
     }
   }
 }

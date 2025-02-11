@@ -1,56 +1,47 @@
 #include "../template.h"
 /* -
-name = "Treap"
+name = "Implicit Treap"
 [info]
-description = "Can easily be extended to an implicit treap, and to support range queries and updates."
+description = "Can easily be changed to a normal treap by changing split condition."
 time = "$O(log n)$"
 - */
-mt19937 rng(chrono::high_resolution_clock::now()
-            .time_since_epoch().count());
 template <class T> struct Treap {
-  struct Node {
-    int l = -1, r = -1, c = 1;
-    T x;
-    int y;
-    Node(T x) : x(x), y(int(rng())) {}
-  };
-  int root = -1;
-  vec<Node> s;
-  int cnt(int j) {
-    return j != -1 ? s[j].c : 0;
+  T* root = 0;
+  deque<T> s;
+  template <class V>
+  T* make_node(V x) {
+    s.emplace_back(x);
+    return &s.back();
   }
-  void recalc(int j) {
-    s[j].c = 1 + cnt(s[j].l) + cnt(s[j].r);
+  int cnt(T* v) {
+    return v ? v->c : 0;
   }
-  pair<int, int> split(int j, T k) {
-    if (j == -1) return {-1, -1};
-    auto n = &s[j];
-    if (n->x >= k) { // "cnt(n->l) >= k" for implicit treap 
-      auto [L,R] = split(n->l, k);
-      n->l = R;
-      recalc(j); 
-      return {L, j};
+  pair<T*, T*> split(T* v, int k) { // [0, k), [k, n)
+    if (!v) return {};
+    v->push();
+    if (cnt(v->l) >= k) { // "n->x >= k" for set 
+      auto [L, R] = split(v->l, k);
+      v->l = R;
+      return {L, v->pull()};
     } else {
-      auto [L,R] = split(n->r, k); // "k - cnt(n->l) - 1"
-      n->r = L;
-      recalc(j); 
-      return {j, R};
+      auto [L, R] = split(v->r, k - cnt(v->l) - 1); // "k"
+      v->r = L;
+      return {v->pull(), R};
     }
   }
-  int merge(int l, int r) {
-    if (l == -1) return r;
-    if (r == -1) return l;
-    if (s[l].y > s[r].y) {
-      s[l].r = merge(s[l].r, r);
-      return recalc(l), l;
+  T* merge(T* l, T* r) {
+    if (!l || !r) return l ? l : r;
+    l->push(), r->push();
+    if (l->y > r->y) {
+      l->r = merge(l->r, r);
+      return l->pull();
     } else {
-      s[r].l = merge(l, s[r].l);
-      return recalc(r), r;
+      r->l = merge(l, r->l);
+      return r->pull();
     }
   }
-  void insert(T val) {
-    s.push_back({val});
-    auto [l, r] = split(root, val);
-    root = merge(merge(l, sz(s)-1), r);
+  void insert(T* v, int k) { // example
+    auto [L, R] = split(root, k);
+    root = merge(merge(L, v), R);
   }
 };
