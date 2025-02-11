@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_reverse_range_sum"
 #include "../../lib/template.h"
 #include "../../lib/ds/treap.h"
+mt19937 rng(chrono::high_resolution_clock::now().time_since_epoch().count());
 struct FlipNode {
   FlipNode *l = 0, *r = 0;
   int y, c = 1;
