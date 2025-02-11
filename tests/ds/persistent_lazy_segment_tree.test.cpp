@@ -4,20 +4,18 @@
 
 const ll mod = 998244353;
 
-struct Value {
+struct Val {
   ll x;
   operator ll() const { return x; }
-  Value() : x(0) {} // identity
-  Value(ll x) : x(x % mod) {} // constructor
-  Value(Value a, Value b) { // merge
+  Val() : x(0) {} // identity
+  Val(ll x) : x(x % mod) {} // constructor
+  Val(Val a, Val b) { // merge
     x = (a.x + b.x) % mod;
   }
 };
 
 struct Tag {
-  ll b, c;
-  Tag() : b(1), c(0) {} // empty update
-  Tag(ll b, ll c) : b(b), c(c) {}
+  ll b = 1, c = 0; // empty update
   bool operator==(const Tag &op) const = default;
   void update(Tag op) {
     b = (b * op.b) % mod;
@@ -45,7 +43,7 @@ int path_copy(auto &t, int l, int r, int k, int v, int tl=0, int tr=0) {
     t.push(k, tl, tr);
     t.L = path_copy(t, l, r, t.s[k].l, t.L, tl, tm);
     t.R = path_copy(t, l, r, t.s[k].r, t.R, tm, tr);
-    t.s[v].x = Value(t.s[t.L].x, t.s[t.R].x);
+    t.s[v].x = Val(t.s[t.L].x, t.s[t.R].x);
   }
   return v;
 }
@@ -62,7 +60,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<Value, Tag> tree(n);
+  SegmentTree<Val, Tag> tree(n);
   vec<int> ver(q+1);
   for (int i = 0; i < n; i++) {
     ver[0] = tree.update(i, i+1, {0, a[i]}, ver[0]);

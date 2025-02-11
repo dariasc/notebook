@@ -4,15 +4,15 @@ name = "Value Type"
 [info]
 description = "Value type for structures that need some merge function."
 - */
-struct Value {
+struct Val {
   ll x;
   operator ll() const { return x; }
-  Value() : x(0) {} // identity
-  Value(ll x) : x(x) {} // constructor
-  Value(Value a, Value b) { // merge
+  Val() : x(0) {} // identity
+  Val(ll x) : x(x) {} // constructor
+  Val(Val a, Val b) { // merge
     x = a.x + b.x;
   }
-  void update(Value b) { 
+  void update(Val b) { // point update
     x += b.x; 
   }
 };

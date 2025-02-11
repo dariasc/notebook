@@ -27,7 +27,7 @@ int main() {
   make_unique(Y);
   sort(all(P));
   vec<int> last(sz(Y));
-  SegmentTree<Value> tree(sz(X));
+  SegmentTree<Val> tree(sz(X));
   int ver = 0;
   for (auto [y, x, w] : P) {
     int xi = lower_bound(all(X), x) - X.begin();
