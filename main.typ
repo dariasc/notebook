@@ -26,7 +26,8 @@
 #insert("ds/treap_node.h")
 #insert("ds/treap.h")
 = Number Theory
-#insert("nt/modpow.h")
+#insert("nt/mod_arithmetic.h")
+#insert("nt/mod_pow.h")
 = Strings
 #insert("strings/kmp.h")
 = Graphs
