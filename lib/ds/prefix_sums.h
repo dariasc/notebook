@@ -7,14 +7,13 @@ time = "$O(1)$"
 - */
 template <class T> struct PrefixSum {
   vec<T> p;
-  SubMatrix(vec<T>& v) {
-    int n = sz(v);
-    p.assign(n+1, 0);
-    for (int i = 0; i < n; i++) {
+  PrefixSum(vec<T>& v) {
+    p.resize(sz(v)+1);
+    for (int i = 0; i < sz(v); i++) {
       p[i+1] = p[i] + v[i];
     }
   }
   T sum(int b, int e) { // [b, e)
-    return p[b] - p[e];
+    return p[e] - p[b];
   }
 };
