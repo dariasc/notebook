@@ -5,6 +5,7 @@ name = "Lowest Common Ancestor"
 [info]
 description = "Finds lowest common ancestor with a sparse table."
 time = "$O(1)$"
+memory = "$O(n log n)$"
 - */
 struct LCA {
   int T = 0;
