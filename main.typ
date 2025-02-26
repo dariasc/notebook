@@ -32,6 +32,7 @@
 #insert("strings/kmp.h")
 = Graphs
 #insert("graph/topo_sort.h")
+#insert("graph/lca.h")
 #insert("graph/hopcroft_karp.h")
 #insert("graph/dinic.h")
 #insert("graph/push_relabel.h")
