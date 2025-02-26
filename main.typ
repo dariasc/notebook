@@ -28,6 +28,7 @@
 = Number Theory
 #insert("nt/mod_arithmetic.h")
 #insert("nt/mod_pow.h")
+#insert("nt/ntt.h")
 = Strings
 #insert("strings/kmp.h")
 = Graphs
