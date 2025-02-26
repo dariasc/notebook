@@ -2,12 +2,11 @@
 #include "../../lib/template.h"
 #include "../../lib/ds/sparse_table.h"
 
-struct Value {
+struct Val {
   ll x;
   operator ll() const { return x; }
-  Value() : x(0) {} // identity
-  Value(ll x) : x(x) {} // constructor
-  Value(Value a, Value b) { // merge
+  Val(ll x = 1e9) : x(x) {} // constructor
+  Val(Val a, Val b) { // merge
     x = min(a.x, b.x);
   }
 };
@@ -21,7 +20,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SparseTable<Value> rmq(a);
+  SparseTable<Val> rmq(a);
   while (q--) {
     int a, b;
     cin >> a >> b;
