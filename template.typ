@@ -78,7 +78,7 @@
 }
 
 #let extract-metadata(contents) = {
-  return toml.decode(contents.split("- */\n").at(0).split("/* -\n").at(-1))
+  return toml(bytes(contents.split("- */\n").at(0).split("/* -\n").at(-1)))
 }
 
 #let hash-lines(text, end) = {
@@ -93,7 +93,7 @@
 
 #let insert(filename) = {
   let contents = read("lib/" + filename)
-  let hash-metadata = toml.decode(read("hashes/" + filename + ".toml"))
+  let hash-metadata = toml("hashes/" + filename + ".toml")
   let metadata = extract-metadata(contents)
   let code = extract-code(contents)
   let line-count = code.split("\n").len()
