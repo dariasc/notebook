@@ -26,6 +26,7 @@
 #insert("ds/persistent_lazy_segment_tree.h")
 #insert("ds/treap_node.h")
 #insert("ds/treap.h")
+#insert("ds/mo.h")
 = Number Theory
 #insert("nt/mod_arithmetic.h")
 #insert("nt/mod_pow.h")
