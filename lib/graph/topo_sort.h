@@ -4,7 +4,7 @@ name = "Topological Sort"
 [info]
 time = "$O(V + E)$"
 - */
-vi topoSort(const vector<vi>& gr) {
+vi topoSort(const vec<vi>& gr) {
   vi indeg(sz(gr)), q;
   for (auto& li : gr) for (int x : li) indeg[x]++;
   rep(i,0,sz(gr)) if (indeg[i] == 0) q.push_back(i);

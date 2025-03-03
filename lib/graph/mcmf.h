@@ -13,10 +13,10 @@ struct MCMF {
     ll cap, cost, flow;
   };
   int N;
-  vector<vector<Edge>> ed;
+  vec<vec<Edge>> ed;
   vi seen;
-  vector<ll> dist, pi;
-  vector<Edge*> par;
+  vec<ll> dist, pi;
+  vec<Edge*> par;
   MCMF(int N) : N(N), ed(N), seen(N), dist(N), pi(N), par(N) {}
   void addEdge(int from, int to, ll cap, ll cost) {
     if (from == to) return;
@@ -28,7 +28,7 @@ struct MCMF {
     fill(all(dist), INF);
     dist[s] = 0; ll di;
     __gnu_pbds::priority_queue<pair<ll, int>> q;
-    vector<decltype(q)::point_iterator> its(N);
+    vec<decltype(q)::point_iterator> its(N);
     q.push({ 0, s });
     while (!q.empty()) {
       s = q.top().second; q.pop();
