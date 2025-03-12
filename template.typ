@@ -14,7 +14,7 @@
   let margin = 0.6cm
   let gutter = 1.5%
   set page(
-    paper: "a4",
+    paper: "us-letter",
     flipped: true,
     margin: ( left: margin, right: margin, bottom: margin, top: 1.25cm ),
     header-ascent: 40%,
