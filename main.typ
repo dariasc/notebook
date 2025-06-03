@@ -9,8 +9,6 @@
 = Data Structures
 #insert("ds/hashmap.h")
 #insert("ds/order_statistic_tree.h")
-#insert("ds/prefix_sums.h")
-#insert("ds/submatrix_sums.h")
 #insert("ds/uf.h")
 #insert("ds/convex_hull_trick.h")
 #insert("ds/value.h")
