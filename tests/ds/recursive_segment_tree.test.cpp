@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum" 
 #include "../../lib/template.h"
-#include "../../lib/ds/value.h"
+#include "../../lib/ds/op.h"
 #include "../../lib/ds/recursive_segment_tree.h"
 
 int main() {
@@ -8,11 +8,11 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<int> a(n);
+  vec<ll> a(n);
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<Val> tree(n);
+  SegmentTree<ll, Op{}> tree(n);
   tree.build(a);
   while (q--) {
     int t, a, b;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 #include "../../lib/template.h"
-#include "../../lib/ds/value.h"
+#include "../../lib/ds/op.h"
 #include "../../lib/ds/persistent_segment_tree.h"
 
 void make_unique(vec<int> &a) {
@@ -27,7 +27,7 @@ int main() {
   make_unique(Y);
   sort(all(P));
   vec<int> last(sz(Y));
-  SegmentTree<Val> tree(sz(X));
+  SegmentTree<ll, Op{}> tree(sz(X));
   int ver = 0;
   for (auto [y, x, w] : P) {
     int xi = lower_bound(all(X), x) - X.begin();

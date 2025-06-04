@@ -5,32 +5,32 @@ name = "Iterative Segment Tree"
 description = "Iterative segment tree, with point update and range queries. You can replace $s$ with a fast hashmap to get a dynamic segment tree."
 time = "$O(log n)$"
 - */
-template <class T> struct SegmentTree {
+template <class T, auto op, class U=T> struct SegmentTree {
   vec<T> s;
   int n;
   SegmentTree(int n) : s(2 * n), n(n) {}
-  void update(int pos, T val) {
-    for (s[pos += n].update(val); pos /= 2;) {
-      s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
+  void update(int i, U u) {
+    i += n;
+    for (s[i] = op.update(s[i], u); i /= 2;) {
+      s[i] = op(s[i * 2], s[i * 2 + 1]);
     }
   }
   T query(int b, int e) { // [b, e)
-    T ra, rb;
+    T ra = op.e, rb = op.e;
     for (b += n, e += n; b < e; b /= 2, e /= 2) {
       if (b % 2)
-        ra = T(ra, s[b++]);
+        ra = op(ra, s[b++]);
       if (e % 2)
-        rb = T(s[--e], rb);
+        rb = op(s[--e], rb);
     }
-    return T(ra, rb);
+    return op(ra, rb);
   }
-  template <class V>
-  void build(vec<V> &a) {
-    for (int pos = 0; pos < n; pos++) {
-      s[pos + n] = a[pos];
+  void build(vec<T> &a) {
+    for (int i = 0; i < n; i++) {
+      s[i + n] = a[i];
     }
-    for (int pos = n - 1; pos >= 0; pos--) {
-      s[pos] = T(s[pos * 2], s[pos * 2 + 1]);
+    for (int i = n - 1; i >= 0; i--) {
+      s[i] = op(s[i * 2], s[i * 2 + 1]);
     }
   }
 };

@@ -4,7 +4,7 @@ name = "Persistent Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <class T> struct SegmentTree {
+template <class T, auto op, class U=T> struct SegmentTree {
   struct Node {
     int l = 0, r = 0; 
     T x;
@@ -17,22 +17,20 @@ template <class T> struct SegmentTree {
 #define tm (tl+tr)/2
   T query(int l, int r, int v, int tl=0, int tr=0) { // [l, r)
     if (tr == 0) tr = n;
-    if (r <= tl || tr <= l) return T();
+    if (r <= tl || tr <= l) return op.e;
     if (l <= tl && tr <= r) return s[v].x;
-    return T(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
+    return op(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
   int update(int pos, T u, int v, int tl=0, int tr=0) {
     if (tr == 0) tr = n;
-    s.push_back(s[v]);
+    s.emplace_back(s[v]);
     v = sz(s) - 1;
     if (tr - tl == 1) {
-      s[v].x.update(u);
+      s[v].x = op.update(s[v].x, u);
     } else {
-      if (pos < tm)
-        L = update(pos, u, L, tl, tm);
-      else
-        R = update(pos, u, R, tm, tr);
-      s[v].x = T(s[L].x, s[R].x);
+      if (pos < tm) L = update(pos, u, L, tl, tm);
+      else R = update(pos, u, R, tm, tr);
+      s[v].x = op(s[L].x, s[R].x);
     }
     return v;
   }

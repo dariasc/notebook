@@ -10,15 +10,12 @@ memory = "$O(n log n)$"
 struct LCA {
   int T = 0;
   vi time, path, ret;
-  struct Val {
-    int x;
-    operator int() const { return x; }
-    Val(int x = 1e9) : x(x) {} // constructor
-    Val(Val a, Val b) { // merge
-      x = min(a.x, b.x);
+  struct Op {
+    int operator()(int a, int b) const {
+      return min(a, b);
     }
   };
-  SparseTable<Val> rmq;
+  SparseTable<int, Op{}> rmq;
   LCA(vec<vi>& C) : time(sz(C)), rmq((dfs(C,0,-1), ret)) {}
   void dfs(vec<vi>& C, int v, int par) {
     time[v] = T++;
