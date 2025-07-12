@@ -36,6 +36,7 @@
 #insert("geometry/point.h")
 #insert("geometry/side_of.h")
 #insert("geometry/line_intersection.h")
+#insert("geometry/closest_pair.h")
 #insert("geometry/convex_hull.h")
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
