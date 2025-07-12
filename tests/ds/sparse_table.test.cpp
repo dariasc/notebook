@@ -3,6 +3,7 @@
 #include "../../lib/ds/sparse_table.h"
 
 struct Op {
+  using T = int;
   int operator()(int a, int b) const {
     return min(a, b);
   }
@@ -17,7 +18,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SparseTable<int, Op{}> rmq(a);
+  SparseTable<Op{}> rmq(a);
   while (q--) {
     int a, b;
     cin >> a >> b;

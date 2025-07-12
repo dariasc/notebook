@@ -5,10 +5,12 @@ name = "Iterative Segment Tree"
 description = "Iterative segment tree, with point update and range queries. You can replace $s$ with a fast hashmap to get a dynamic segment tree."
 time = "$O(log n)$"
 - */
-template <class T, auto op, class U=T> struct SegmentTree {
+template <auto op> struct SegmentTree {
+  using T = decltype(op)::T;
+  using U = decltype(op)::U;
   vec<T> s;
   int n;
-  SegmentTree(int n) : s(2 * n), n(n) {}
+  SegmentTree(int n) : s(2 * n, op.e), n(n) {}
   void update(int i, U u) {
     i += n;
     for (s[i] = op.update(s[i], u); i /= 2;) {

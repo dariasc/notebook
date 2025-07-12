@@ -11,11 +11,12 @@ struct LCA {
   int T = 0;
   vi time, path, ret;
   struct Op {
+    using T = int;
     int operator()(int a, int b) const {
       return min(a, b);
     }
   };
-  SparseTable<int, Op{}> rmq;
+  SparseTable<Op{}> rmq;
   LCA(vec<vi>& C) : time(sz(C)), rmq((dfs(C,0,-1), ret)) {}
   void dfs(vec<vi>& C, int v, int par) {
     time[v] = T++;
@@ -29,5 +30,4 @@ struct LCA {
     tie(a, b) = minmax(time[a], time[b]);
     return path[rmq.query(a, b)];
   }
-  // dist(a, b) { return depth[a] + depth[b] - 2*depth[lca(a,b)]; }
 };

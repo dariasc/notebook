@@ -12,7 +12,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<ll, Op{}, T, Tag{}> tree(n);
+  SegmentTree<Op{}, Tag{}> tree(n);
   tree.build(a);
   while (q--) {
     int t, l, r;
@@ -20,7 +20,7 @@ int main() {
     if (t == 0) {
       int b, c;
       cin >> b >> c;
-      tree.update(l, r, T{b, c});
+      tree.update(l, r, array<ll, 2>{b, c});
     } else if (t == 1) {
       cout << tree.query(l, r) << "\n";
     }

@@ -12,7 +12,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<ll, Op{}> tree(n);
+  SegmentTree<Op{}> tree(n);
   tree.build(a);
   while (q--) {
     int t, a, b;

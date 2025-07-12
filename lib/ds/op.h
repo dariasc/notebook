@@ -5,11 +5,13 @@ name = "Operator Type"
 description = "Operator type for structures that need some merge function."
 - */
 struct Op {
-  ll e = 0;
-  ll operator()(ll a, ll b) const {
+  using T = ll;
+  using U = ll;
+  T e = 0;
+  T operator()(T a, T b) const {
     return a + b;
   }
-  ll update(ll x, ll u) const {
+  T update(T x, U u) const {
     return x + u;
   }
 };

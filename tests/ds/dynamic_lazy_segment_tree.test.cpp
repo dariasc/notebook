@@ -8,14 +8,14 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  SegmentTree<ll, Op{}, T, Tag{}> tree(n);
+  SegmentTree<Op{}, Tag{}> tree(n);
   while (q--) {
     int t, l, r;
     cin >> t >> l >> r;
     if (t == 0) {
       int b, c;
       cin >> b >> c;
-      tree.update(l, r, T{b, c});
+      tree.update(l, r, array<ll, 2>{b, c});
     } else if (t == 1) {
       cout << tree.query(l, r) << "\n";
     }

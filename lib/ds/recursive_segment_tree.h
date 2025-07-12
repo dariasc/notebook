@@ -5,10 +5,12 @@ name = "Segment Tree"
 description = "Recursive segment tree, with point update and range queries."
 time = "$O(log n)$"
 - */
-template <class T, auto op, class U=T> struct SegmentTree {
+template <auto op> struct SegmentTree {
+  using T = decltype(op)::T;
+  using U = decltype(op)::U;
   int n;
   vec<T> s;
-  SegmentTree(int n) : n(n), s(2*n-1) {}
+  SegmentTree(int n) : n(n), s(2*n-1, op.e) {}
 #define L v+1
 #define R v+2*(tm-tl)
 #define tm (tl+tr)/2

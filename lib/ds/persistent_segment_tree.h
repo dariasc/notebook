@@ -4,10 +4,12 @@ name = "Persistent Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <class T, auto op, class U=T> struct SegmentTree {
+template <auto op> struct SegmentTree {
+  using T = decltype(op)::T;
+  using U = decltype(op)::U;
   struct Node {
     int l = 0, r = 0; 
-    T x;
+    T x = op.e;
   };
   int n;
   vec<Node> s;

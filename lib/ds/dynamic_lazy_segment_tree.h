@@ -4,10 +4,12 @@ name = "Dynamic Lazy Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <class T, auto op, class U, auto tag> struct SegmentTree {
+template <auto op, auto tag> struct SegmentTree {
+  using T = decltype(op)::T;
+  using U = decltype(tag)::U;
   struct Node {
     int l = -1, r = -1; 
-    T x;
+    T x = op.e;
     U lz = tag.e;
   };
   int n;

@@ -4,7 +4,8 @@ name = "Sparse Table"
 [info]
 time = "$O(n log n)$ preprocessing and $O(1)$ queries"
 - */
-template <class T, auto op> struct SparseTable {
+template <auto op> struct SparseTable {
+  using T = decltype(op)::T;
   vec<vec<T>> jmp;
   SparseTable(vec<T> &a) : jmp(1, vec<T>(sz(a))) {
     for (int i = 0; i < sz(a); i++)

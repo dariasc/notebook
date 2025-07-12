@@ -5,11 +5,12 @@ name = "Tag Type"
 description = "Tag operator type used for lazy propagation in lazy structures."
 - */
 struct Tag {
-  ll e = 0;
-  ll apply(ll x, ll u, int l, int r) const {
+  using U = ll;
+  U e = 0;
+  ll apply(ll x, U u, int l, int r) const {
     return x + u * (r - l);
   }
-  ll operator()(ll lz, ll u) const {
+  U operator()(U lz, U u) const {
     return lz + u;
   }
 };
