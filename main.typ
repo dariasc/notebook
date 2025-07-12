@@ -26,8 +26,11 @@
 #insert("ds/treap.h")
 #insert("ds/mo.h")
 = Number Theory
+// #insert("nt/mod_pow.h")
+#insert("nt/modmul_ll.h")
+#insert("nt/miller_rabin.h")
+#insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
-#insert("nt/mod_pow.h")
 #insert("nt/ntt.h")
 = Misc
 #insert("misc/halfplane.h")
