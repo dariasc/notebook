@@ -36,6 +36,7 @@
 #insert("misc/halfplane.h")
 #insert("misc/minkowski.h")
 = Strings
+#insert("strings/suffix_array.h")
 #insert("strings/kmp.h")
 = Graphs
 #insert("graph/topo_sort.h")
