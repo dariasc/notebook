@@ -33,7 +33,7 @@
     ]
   )
 
-  set text(font: "Libertinus Serif", lang: "en")
+  set text(font: "New Computer Modern", lang: "en")
   set par(justify: true)
   show: columns.with(3, gutter: gutter)
 
