@@ -12,6 +12,7 @@ using ll = long long;
 using pii = pair<int, int>;
 using vi = vec<int>;
 
+#define pb push_back
 #define all(x) begin(x), end(x)
 #define sz(x) (int)(x).size()
 #define rep(i, a, b) for (int i = a; i < (b); ++i)

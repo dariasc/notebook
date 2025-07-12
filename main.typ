@@ -32,9 +32,13 @@
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
 #insert("nt/ntt.h")
-= Misc
-#insert("misc/halfplane.h")
-#insert("misc/minkowski.h")
+= Geometry
+#insert("geometry/point.h")
+#insert("geometry/side_of.h")
+#insert("geometry/line_intersection.h")
+#insert("geometry/convex_hull.h")
+#insert("geometry/minkowski.h")
+#insert("geometry/halfplane_intersection.h")
 = Strings
 #insert("strings/suffix_array.h")
 #insert("strings/kmp.h")
