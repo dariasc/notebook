@@ -16,7 +16,6 @@ vi pi(const string &s) {
   }
   return p;
 }
-
 vi match(const string &s, const string &pat) {
   vi p = pi(pat + '\0' + s), res;
   for (int i = sz(p) - sz(s); i < sz(p); i++) {

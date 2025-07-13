@@ -14,7 +14,7 @@ int main() {
   for (auto &x : b) {
     cin >> x;
   }
-  vec<ll> r = conv_small(a, b);
+  vec<ll> r = convSmall(a, b);
   for (auto x : r) {
     cout << x << ' ';
   }

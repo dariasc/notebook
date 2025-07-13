@@ -14,7 +14,7 @@ int main() {
   for (auto &x : b) {
     cin >> x;
   }
-  vec<ll> r = conv_sunzi(a, b, 1e9 + 7);
+  vec<ll> r = convSunzi(a, b, 1e9 + 7);
   for (auto x : r) {
     cout << x << ' ';
   }

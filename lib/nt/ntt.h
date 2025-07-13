@@ -47,19 +47,19 @@ struct FFT {
   }
 };
 // for modular convolutions modulo 998244353:
-vec<ll> conv_small(const vec<ll> &as, const vec<ll> &bs) {
+vec<ll> convSmall(const vec<ll> &as, const vec<ll> &bs) {
   static uint32_t v[2<<LG];
   static FFT<uint32_t, uint64_t, 998244353, 3> fft;
   return fft.cv(as, bs, v);
 }
 // for modular convolutions modulo a 62 bit prime:
-vec<ll> conv_big(const vec<ll> &as, const vec<ll> &bs) {
+vec<ll> convBig(const vec<ll> &as, const vec<ll> &bs) {
   static uint64_t v[2<<LG];
   static FFT<uint64_t, __uint128_t, (1ull<<62)-(18ull<<32)+1, 3> fft;
   return fft.cv(as, bs, v);
 }
 // for modular convolutions modulo an arbitrary 32-bit modulus:
-vec<ll> conv_sunzi(const vec<ll> &v1, const vec<ll> &v2, ll m) {
+vec<ll> convSunzi(const vec<ll> &v1, const vec<ll> &v2, ll m) {
   const uint64_t inv = 2703402103339935109ull,
     mod1 = (1ull<<62)-(18ull<<32)+1,
     mod2 = (1ull<<62)-(76ull<<32)+1;
