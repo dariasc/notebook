@@ -45,6 +45,7 @@
 #insert("strings/kmp.h")
 = Graphs
 #insert("graph/topo_sort.h")
+#insert("graph/scc.h")
 #insert("graph/lca.h")
 #insert("graph/binary_lifting.h")
 #insert("graph/hopcroft_karp.h")
