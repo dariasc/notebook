@@ -23,7 +23,7 @@ template <auto op> struct SegmentTree {
     if (l <= tl && tr <= r) return s[v].x;
     return op(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
-  int update(int pos, T u, int v, int tl=0, int tr=0) {
+  int update(int pos, U u, int v, int tl=0, int tr=0) {
     if (tr == 0) tr = n;
     s.emplace_back(s[v]);
     v = sz(s) - 1;
