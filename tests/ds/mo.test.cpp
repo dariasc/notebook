@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_count_distinct" 
 #include "../../lib/template.h"
 #include "../../lib/ds/mo.h"
+#include "../../lib/ds/compress_coords.h"
 
 int cnt = 0;
 vi a, F;
@@ -25,18 +26,14 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
+  vec<reference_wrapper<int>> X;
   a = vi(n);
   F = vi(n);
   for (int &x : a) {
     cin >> x;
+    X.pb(ref(x));
   }
-  vi b = a;
-  sort(all(b));
-  auto last = unique(all(b));
-  b.erase(last, b.end());
-  for (int i = 0; i < n; i++) {
-    a[i] = lower_bound(all(b), a[i]) - b.begin();
-  }
+  compress_coords(X);
   vec<array<int, 2>> Q(q);
   for (int i = 0; i < q; i++) {
     cin >> Q[i][0] >> Q[i][1]; 
@@ -46,4 +43,3 @@ int main() {
     cout << x << '\n';
   }
 }
-

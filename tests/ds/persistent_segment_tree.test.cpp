@@ -2,47 +2,44 @@
 #include "../../lib/template.h"
 #include "../../lib/ds/op.h"
 #include "../../lib/ds/persistent_segment_tree.h"
-
-void make_unique(vec<int> &a) {
-  sort(all(a));
-  auto last = unique(all(a));
-  a.erase(last, a.end());
-}
+#include "../../lib/ds/compress_coords.h"
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<int> X(n), Y(n);
+  vec<reference_wrapper<int>> X, Y;
   vec<array<int, 3>> P(n);
-  for (int i = 0; i < n; i++) {
-    int x, y, w;
+  for (auto &[x, y, w] : P) {
     cin >> x >> y >> w;
-    X[i] = x;
-    Y[i] = y;
-    P[i] = {y,x,w};
+    X.pb(ref(x));
+    Y.pb(ref(y));
   }
-  make_unique(X);
-  make_unique(Y);
-  sort(all(P));
-  vec<int> last(sz(Y));
-  SegmentTree<Op{}> tree(sz(X));
-  int ver = 0;
-  for (auto [y, x, w] : P) {
-    int xi = lower_bound(all(X), x) - X.begin();
-    int yi = lower_bound(all(Y), y) - Y.begin();
-    ver = tree.update(xi, w, ver);
-    last[yi] = ver;
-  }
-  while (q--) {
-    int l, d, r, u;
+  vec<array<int, 4>> Q(q);
+  for (auto &[l, d, r, u] : Q) {
     cin >> l >> d >> r >> u;
-    int li = lower_bound(all(X), l) - X.begin();
-    int ri = lower_bound(all(X), r) - X.begin();
-    int di = lower_bound(all(Y), d) - Y.begin() - 1;
-    int ui = lower_bound(all(Y), u) - Y.begin() - 1;
-    cout << tree.query(li, ri, last[ui]) - tree.query(li, ri, last[di]) << "\n"; 
+    X.pb(ref(l));
+    X.pb(ref(r));
+    Y.pb(ref(d));
+    Y.pb(ref(u));
+  }
+  auto values_X = compress_coords(X);
+  auto values_Y = compress_coords(Y);
+  vec<vec<array<int, 2>>> Yx(sz(values_Y));
+  for (auto &[x, y, w] : P) {
+    Yx[y].pb({x, w});
+  }
+  SegmentTree<Op{}> tree(sz(values_X));
+  int ver = 0;
+  vi last(sz(values_Y)+1);
+  for (int y = 0; y < sz(Yx); y++) {
+    for (auto [x, w] : Yx[y]) {
+      ver = tree.update(x, w, ver);
+    }
+    last[y+1] = ver;
+  }
+  for (auto &[l, d, r, u] : Q) {
+    cout << tree.query(l, r, last[u]) - tree.query(l, r, last[d]) << "\n"; 
   }
 }
-

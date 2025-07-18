@@ -1,48 +1,40 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 #include "../../lib/template.h"
 #include "../../lib/ds/compressed_fenwick_tree_2d.h"
-
-void make_unique(vec<int> &a) {
-  sort(all(a));
-  auto last = unique(all(a));
-  a.erase(last, a.end());
-}
+#include "../../lib/ds/compress_coords.h"
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<int> X(n);
+  vec<reference_wrapper<int>> X;
   vec<array<int, 3>> P(n);
-  for (int i = 0; i < n; i++) {
-    int x, y, w;
+  for (auto &[x, y, w] : P) {
     cin >> x >> y >> w;
-    X[i] = x;
-    P[i] = {x,y,w};
+    X.pb(ref(x));
   }
-  make_unique(X);
+  vec<array<int, 4>> Q(q);
+  for (auto &[l, d, r, u] : Q) {
+    cin >> l >> d >> r >> u;
+    X.pb(ref(l));
+    X.pb(ref(r));
+  }
+  compress_coords(X);
   FT2 ft2(sz(X));
-  for (auto [x,y,w] : P) {
-    int xi = lower_bound(all(X), x) - X.begin();
-    ft2.fakeUpdate(xi, y);
+  for (auto &[x, y, w] : P) {
+    ft2.fakeUpdate(x, y);
   }
   ft2.init();
-  for (auto [x,y,w] : P) {
-    int xi = lower_bound(all(X), x) - X.begin();
-    ft2.update(xi, y, w);
+  for (auto &[x, y, w] : P) {
+    ft2.update(x, y, w);
   }
-  while (q--) {
-    int l, d, r, u;
-    cin >> l >> d >> r >> u;
-    int li = lower_bound(all(X), l) - X.begin();
-    int ri = lower_bound(all(X), r) - X.begin();
+  for (auto &[l, d, r, u] : Q) {
     ll ans = 0;
-    ans += ft2.query(ri, u);
-    ans -= ft2.query(ri, d);
-    ans -= ft2.query(li, u);
-    ans += ft2.query(li, d);
+    ans += ft2.query(r, u);
+    ans -= ft2.query(r, d);
+    ans -= ft2.query(l, u);
+    ans += ft2.query(l, d);
     cout << ans << '\n';
   }
 }
-
