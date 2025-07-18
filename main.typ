@@ -6,6 +6,7 @@
 #insert("template.h")
 #insert(".bashrc")
 #insert(".vimrc")
+#insert("binary_search.h")
 = Data Structures
 #insert("ds/hashmap.h")
 #insert("ds/order_statistic_tree.h")
