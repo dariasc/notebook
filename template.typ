@@ -14,7 +14,7 @@
   let margin = 0.6cm
   let gutter = 1.5%
   set page(
-    paper: "us-letter",
+    paper: "a4",
     flipped: true,
     margin: ( left: margin, right: margin, bottom: margin, top: 1.25cm ),
     header-ascent: 40%,
@@ -25,7 +25,14 @@
       let this = headings
         .filter((it) => it.location().position().page == here().position().page)
         .map((it) => it.body);
-      return align(right, text(this.join(", "), size: 9pt, weight: "semibold"))
+      return [
+        #grid(
+          columns: (auto, 1fr, auto),
+          text("UCH", size: 9pt, weight: "semibold"),
+          align(center, text(this.join(", "), size: 9pt, weight: "semibold")),
+          text(counter(page).display("1"), size: 9pt, weight: "semibold"),
+        )
+      ]
     },
     background: [
       #vertical-line(left, margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3)
@@ -73,25 +80,15 @@
   }
 }
 
-#let extract-code(contents) = {
-  return contents.split("- */\n").at(-1).trim("\n")
-}
-
-#let extract-metadata(contents) = {
-  return toml(bytes(contents.split("- */\n").at(0).split("/* -\n").at(-1)))
-}
-
-#let hash-lines(text, end) = {
-  bytes-to-hex(md5(
-    text.split("\n")
-      .slice(0, end)
-      .join("")
-      .replace(regex("\s+"), "")
-    )
-  ).slice(0, 6)
-}
-
 #let insert(filename) = {
+  let extract-code(contents) = {
+    return contents.split("- */\n").at(-1).trim("\n")
+  }
+
+  let extract-metadata(contents) = {
+    return toml(bytes(contents.split("- */\n").at(0).split("/* -\n").at(-1)))
+  }
+
   let contents = read("lib/" + filename)
   let hash-metadata = toml("hashes/" + filename + ".toml")
   let metadata = extract-metadata(contents)
