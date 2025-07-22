@@ -68,9 +68,9 @@
 #let title() = {
   return {
     block(width: 100%, height: 2.5em, {
-      set text(size: 1.25em)
+      set text(size: 1.75em)
       align(bottom)[
-        = Team Notebook
+        *Team Notebook*
       ]
       place(top + right)[
         #image("logo.svg", height: 32pt)
@@ -78,6 +78,10 @@
     })
     line(length: 100%, stroke: 0.5pt)
   }
+}
+
+#let index() = {
+  return outline(title: none, depth: 1)
 }
 
 #let insert(filename) = {

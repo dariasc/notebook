@@ -3,6 +3,7 @@
 #show: project
 
 #title()
+#index()
 #insert("template.h")
 #insert(".bashrc")
 #insert(".vimrc")
