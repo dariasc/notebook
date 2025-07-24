@@ -44,6 +44,7 @@
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
 = Strings
+#insert("strings/hashing.h")
 #insert("strings/suffix_array.h")
 #insert("strings/kmp.h")
 = Graphs
