@@ -47,6 +47,7 @@
 #insert("strings/hashing.h")
 #insert("strings/suffix_array.h")
 #insert("strings/kmp.h")
+#insert("strings/zfunc.h")
 = Graphs
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
