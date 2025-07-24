@@ -48,6 +48,7 @@
 #insert("strings/suffix_array.h")
 #insert("strings/kmp.h")
 #insert("strings/zfunc.h")
+#insert("strings/manacher.h")
 = Graphs
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
