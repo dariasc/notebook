@@ -52,6 +52,7 @@
 = Graphs
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
+#insert("graph/bridges.h")
 #insert("graph/2sat.h")
 #insert("graph/lca.h")
 #insert("graph/binary_lifting.h")
