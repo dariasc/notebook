@@ -41,6 +41,8 @@
 #insert("geometry/line_intersection.h")
 #insert("geometry/closest_pair.h")
 #insert("geometry/convex_hull.h")
+#insert("geometry/circumcircle.h")
+#insert("geometry/minimum_enclosing_circle.h")
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
 = Strings

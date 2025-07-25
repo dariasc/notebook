@@ -1,10 +1,10 @@
+#include "point.h"
 /* -
 name = "Convex Hull"
 [info]
 description = "Returns a vector of the points of the convex hull in *ccw* order. Points on the edge of the hull between two other points are not considered part of the hull."
 time = "$O(n log n)$"
 - */
-#include "point.h"
 using P = Point<ll>;
 vec<P> convexHull(vec<P> pts) {
   if (sz(pts) <= 1) return pts;
