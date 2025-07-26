@@ -54,6 +54,10 @@
     #set text(weight: "regular")
     #it.body
   ]
+  show outline.entry: it => link(
+    it.element.location(),
+    it.indented([], [#it.body() #h(1fr) #it.page()]),
+  )
 
   show raw.where(block: true): it => {
     set text(6.5pt)

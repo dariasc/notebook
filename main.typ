@@ -4,6 +4,7 @@
 
 #title()
 #index()
+= Contest
 #insert("template.h")
 #insert(".bashrc")
 #insert(".vimrc")
