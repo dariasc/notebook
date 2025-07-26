@@ -36,6 +36,7 @@
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
 = Numerical
+#insert("numerical/fst.h")
 #insert("numerical/ntt.h")
 #insert("numerical/matrix_inv_mod.h")
 = Geometry
