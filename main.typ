@@ -36,7 +36,7 @@
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
 = Numerical
-#insert("nt/ntt.h")
+#insert("numerical/ntt.h")
 #insert("numerical/matrix_inv_mod.h")
 = Geometry
 #insert("geometry/point.h")
@@ -62,10 +62,11 @@
 #insert("graph/lca.h")
 #insert("graph/binary_lifting.h")
 #insert("graph/hld.h")
-#insert("graph/hopcroft_karp.h")
-#insert("graph/dinic.h")
-#insert("graph/push_relabel.h")
-#insert("graph/maxflow_with_demands.h")
-#insert("graph/mcmf.h")
-#insert("graph/weighted_matching.h")
-#insert("graph/general_matching.h")
+= Flow
+#insert("flow/hopcroft_karp.h")
+#insert("flow/dinic.h")
+#insert("flow/push_relabel.h")
+#insert("flow/maxflow_with_demands.h")
+#insert("flow/mcmf.h")
+#insert("flow/weighted_matching.h")
+#insert("flow/general_matching.h")
