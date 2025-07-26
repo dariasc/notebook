@@ -35,8 +35,8 @@
 #insert("nt/miller_rabin.h")
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
-#insert("nt/ntt.h")
 = Numerical
+#insert("nt/ntt.h")
 #insert("numerical/matrix_inv_mod.h")
 = Geometry
 #insert("geometry/point.h")
