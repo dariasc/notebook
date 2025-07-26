@@ -35,6 +35,8 @@
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
 #insert("nt/ntt.h")
+= Numerical
+#insert("numerical/matrix_inv_mod.h")
 = Geometry
 #insert("geometry/point.h")
 #insert("geometry/side_of.h")
@@ -65,3 +67,4 @@
 #insert("graph/maxflow_with_demands.h")
 #insert("graph/mcmf.h")
 #insert("graph/weighted_matching.h")
+#insert("graph/general_matching.h")

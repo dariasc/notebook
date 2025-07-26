@@ -101,7 +101,7 @@
   return block[
     #block(breakable: false, width: 100%, fill: gray.transparentize(80%), inset: 3pt, outset: 3pt)[
       #set text(9pt)
-      == #metadata.name
+      == #eval(metadata.name, mode: "markup")
       #linebreak()
       #for (key, value) in metadata.info {
         text(key + ": ", weight: "bold")
