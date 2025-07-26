@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convolution_mod_1000000007" 
 #include "../../lib/template.h"
-#include "../../lib/nt/ntt.h"
+#include "../../lib/numerical/ntt.h"
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);

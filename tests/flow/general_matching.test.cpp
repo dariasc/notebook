@@ -3,7 +3,7 @@
 
 const int mod = 998244353;
 
-#include "../../lib/graph/general_matching.h"
+#include "../../lib/flow/general_matching.h"
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);

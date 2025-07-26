@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching" 
 #include "../../lib/template.h"
-#include "../../lib/graph/dinic.h"
+#include "../../lib/flow/dinic.h"
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
