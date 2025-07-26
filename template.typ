@@ -44,10 +44,14 @@
   set par(justify: true)
   show: columns.with(3, gutter: gutter)
 
+  show heading: set block(sticky: true)
   show heading.where(level: 1): it => [
-    #set block(above: 0em)
-    #smallcaps[
-      #it.body
+    #set block(sticky: true, above: 1em)
+    #set text(size: 1.1em)
+    #block[
+      #smallcaps[
+        #it.body
+      ]
     ]
   ]
   show heading.where(level: 2): it => [
