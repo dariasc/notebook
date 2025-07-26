@@ -1,7 +1,7 @@
 /* -
 name = "Point"
 [info]
-description = "Class to handle points in the plane. T can be e.g. double or long long. (Avoid int.)"
+description = "Class to handle points in the plane. `T` can be e.g. `double` or `ll`. (Avoid `int`.)"
 - */
 template <class T> int sgn(T x) { return (x > 0) - (x < 0); }
 template<class T>
