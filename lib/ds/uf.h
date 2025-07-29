@@ -5,7 +5,7 @@ name = "Union Find"
 time = "$O(alpha(n))$"
 - */
 struct UnionFind {
-  vec<int> e;
+  vi e;
   UnionFind(int n) : e(n, -1) {}
   bool same(int a, int b) { return find(a) == find(b); }
   int size(int x) { return -e[find(x)]; }

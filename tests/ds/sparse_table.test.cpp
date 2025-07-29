@@ -14,7 +14,7 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<int> a(n);
+  vi a(n);
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }

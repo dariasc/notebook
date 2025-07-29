@@ -29,20 +29,20 @@ struct FFT {
     assert(c <= (1<<LG));
     u h=u(uu(-p)*-p%p), a=m(h, p/2+1), x, y;
     while(n<c) n*=2, h=red(p, m(h, a));
-    rep(i, 0, n)
+    rep(i,0,n)
       v[i] = i<sz(as) ? u(as[i]) : 0,
       v[i+n] = i<sz(bs) ? u(bs[i]) : 0;
     for(auto s:{v,v+n})
-    for(int j = n; j >= 2; j--) for(int k=j&-j; k/=2;) rep(i, j-k, j)
+    for(int j = n; j >= 2; j--) for(int k=j&-j; k/=2;) rep(i,j-k,j)
       x=s[i], y=s[i-k],
       s[i-k] = red(2*p, x+y),
       s[i] = m(2*p+y-x, r[3*k-j+i]);
-    rep(i, 0, n) v[i] = m(v[i], v[i+n]);
-    rep(j, 2, n+1) for(int k=1; !(k&j); k*=2) rep(i, j-k, j)
+    rep(i,0,n) v[i] = m(v[i], v[i+n]);
+    rep(j,2,n+1) for(int k=1; !(k&j); k*=2) rep(i,j-k,j)
       x = m(v[i], r[3*k+j-i]),
       y = red(2*p, v[i-k]),
       v[i-k]=x+y, v[i]=2*p+y-x;
-    rep(i, 0, c) v[i] = red(p, m(v[i], h));
+    rep(i,0,c) v[i] = red(p, m(v[i], h));
     return vec<ll>(v, v+c);
   }
 };
@@ -68,7 +68,7 @@ vec<ll> convSunzi(const vec<ll> &v1, const vec<ll> &v2, ll m) {
   static FFT<uint64_t, __uint128_t, mod1, 3> fft1;
   static FFT<uint64_t, __uint128_t, mod2, 17> fft2;
   auto as=fft1.cv(v1, v2, v), bs=fft2.cv(v1, v2, v);
-  rep(i, 0, sz(as)) {
+  rep(i,0,sz(as)) {
     auto d = fft1.m(mod1+as[i]-bs[i], inv);
     d -= mod1*(d >= mod1); d %= m;
     as[i] = (bs[i] + mod2%m*d)%m;

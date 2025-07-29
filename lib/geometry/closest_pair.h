@@ -6,7 +6,7 @@ description = "Finds the closest pair of points."
 time = "$O(n log n)$"
 - */
 using P = Point<ll>;
-array<P, 2> closest(vector<P> v) {
+array<P, 2> closest(vec<P> v) {
   assert(sz(v) > 1);
   set<P> S;
   sort(all(v), [](P a, P b) { return a.y < b.y; });

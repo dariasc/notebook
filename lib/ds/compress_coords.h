@@ -9,7 +9,7 @@ auto compress_coords(auto &X) {
   values.reserve(sz(X));
   sort(all(X));
   int i = -1, prev;
-  for(auto &x : X) {
+  for (auto &x : X) {
     if (i == -1 || x != prev) {
       i++;
       prev = x;

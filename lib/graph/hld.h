@@ -11,10 +11,10 @@ description = "Decomposes a tree into vertex disjoint heavy paths and light edge
 - */
 template <bool VALS_EDGES> struct HLD {
   int N, time = 0;
-  vector<vi> adj;
+  vec<vi> adj;
   vi par, siz, rt, pos;
   SegmentTree<Op{}, Tag{}> st;
-  HLD(vector<vi> adj) : N(sz(adj)), adj(adj),
+  HLD(vec<vi> adj) : N(sz(adj)), adj(adj),
     par(N, -1), siz(N, 1), rt(N), pos(N), st(N) { 
         dfsSz(0); dfsHld(0); 
   }

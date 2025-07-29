@@ -8,11 +8,11 @@ template <auto op> struct SparseTable {
   using T = decltype(op)::T;
   vec<vec<T>> jmp;
   SparseTable(vec<T> &a) : jmp(1, vec<T>(sz(a))) {
-    for (int i = 0; i < sz(a); i++)
+    rep(i,0,sz(a))
       jmp[0][i] = a[i];
     for (int pw = 1, k = 1; pw * 2 <= sz(a); pw *= 2, ++k) {
       jmp.emplace_back(sz(a) - pw * 2 + 1);
-      for (int j = 0; j < sz(jmp[k]); j++)
+      rep(j,0,sz(jmp[k]))
         jmp[k][j] = op(jmp[k - 1][j], jmp[k - 1][j + pw]);
     }
   }

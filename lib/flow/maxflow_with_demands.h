@@ -16,7 +16,7 @@ template <class T> struct FlowDemands {
   ll calc(int s, int t) {
     const ll inf = 1e9; // might need to be changed
     mf.addEdge(t, s, inf);
-    for (int i = 0; i < n; i++) {
+    rep(i,0,n) {
       mf.addEdge(n, i, in[i]);
       mf.addEdge(i, n+1, out[i]);
     }

@@ -19,7 +19,7 @@ vec<P> minkowskiSum(vec<P> p, vec<P> q) {
     return convexHull(v);
   }
   reorder(p), reorder(q);
-  rep(i, 0, 2) p.pb(p[i]), q.pb(q[i]);
+  rep(i,0,2) p.pb(p[i]), q.pb(q[i]);
   vec<P> r;
   ll i = 0, j = 0;
   while (i + 2 < sz(p) || j + 2 < sz(q)) {
