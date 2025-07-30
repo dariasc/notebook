@@ -29,6 +29,8 @@
 #insert("ds/treap_node.h")
 #insert("ds/treap.h")
 #insert("ds/mo.h")
+#insert("ds/bit_vector.h")
+#insert("ds/wavelet_matrix.h")
 = Number Theory
 // #insert("nt/mod_pow.h")
 #insert("nt/modmul_ll.h")
