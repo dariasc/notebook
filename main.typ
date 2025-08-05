@@ -79,3 +79,9 @@
 #insert("flow/mcmf.h")
 #insert("flow/weighted_matching.h")
 #insert("flow/general_matching.h")
+= Various
+#insert("various/interval_container.h")
+#insert("various/constant_intervals.h")
+#insert("various/interval_cover.h")
+#insert("various/lis.h")
+#insert("various/fast_knapsack.h")
