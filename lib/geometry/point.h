@@ -1,10 +1,11 @@
 /* -
 name = "Point"
+source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/geometry/Point.h"
 [info]
 description = "Class to handle points in the plane. `T` can be e.g. `double` or `ll`. (Avoid `int`.)"
 - */
 template <class T> int sgn(T x) { return (x > 0) - (x < 0); }
-template<class T>
+template <class T>
 struct Point {
   typedef Point P;
   T x, y;

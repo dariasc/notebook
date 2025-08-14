@@ -56,6 +56,11 @@
 #insert("geometry/minimum_enclosing_circle.h")
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
+= 3D Geometry
+#insert("geometry/point_3d.h")
+#insert("geometry/hull_3d.h")
+#insert("geometry/polyhedron_volume.h")
+#insert("geometry/spherical_distance.h")
 = Strings
 #insert("strings/hashing.h")
 #insert("strings/suffix_array.h")
