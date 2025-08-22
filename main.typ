@@ -64,10 +64,13 @@
 #insert("geometry/spherical_distance.h")
 = Strings
 #insert("strings/hashing.h")
+#insert("strings/trie.h")
 #insert("strings/suffix_array.h")
+#insert("strings/suffix_tree.h")
 #insert("strings/kmp.h")
 #insert("strings/zfunc.h")
 #insert("strings/manacher.h")
+#insert("strings/aho_corasick.h")
 = Graphs
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
