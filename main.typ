@@ -73,6 +73,7 @@
 #insert("strings/manacher.h")
 #insert("strings/aho_corasick.h")
 = Graphs
+#insert("graph/bellman_ford.h")
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
 #insert("graph/bridges.h")
