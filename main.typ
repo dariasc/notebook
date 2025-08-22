@@ -58,6 +58,13 @@
 #insert("geometry/minimum_enclosing_circle.h")
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
+#insert("geometry/polygon_area.h")
+#insert("geometry/inside_polygon.h")
+#insert("geometry/polygon_cut.h")
+#insert("geometry/polygon_center.h")
+#insert("geometry/polygon_union.h")
+#insert("geometry/line_hull_intersection.h")
+#insert("geometry/circle_polygon_intersection.h")
 = 3D Geometry
 #insert("geometry/point_3d.h")
 #insert("geometry/hull_3d.h")
