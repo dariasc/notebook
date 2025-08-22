@@ -8,6 +8,7 @@
 #insert("template.h")
 #insert(".bashrc")
 #insert(".vimrc")
+#insert("troubleshoot.txt")
 #insert("binary_search.h")
 = Data Structures
 #insert("ds/hashmap.h")

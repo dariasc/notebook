@@ -155,7 +155,14 @@
         body
       }
     }
-    #block(raw(code, lang: "cpp", block: true))
+    
+    #if (metadata.at("type", default: "cpp") == "typst") {
+      set par(spacing: 0.5em)
+      set text(size: 8pt)
+      eval(code, mode: "markup")
+    } else {
+      block(raw(code, lang: "cpp", block: true))
+    }
   ]
 }
 
