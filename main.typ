@@ -114,8 +114,11 @@
 #insert("flow/weighted_matching.h")
 #insert("flow/general_matching.h")
 = Various
+#insert("various/ternary_search.h")
 #insert("various/interval_container.h")
 #insert("various/constant_intervals.h")
 #insert("various/interval_cover.h")
 #insert("various/lis.h")
 #insert("various/fast_knapsack.h")
+#insert("various/divide_and_conquer_dp.h")
+#insert("various/knuth_dp.h")
