@@ -80,6 +80,7 @@
 #insert("geometry/minimum_enclosing_circle.h")
 #insert("geometry/minkowski.h")
 #insert("geometry/halfplane_intersection.h")
+#insert("geometry/fast_delaunay.h")
 #insert("geometry/polygon_area.h")
 #insert("geometry/inside_polygon.h")
 #insert("geometry/polygon_cut.h")
