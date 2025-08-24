@@ -112,6 +112,7 @@
 #insert("graph/lca.h")
 #insert("graph/binary_lifting.h")
 #insert("graph/hld.h")
+#insert("graph/centroid_tree.h")
 #insert("graph/euler_walk.h")
 #insert("graph/maximum_clique.h")
 #insert("graph/edge_coloring.h")
