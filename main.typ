@@ -2,7 +2,6 @@
 
 #show: project
 
-#title()
 #index()
 = Contest
 #insert("template.h")

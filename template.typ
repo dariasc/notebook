@@ -1,3 +1,4 @@
+#import "@preview/digestify:0.1.0": *
 #let project(body) = {
   let vertical-line(anchor, x) = {
     place(
@@ -34,15 +35,10 @@
         )
       ]
     },
-    background: [
-      #vertical-line(left, margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3)
-      #vertical-line(right, -(margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3))
-    ]
   )
 
   set text(font: "New Computer Modern", lang: "en")
   set par(justify: true)
-  show: columns.with(3, gutter: gutter)
 
   show heading: set block(sticky: true)
   show heading.where(level: 1): it => [
@@ -70,22 +66,35 @@
   }
   set raw(theme: "theme.xml")
 
-  body
-}
+  block(width: 100%, height: 100%, {
+    set align(horizon + center)
+    set par(spacing: 0em)
+    image("logo.svg", height: 128pt)
+    [
+      #set text(size: 2.5em)
+      #v(0.5em)
+      *University of Chile*
 
-#let title() = {
-  return {
-    block(width: 100%, height: 2.5em, {
-      set text(size: 1.75em)
-      align(bottom)[
-        *Team Notebook*
-      ]
-      place(top + right)[
-        #image("logo.svg", height: 32pt)
-      ]
-    })
-    line(length: 100%, stroke: 0.5pt)
-  }
+      #v(1em)
+      globos.get()
+      #v(0.5em)
+
+      #set text(size: 0.5em)
+      Diego Arias, Gabriel Carmona, Vicente Villarroel
+
+      #set align(bottom + center)
+      #datetime.today().display()
+    ]
+  })
+  pagebreak()
+  set page(
+    background: [
+      #vertical-line(left, margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3)
+      #vertical-line(right, -(margin + gutter/2 + (100% - 2*margin - 2*gutter) / 3))
+    ]
+  )
+  show: columns.with(3, gutter: gutter)
+  body
 }
 
 #let index() = {
