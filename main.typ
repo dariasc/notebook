@@ -98,6 +98,7 @@
 #insert("strings/trie.h")
 #insert("strings/suffix_array.h")
 #insert("strings/suffix_tree.h")
+#insert("strings/suffix_automaton.h")
 #insert("strings/kmp.h")
 #insert("strings/zfunc.h")
 #insert("strings/manacher.h")
