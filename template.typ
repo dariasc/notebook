@@ -1,4 +1,5 @@
 #import "@preview/digestify:0.1.0": *
+#import "@preview/mitex:0.2.5": *
 #let project(body) = {
   let vertical-line(anchor, x) = {
     place(
@@ -15,7 +16,7 @@
   let margin = 0.6cm
   let gutter = 1.5%
   set page(
-    paper: "a4",
+    paper: "us-letter",
     flipped: true,
     margin: ( left: margin, right: margin, bottom: margin, top: 1.25cm ),
     header-ascent: 40%,
@@ -127,6 +128,8 @@
       }
     ]
 
+    #v(-4pt)
+
     #show raw.line: it => {
       set box(
         width: 100%,
@@ -169,9 +172,21 @@
       set par(spacing: 0.5em)
       set text(size: 8pt)
       eval(code, mode: "markup")
+    } else if (metadata.at("type", default: "cpp") == "tex") {
+      show heading.where(level: 2): it => [
+        #v(1em)
+        #it.body
+      ]
+      set par(spacing: 0.5em)
+      set text(size: 8pt)
+      mitext(code)
     } else {
-      block(raw(code, lang: "cpp", block: true))
+      if code != "" {
+        block(raw(code, lang: "cpp", block: true))
+      }
     }
+
+    #v(-4pt)
   ]
 }
 

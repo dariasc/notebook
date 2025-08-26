@@ -138,3 +138,5 @@
 #insert("various/fast_knapsack.h")
 #insert("various/divide_and_conquer_dp.h")
 #insert("various/knuth_dp.h")
+#insert("various/combinatorial.h")
+#insert("various/nt.h")
