@@ -93,6 +93,7 @@
 #insert("geometry/hull_3d.h")
 #insert("geometry/polyhedron_volume.h")
 #insert("geometry/spherical_distance.h")
+#insert("geometry/spherical_segment_intersection.h")
 = Strings
 #insert("strings/hashing.h")
 #insert("strings/trie.h")
