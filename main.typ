@@ -39,6 +39,7 @@
 #insert("nt/factor.h")
 #insert("nt/mod_arithmetic.h")
 #insert("nt/euclid.h")
+#insert("nt/morbius.h")
 #insert("nt/crt.h")
 #insert("nt/continued_fractions.h")
 #insert("nt/eratosthenes.h")
