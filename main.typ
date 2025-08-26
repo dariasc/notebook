@@ -32,6 +32,7 @@
 #insert("ds/mo.h")
 #insert("ds/bit_vector.h")
 #insert("ds/wavelet_matrix.h")
+#insert("ds/lichao_lazy.h")
 = Number Theory
 // #insert("nt/mod_pow.h")
 #insert("nt/modmul_ll.h")
