@@ -76,6 +76,7 @@
 #insert("geometry/linear_transformation.h")
 #insert("geometry/closest_pair.h")
 #insert("geometry/convex_hull.h")
+#insert("geometry/manhattan_mst.h")
 #insert("geometry/circumcircle.h")
 #insert("geometry/minimum_enclosing_circle.h")
 #insert("geometry/minkowski.h")
@@ -118,6 +119,7 @@
 #insert("graph/euler_walk.h")
 #insert("graph/maximum_clique.h")
 #insert("graph/edge_coloring.h")
+#insert("graph/directed_mst.h")
 = Flow
 #insert("flow/hopcroft_karp.h")
 #insert("flow/dinic.h")
