@@ -1,0 +1,11 @@
+#include "../template.h"
+/* -
+name = "Johnson"
+type = "typst"
+[info]
+time = "$O(V^2 log V + E V)$"
+- */
++ First, a new node $q$ is added to the graph, connected by zero-weight edges to each of the other nodes.
++ Second, the Bellman–Ford algorithm is used, starting from the new vertex $q$, to find for each vertex $v$ the minimum weight $h(v)$ of a path from $q$ to $v$. If this step detects a negative cycle, the algorithm is terminated.
++ Next the edges of the original graph are reweighted using the values computed by the Bellman–Ford algorithm: an edge from $u$ to $v$, having length $w(u,v)$, is given the new length $w(u,v) + h(u) − h(v)$.
++ Finally, $q$ is removed, and Dijkstra's algorithm is used to find the shortest paths from each node $s$ to every other vertex in the reweighted graph. The distance in the original graph is then computed for each distance $D(u, v)$, by adding $h(v) − h(u)$ to the distance returned by Dijkstra's algorithm.
