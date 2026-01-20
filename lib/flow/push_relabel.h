@@ -9,7 +9,7 @@ struct PushRelabel {
   struct Edge {
     int to, rev;
     ll f, c;
-    ll flow() { return max(f, 0LL); }
+    ll flow() { return max(f, ll(0)); }
   };
   vec<vec<Edge>> g;
   vec<ll> ec;

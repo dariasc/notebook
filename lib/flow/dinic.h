@@ -8,7 +8,7 @@ struct Dinic {
   struct Edge {
     int to, rev;
     ll c, oc;
-    ll flow() { return max(oc - c, 0LL); }
+    ll flow() { return max(oc - c, ll(0)); }
   };
   vi lvl, ptr, q;
   vec<vec<Edge>> g;
