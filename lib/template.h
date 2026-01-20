@@ -8,7 +8,7 @@ using namespace std;
 
 template <class T>
 using vec = vector<T>;
-using ll = long long;
+using ll = int64_t;
 using pii = pair<int, int>;
 using vi = vec<int>;
 

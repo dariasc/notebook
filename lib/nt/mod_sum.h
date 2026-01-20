@@ -5,7 +5,7 @@ name = "Modular Sum"
 description = "Sums of mod'ed arithmetic progressions. $\"modsum\"(\"to\", c, k, m) = sum_(i=0)^(\"to\"-1) (k i+c) space (mod m)$."
 time = "$O(log m)$"
 - */
-using ull = unsigned ll;
+using ull = uint64_t;
 ull sumsq(ull to) { return to / 2 * ((to-1) | 1); }
 /// ^ written in a weird way to deal with overflows correctly
 ull divsum(ull to, ull c, ull k, ull m) {
