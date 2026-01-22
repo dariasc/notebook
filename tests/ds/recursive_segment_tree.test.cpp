@@ -8,17 +8,19 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<ll> a(n);
+  SegmentTree<ll, plus<ll>{}, 0> tree(n);
   for (int i = 0; i < n; i++) {
-    cin >> a[i];
+    int x;
+    cin >> x;
+    auto assign = [] (ll &y, ll u) { y = u; };
+    tree.update<assign>(i, x);
   }
-  SegmentTree<Op{}> tree(n);
-  tree.build(a);
   while (q--) {
     int t, a, b;
     cin >> t >> a >> b;
     if (t == 0) {
-      tree.update(a, b);
+      auto add = [] (ll &y, ll u) { y += u; };
+      tree.update<add>(a, b);
     } else if (t == 1) {
       cout << tree.query(a, b) << "\n";
     }
