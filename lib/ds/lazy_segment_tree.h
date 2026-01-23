@@ -4,51 +4,36 @@ name = "Lazy Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <auto op, auto tag> struct SegmentTree {
-  using T = decltype(op)::T;
-  using U = decltype(tag)::U;
-  int n;
-  vec<T> s;
-  vec<U> lz;
-  SegmentTree(int n) : n(n), s(2*n-1, op.e), lz(2*n-1, tag.e) {}
-#define L v+1
-#define R v+2*(tm-tl)
-#define tm (tl+tr)/2
-  T query(int l, int r, int v=0, int tl=0, int tr=0) { // [l, r)
-    if (tr == 0) tr = n;
-    if (r <= tl || tr <= l) return op.e;
+template <class T, auto op, T e,
+          class U, auto m, auto c, U id> struct SegmentTree {
+  int n; vec<T> s; vec<U> lz;
+  SegmentTree(int n) : n(n), s(2*n-1, e), lz(2*n-1, id) {}
+  T query(int l, int r) { return query(l, r, 0, 0, n); }
+  T query(int l, int r, int v, int tl, int tr) {
+    if (r <= tl || tr <= l) return e;
     if (l <= tl && tr <= r) return s[v];
     push(v, tl, tr);
+    int tm = (tl+tr)/2, L = v+1, R = v+2*(tm-tl);
     return op(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
   }
-  void update(int l, int r, U u, int v=0, int tl=0, int tr=0) { 
-    if (tr == 0) tr = n;
+  void upd(int l, int r, U u) { return query(l, r, u, 0, 0, n); }
+  void upd(int l, int r, U u, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return;
-    if (l <= tl && tr <= r) {
-      s[v] = tag.apply(s[v], u, tl, tr);
-      lz[v] = tag(lz[v], u);
-      return;
-    }
+    if (l <= tl && tr <= r) return apply(v, u);
     push(v, tl, tr);
+    int tm = (tl+tr)/2, L = v+1, R = v+2*(tm-tl);
     update(l, r, u, L, tl, tm), update(l, r, u, R, tm, tr);
     s[v] = op(s[L], s[R]);
   }
+  void apply(int v, U u) {
+    s[v] = m(s[v], u);
+    lz[v] = c(lz[v], u);
+  }
   void push(int v, int tl, int tr) {
-    update(tl, tm, lz[v], L, tl, tm);
-    update(tm, tr, lz[v], R, tm, tr);
-    lz[v] = tag.e;
+    if (tr - tl <= 1) return;
+    int tm = (tl+tr)/2, L = v+1, R = v+2*(tm-tl);
+    apply(L, lz[v]);
+    apply(R, lz[v]);
+    lz[v] = id;
   }
-  void build(vec<T> &a, int v=0, int tl=0, int tr=0) {
-    if (tr == 0) tr = n;
-    if (tr - tl == 1) {
-      s[v] = a[tl];
-    } else {
-      build(a, L, tl, tm);
-      build(a, R, tm, tr);
-      s[v] = op(s[L], s[R]);
-    }
-  }
-#undef L
-#undef R
-#undef tm
 };
