@@ -18,6 +18,11 @@ template <class T, auto op, T e> struct SegmentTree {
   }
   void upd(int i, T u) {
     for (i += n, s[i] = u; i /= 2;)
-      s[i] = op(s[i * 2], s[i * 2 + 1]);
+      s[i] = op(s[i*2], s[i*2+1]);
+  }
+  void build(vec<T> &a) {
+    rep(i,0,n) s[i + n] = a[i];
+    for (int i = n - 1; i >= 0; i--)
+      s[i] = op(s[i*2], s[i*2+1]);
   }
 };

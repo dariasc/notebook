@@ -12,12 +12,12 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  SegmentTree<array<ll, 2>, compose, {1, 0}> tree(n);
-  for (int i = 0; i < n; i++) {
-    ll a, b;
+  vec<array<ll, 2>> A(n);
+  for (auto &[a, b] : A) {
     cin >> a >> b;
-    tree.upd(i, {a, b});
   }
+  SegmentTree<array<ll, 2>, compose, {1, 0}> tree(n);
+  tree.build(A);
   while (q--) {
     int t, x, a, b;
     cin >> t >> x >> a >> b;

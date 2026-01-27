@@ -22,12 +22,12 @@ int main() {
   int n, q;
   cin >> n >> q;
   auto mod_plus = [](ll a, ll b) { return (a+b) % mod; };
-  SegmentTree<ll, mod_plus, 0, Tag, Tag{}> tree(n);
-  for (int i = 0; i < n; i++) {
-    int x;
-    cin >> x;
-    tree.upd(i, i+1, {0, x});
+  vec<ll> A(n);
+  for (auto &a : A) {
+    cin >> a;
   }
+  SegmentTree<ll, mod_plus, 0, Tag, Tag{}> tree(n);
+  tree.build(A);
   while (q--) {
     int t, l, r;
     cin >> t >> l >> r;
