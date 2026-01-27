@@ -1,28 +1,32 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum" 
 #include "../../lib/template.h"
 #include "../../lib/ds/lazy_segment_tree.h"
-#include "range_affine_op.h"
+
+const ll mod = 998244353;
+struct Tag {
+  ll b = 1, c = 0;
+  ll map(ll x, int l, int r) const {
+    return (x * b % mod + c * (r - l) % mod) % mod;
+  }
+  Tag operator()(Tag nu) const {
+    return {
+      b * nu.b % mod,
+      (c * nu.b + nu.c) % mod
+    };
+  }
+};
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  const ll mod = 998244353;
   auto mod_plus = [](ll a, ll b) { return (a+b) % mod; };
-  auto mapping = [](ll x, auto u, int l, int r) {
-    return (x * u[0] % mod + u[1] * (r - l) % mod) % mod;
-  }
-  auto compose = [](auto lz, auto u) { 
-    return array<ll, 2>{
-      lz[0] * u[0] % mod,
-      (lz[1] * u[0] + u[1]) % mod
-    }
-  };
-  SegmentTree<ll, mod_plus, 0
-              array<ll, 2>, mapping, compose {1, 0}> tree(n);
+  SegmentTree<ll, mod_plus, 0, Tag, Tag{}> tree(n);
   for (int i = 0; i < n; i++) {
-    cin >> a[i];
+    int x;
+    cin >> x;
+    tree.upd(i, i+1, {0, x});
   }
   while (q--) {
     int t, l, r;
@@ -30,7 +34,7 @@ int main() {
     if (t == 0) {
       int b, c;
       cin >> b >> c;
-      tree.upd(l, r, array<ll, 2>{b, c});
+      tree.upd(l, r, {b, c});
     } else if (t == 1) {
       cout << tree.query(l, r) << "\n";
     }
