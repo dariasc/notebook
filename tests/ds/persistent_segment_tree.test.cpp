@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_sum"
 #include "../../lib/template.h"
-#include "../../lib/ds/op.h"
-#include "../../lib/ds/persistent_segment_tree.h"
+#include "../../lib/ds/st/persistent_segment_tree.h"
 #include "../../lib/ds/compress_coords.h"
 
 int main() {
@@ -30,12 +29,13 @@ int main() {
   for (auto &[x, y, w] : P) {
     Yx[y].pb({x, w});
   }
-  SegmentTree<Op{}> tree(sz(values_X));
+  SegmentTree<ll, plus<ll>{}, 0LL> tree(sz(values_X));
   int ver = 0;
   vi last(sz(values_Y)+1);
   for (int y = 0; y < sz(Yx); y++) {
     for (auto [x, w] : Yx[y]) {
-      ver = tree.update(x, w, ver);
+      ll cur = tree.query(x, x + 1, ver);
+      ver = tree.upd(x, cur + w, ver);
     }
     last[y+1] = ver;
   }

@@ -1,26 +1,31 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum" 
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite" 
 #include "../../lib/template.h"
-#include "../../lib/ds/op.h"
-#include "../../lib/ds/iterative_segment_tree.h"
+#include "../../lib/ds/st/iterative_segment_tree.h"
+
+const ll mod = 998244353;
+array<ll, 2> compose(array<ll, 2> a, array<ll, 2> b) {
+  return {b[0]*a[0] % mod, (b[0]*a[1] + b[1]) % mod};
+}
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
   cin.exceptions(cin.failbit);
   int n, q;
   cin >> n >> q;
-  vec<ll> a(n);
-  for (int i = 0; i < n; i++) {
-    cin >> a[i];
+  vec<array<ll, 2>> A(n);
+  for (auto &[a, b] : A) {
+    cin >> a >> b;
   }
-  SegmentTree<Op{}> tree(n);
-  tree.build(a);
+  SegmentTree<array<ll, 2>, compose, {1, 0}> tree(n);
+  tree.build(A);
   while (q--) {
-    int t, a, b;
-    cin >> t >> a >> b;
+    int t, x, a, b;
+    cin >> t >> x >> a >> b;
     if (t == 0) {
-      tree.update(a, b);
+      tree.upd(x, {a, b});
     } else if (t == 1) {
-      cout << tree.query(a, b) << "\n";
+      array<ll, 2> l = tree.query(x, a); 
+      cout << (l[0]*b + l[1]) % mod << "\n";
     }
   }
 }

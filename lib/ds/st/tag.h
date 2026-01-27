@@ -1,7 +1,9 @@
-const ll mod = 998244353;
-
-inline ll mod_plus(ll a, ll b) { return (a + b) % mod; }
-
+#include "../template.h"
+/* -
+name = "Tag Type"
+[info]
+description = "Tag operator type used for lazy propagation in lazy structures."
+- */
 struct Tag {
   ll b = 1, c = 0;
   ll map(ll x, int l, int r) const {
