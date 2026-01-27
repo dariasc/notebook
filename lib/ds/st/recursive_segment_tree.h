@@ -1,4 +1,4 @@
-#include "../template.h"
+#include "../../template.h"
 #include "split.h"
 /* -
 name = "Segment Tree"
