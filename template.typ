@@ -77,11 +77,11 @@
       *University of Chile*
 
       #v(1em)
-      globos.get()
+      sin globito no hay fiesta 
       #v(0.5em)
 
       #set text(size: 0.5em)
-      Diego Arias, Gabriel Carmona, Vicente Villarroel
+      Diego Arias, Gabriel Carmona, Martín Ruiz-Tagle
 
       #set align(bottom + center)
       #datetime.today().display()
