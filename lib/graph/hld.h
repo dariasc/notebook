@@ -1,7 +1,4 @@
 #include "../template.h"
-#include "../ds/op.h"
-#include "../ds/tag.h"
-#include "../ds/lazy_segment_tree.h"
 /* -
 name = "Heavy Light Decomposition"
 source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/graph/HLD.h"
@@ -9,11 +6,11 @@ source = "https://github.com/kth-competitive-programming/kactl/blob/main/content
 time = "$O(log^2 N)$"
 description = "Decomposes a tree into vertex disjoint heavy paths and light edges such that the path from any leaf to the root contains at most $log n$ light edges. Root must be node $0$"
 - */
-template <bool VALS_EDGES> struct HLD {
+template <bool VALS_EDGES, class T> struct HLD {
   int N, time = 0;
   vec<vi> adj;
   vi par, siz, rt, pos;
-  SegmentTree<Op{}, Tag{}> st;
+  T st;
   HLD(vec<vi> adj) : N(sz(adj)), adj(adj),
     par(N, -1), siz(N, 1), rt(N), pos(N), st(N) { 
         dfsSz(0); dfsHld(0); 
@@ -42,10 +39,10 @@ template <bool VALS_EDGES> struct HLD {
     }
     op(pos[u] + VALS_EDGES, pos[v] + 1);
   }
-  void modifyPath(int u, int v, int val) {
-    process(u, v, [&](int l, int r) { st.update(l, r, val); });
+  void modifyPath(int u, int v, auto val) {
+    process(u, v, [&](int l, int r) { st.upd(l, r, val); });
   }
-  auto queryPath(int u, int v) { // Modify depending on problem
+  auto queryPath(int u, int v) { // modify depending on problem
     ll res = 0;
     process(u, v, [&](int l, int r) {
         res += st.query(l, r);

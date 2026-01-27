@@ -1,54 +1,58 @@
-#include "../template.h"
+#include "../../template.h"
 /* -
 name = "Persistent Lazy Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <auto op, auto tag> struct SegmentTree {
-  using T = decltype(op)::T;
-  using U = decltype(tag)::U;
+template <class T, auto op, T e,
+          class U, U id> struct SegmentTree {
   struct Node {
     int l = 0, r = 0; 
-    T x = op.e;
-    U lz = tag.e;
+    T x = e;
+    U lz = id;
   };
   int n;
   vec<Node> s;
   SegmentTree(int n) : n(n), s(1) {}
-#define L s[v].l
-#define R s[v].r
-#define tm (tl+tr)/2
-  T query(int l, int r, int v, int tl=0, int tr=0) { // [l,r)
-    if (tr == 0) tr = n;
-    if (r <= tl || tr <= l) return op.e;
-    if (l <= tl && tr <= r) return s[v].x;
-    push(v, tl, tr);
-    return op(query(l, r, L, tl, tm), query(l, r, R, tm, tr));
-  }
-  int update(int l, int r, U u, int v, int tl=0, int tr=0) {
-    if (tr == 0) tr = n;
-    if (r <= tl || tr <= l) return v;
+  int copy(int v) { 
     s.emplace_back(s[v]);
-    v = sz(s) - 1;
+    return sz(s) - 1; 
+  };
+  T query(int l, int r, int v) { return query(l, r, v, 0, n); }
+  T query(int l, int r, int v, int tl, int tr) { // [l,r)
+    if (r <= tl || tr <= l) return e;
+    if (l <= tl && tr <= r) return s[v].x;
+    int t = sz(s);
+    v = push(v, tl, tr);
+    int tm = (tl+tr)/2;
+    T val = op(query(l, r, s[v].l, tl, tm),
+               query(l, r, s[v].r, tm, tr));
+    s.resize(t);
+    return val;
+  }
+  int upd(int l, int r, U u, int v) { return upd(l, r, u, v, 0, n); }
+  int upd(int l, int r, U u, int v, int tl, int tr) {
+    if (r <= tl || tr <= l) return v;
     if (l <= tl && tr <= r) {
-      s[v].x = tag.apply(s[v].x, u, tl, tr);
-      s[v].lz = tag(s[v].lz, u);
+      v = copy(v);
+      s[v].x = u.map(s[v].x, tl, tr);
+      s[v].lz = s[v].lz(u);
     } else {
-      push(v, tl, tr);
-      L = update(l, r, u, L, tl, tm);
-      R = update(l, r, u, R, tm, tr);
-      s[v].x = op(s[L].x, s[R].x);
+      v = push(v, tl, tr);
+      int tm = (tl+tr)/2;
+      s[v].l = upd(l, r, u, s[v].l, tl, tm);
+      s[v].r = upd(l, r, u, s[v].r, tm, tr);
+      s[v].x = op(s[s[v].l].x, s[s[v].r].x);
     }
     return v;
   }
-  void push(int v, int tl, int tr) {
-    if (s[v].lz != tag.e) {
-      L = update(tl, tm, s[v].lz, L, tl, tm);
-      R = update(tm, tr, s[v].lz, R, tm, tr);
-      s[v].lz = tag.e;
-    }
+  int push(int v, int tl, int tr) {
+    v = copy(v);
+    if (tr - tl == 1) return v;
+    int tm = (tl+tr)/2;
+    s[v].l = upd(tl, tm, s[v].lz, s[v].l, tl, tm);
+    s[v].r = upd(tm, tr, s[v].lz, s[v].r, tm, tr);
+    s[v].lz = id;
+    return v;
   }
-#undef L
-#undef R
-#undef tm
 };

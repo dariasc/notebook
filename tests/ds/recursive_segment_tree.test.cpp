@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite" 
 #include "../../lib/template.h"
-#include "../../lib/ds/recursive_segment_tree.h"
+#include "../../lib/ds/st/recursive_segment_tree.h"
 
 const ll mod = 998244353;
 array<ll, 2> compose(array<ll, 2> a, array<ll, 2> b) {

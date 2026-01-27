@@ -1,4 +1,4 @@
-#include "../template.h"
+#include "../../template.h"
 #include "split.h"
 /* -
 name = "Lazy Segment Tree"
@@ -21,24 +21,24 @@ template <class T, auto op, T e,
   void upd(int l, int r, U u) { return upd(l, r, u, 1, 0, n); }
   void upd(int l, int r, U u, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return;
-    if (l <= tl && tr <= r) return apply(v, u, tl, tr);
+    if (l <= tl && tr <= r) { 
+      s[v] = u.map(s[v], tl, tr);
+      if (v < n) lz[v] = lz[v](u);
+      return;
+    }
     push(v, tl, tr);
     int tm = split(tl, tr);
     upd(l, r, u, 2*v, tl, tm), upd(l, r, u, 2*v+1, tm, tr);
     s[v] = op(s[2*v], s[2*v+1]);
   }
-  void apply(int v, U u, int tl, int tr) {
-    s[v] = u.map(s[v], tl, tr);
-    if (v < n) lz[v] = lz[v](u);
-  }
   void push(int v, int tl, int tr) {
     int tm = split(tl, tr);
-    apply(2*v, lz[v], tl, tm);
-    apply(2*v+1, lz[v], tm, tr);
+    upd(tl, tm, lz[v], 2*v, tl, tm);
+    upd(tm, tr, lz[v], 2*v+1, tm, tr);
     lz[v] = id;
   }
   void build(vec<T>& a) {
-    int pw2 = bit_ceil(size(a));
+    auto pw2 = bit_ceil(size(a));
     for (int i = 0; i < n; i++)
       s[(i + pw2) % n + n] = a[i];
     for (int i = n - 1; i >= 1; i--)

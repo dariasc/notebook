@@ -1,31 +1,26 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_range_affine_range_sum"
 #include "../../lib/template.h"
-#include "../../lib/ds/persistent_lazy_segment_tree.h"
+#include "../../lib/ds/st/persistent_lazy_segment_tree.h"
 #include "range_affine_op.h"
 
-#define L s[v].l
-#define R s[v].r
-#define tm (tl+tr)/2
-int path_copy(auto &t, int l, int r, int k, int v, int tl=0, int tr=0) {
-  if (tr == 0) tr = t.n;
+int path_copy(auto &t, int l, int r, int k, int v) {
+  return path_copy(t, l, r, k, v, 0, t.n); 
+}
+int path_copy(auto &t, int l, int r, int k, int v, int tl, int tr) {
   if (r <= tl || tr <= l) 
     return v;
-  t.s.push_back(t.s[v]);
-  v = sz(t.s) - 1;
   if (l <= tl && tr <= r) {
     return k;
   } else {
-    t.push(v, tl, tr);
-    t.push(k, tl, tr);
-    t.L = path_copy(t, l, r, t.s[k].l, t.L, tl, tm);
-    t.R = path_copy(t, l, r, t.s[k].r, t.R, tm, tr);
-    t.s[v].x = Op{}(t.s[t.L].x, t.s[t.R].x);
+    int tm = (tl+tr)/2;
+    v = t.push(v, tl, tr);
+    k = t.push(k, tl, tr);
+    t.s[v].l = path_copy(t, l, r, t.s[k].l, t.s[v].l, tl, tm);
+    t.s[v].r = path_copy(t, l, r, t.s[k].r, t.s[v].r, tm, tr);
+    t.s[v].x = mod_plus(t.s[t.s[v].l].x, t.s[t.s[v].r].x);
   }
   return v;
 }
-#undef L
-#undef R
-#undef tm
 
 int main() {
   cin.tie(0)->sync_with_stdio(0);
@@ -36,10 +31,10 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<Op{}, Tag{}> tree(n);
+  SegmentTree<ll, mod_plus, 0, Tag, Tag{}> tree(n);
   vi ver(q+1);
   for (int i = 0; i < n; i++) {
-    ver[0] = tree.update(i, i+1, {0, a[i]}, ver[0]);
+    ver[0] = tree.upd(i, i+1, {0, a[i]}, ver[0]);
   }
   int i = 1;
   while (q--) {
@@ -51,7 +46,7 @@ int main() {
       cin >> l >> r;
       int b, c;
       cin >> b >> c;
-      ver[i] = tree.update(l, r, {b, c}, ver[k]);
+      ver[i] = tree.upd(l, r, {b, c}, ver[k]);
     } else if (t == 1) {
       int s;
       cin >> s;
