@@ -5,18 +5,19 @@ name = "Weighted Matching"
 description = "Given a weighted bipartite graph, matches every node on the left with a node on the right such that no nodes are in two matchings and the sum of the edge weights is minimal. Takes `cost[N][M]`, where `cost[i][j]` = cost for `L[i]` to be matched with `R[j]` and returns `(min cost, match)`, where `L[i]` is matched with `R[match[i]]`. Negate costs for max cost. Requires $N < M$."
 time = "$O(N^2 M)$"
 - */
-pair<int, vi> hungarian(const vec<vi> &a) {
+pair<ll, vi> hungarian(const vec<vec<ll>> &a) {
   if (a.empty()) return {0, {}};
   int n = sz(a) + 1, m = sz(a[0]) + 1;
-  vi u(n), v(m), p(m), ans(n - 1);
+  vec<ll> u(n), v(m); vi p(m), ans(n - 1);
   rep(i,1,n) {
     p[0] = i;
     int j0 = 0; // add "dummy" worker 0
-    vi dist(m, INT_MAX), pre(m, -1);
+    vec<ll> dist(m, LLONG_MAX); vi pre(m, -1);
     vec<bool> done(m + 1);
     do { // dijkstra
       done[j0] = true;
-      int i0 = p[j0], j1, delta = INT_MAX;
+      int i0 = p[j0], j1;
+      ll delta = LLONG_MAX;
       rep(j,1,m) if (!done[j]) {
         auto cur = a[i0 - 1][j - 1] - u[i0] - v[j];
         if (cur < dist[j]) dist[j] = cur, pre[j] = j0;
