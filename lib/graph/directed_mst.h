@@ -1,4 +1,5 @@
 #include "../template.h"
+#include "../ds/uf_rollback.h"
 /* -
 name = "Directed MST"
 source = "https://github.com/IvanRenison/kactlpp/blob/gmat/content/graph/DirectedMST.h"
