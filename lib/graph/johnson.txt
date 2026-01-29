@@ -1,4 +1,3 @@
-#include "../template.h"
 /* -
 name = "Johnson"
 type = "typst"

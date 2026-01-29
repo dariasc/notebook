@@ -102,6 +102,19 @@
   return outline(title: none, depth: 1)
 }
 
+#let depends-unique(items) = {
+  let deps = (:)
+  for it in items {
+    if "dependsOn" in it {
+      for d in it.dependsOn { 
+        deps.insert(d, true)
+      }
+    }
+  }
+  return deps
+}
+#let verified-files = depends-unique(json.decode(read("stats.json")))
+
 #let insert(filename) = {
   let extract-code(contents) = {
     return contents.split("- */\n").at(-1).trim("\n")
@@ -111,7 +124,8 @@
     return toml(bytes(contents.split("- */\n").at(0).split("/* -\n").at(-1)))
   }
 
-  let contents = read("lib/" + filename)
+  let full_filename = "lib/" + filename
+  let contents = read(full_filename)
   let hash-metadata = toml("hashes/" + filename + ".toml")
   let metadata = extract-metadata(contents)
   let code = extract-code(contents)
@@ -120,6 +134,11 @@
     #block(breakable: false, width: 100%, fill: gray.transparentize(80%), inset: 3pt, outset: 3pt)[
       #set text(8pt)
       == #eval(metadata.name, mode: "markup")
+      #if full_filename in verified-files [
+        #h(1fr)
+        #set text(font: "Segoe UI Emoji")
+        #sym.checkmark.heavy
+      ]
       #linebreak()
       #for (key, value) in metadata.info {
         text(key + ": ", weight: "bold")

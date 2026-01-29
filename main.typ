@@ -95,7 +95,7 @@
 #insert("geometry/hull_3d.h")
 #insert("geometry/polyhedron_volume.h")
 #insert("geometry/spherical_distance.h")
-#insert("geometry/spherical_segment_intersection.h")
+#insert("geometry/spherical_segment_intersection.txt")
 = Strings
 #insert("strings/hashing.h")
 #insert("strings/trie.h")
@@ -108,7 +108,7 @@
 #insert("strings/aho_corasick.h")
 = Graphs
 #insert("graph/bellman_ford.h")
-#insert("graph/johnson.h")
+#insert("graph/johnson.txt")
 #insert("graph/topo_sort.h")
 #insert("graph/scc.h")
 #insert("graph/bridges.h")
