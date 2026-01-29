@@ -136,7 +136,7 @@
       == #eval(metadata.name, mode: "markup")
       #if full_filename in verified-files [
         #h(1fr)
-        #set text(font: "Segoe UI Emoji")
+        #set text(font: "Noto Color Emoji")
         #sym.checkmark.heavy
       ]
       #linebreak()
