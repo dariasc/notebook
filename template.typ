@@ -135,9 +135,9 @@
       #set text(8pt)
       == #eval(metadata.name, mode: "markup")
       #if full_filename in verified-files [
+        #set text(fill: olive.mix(lime), baseline: -2pt)
         #h(1fr)
-        #set text(font: "Noto Color Emoji")
-        #sym.checkmark.heavy
+        #sym.circle.filled
       ]
       #linebreak()
       #for (key, value) in metadata.info {

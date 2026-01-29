@@ -19,8 +19,6 @@ jobs:
       uses: actions/setup-python@v4
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
-    - name: Install noto color
-      run: sudo apt install -y fonts-noto-color-emoji
     - name: Generate stats
       run: oj-verify stats -j 4 > stats.json
     - name: Install Typst
