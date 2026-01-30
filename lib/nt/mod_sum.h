@@ -2,7 +2,7 @@
 /* -
 name = "Modular Sum"
 [info]
-description = "Sums of mod'ed arithmetic progressions. $\"modsum\"(\"to\", c, k, m) = sum_(i=0)^(\"to\"-1) (k i+c) space (mod m)$."
+description = "Sums of mod'ed arithmetic progressions. $\"modsum\"(\"to\", c, k, m) = sum_(i=0)^(\"to\"-1) (k i+c thin mod m)$. $\"divsum\"$  is similar but for floored division."
 time = "$O(log m)$"
 - */
 using ull = uint64_t;
