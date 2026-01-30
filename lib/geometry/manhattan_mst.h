@@ -1,3 +1,4 @@
+#include "point.h"
 /* -
 name = "Manhattan MST"
 source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/geometry/ManhattanMST.h"
