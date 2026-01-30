@@ -1,5 +1,5 @@
 #include "../template.h"
-#include "mod_pow.h"
+#include "modmul_ll.h"
 /* -
 name = "Modular Square Root"
 [info]
@@ -9,14 +9,14 @@ time = "$O(log^2 p)$"
 ll sqrt(ll a, ll p) {
   a %= p; if (a < 0) a += p;
   if (a == 0) return 0;
-  assert(modpow(a, (p-1)/2, p) == 1); // else no solution
+  if (modpow(a, (p-1)/2, p) != 1) return -1; // no solution
   if (p % 4 == 3) return modpow(a, (p+1)/4, p);
   // a^(n+3)/8 or 2^(n+3)/8 * 2^(n-1)/4 works if p % 8 == 5
   ll s = p - 1, n = 2;
   int r = 0, m;
   while (s % 2 == 0)
     ++r, s /= 2;
-  /// find a non-square mod p
+  // find a non-square mod p
   while (modpow(n, (p - 1) / 2, p) != p - 1) ++n;
   ll x = modpow(a, (s + 1) / 2, p);
   ll b = modpow(a, s, p), g = modpow(n, s, p);
