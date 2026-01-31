@@ -131,7 +131,8 @@
 #insert("flow/maxflow_with_demands.h")
 #insert("flow/mcmf.h")
 #insert("flow/weighted_matching.h")
-#insert("flow/general_matching.h")
+// #insert("flow/general_matching.h")
+#insert("flow/blossom.h")
 = Various
 #insert("various/ternary_search.h")
 #insert("various/interval_container.h")
