@@ -123,6 +123,7 @@
 #insert("graph/maximum_clique.h")
 #insert("graph/edge_coloring.h")
 #insert("graph/directed_mst.h")
+#insert("graph/dominator_tree.h")
 #insert("graph/matroid_intersection.h")
 = Flow
 #insert("flow/hopcroft_karp.h")
