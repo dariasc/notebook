@@ -22,7 +22,7 @@
     header-ascent: 40%,
     header: context {
       let headings = query(
-        selector(heading.where(level: 2)).after(here())
+        selector(heading.where(level: 2, outlined: true)).after(here())
       )
       let this = headings
         .filter((it) => it.location().position().page == here().position().page)
@@ -131,6 +131,10 @@
   let code = extract-code(contents)
   let line-count = code.split("\n").len()
   return block[
+    #if (metadata.at("type", default: "cpp") == "tex") {
+      v(1em);
+    }
+
     #block(breakable: false, width: 100%, fill: gray.transparentize(80%), inset: 3pt, outset: 3pt)[
       #set text(8pt)
       == #eval(metadata.name, mode: "markup")
@@ -193,12 +197,14 @@
       eval(code, mode: "markup")
     } else if (metadata.at("type", default: "cpp") == "tex") {
       show heading.where(level: 2): it => [
-        #v(1em)
+        #v(0.5em)
         #it.body
       ]
       set par(spacing: 0.5em)
       set text(size: 8pt)
+      set heading(outlined: false)
       mitext(code)
+      set heading(outlined: true)
     } else {
       if code != "" {
         block(raw(code, lang: "cpp", block: true))
