@@ -18,7 +18,7 @@
   set page(
     paper: "us-letter",
     flipped: true,
-    margin: ( left: margin, right: margin, bottom: margin, top: 1.25cm ),
+    margin: ( left: margin, right: margin, bottom: 1.5*margin, top: 1.25cm ),
     header-ascent: 40%,
     header: context {
       let headings = query(

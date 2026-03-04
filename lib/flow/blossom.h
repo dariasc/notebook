@@ -4,7 +4,7 @@ name = "Blossom"
 source = "https://github.com/ucf-programming-team/hackpack-cpp/blob/master/content/graphs/Blossom.h"
 [info]
 description = "Blossom algorithm for matching in general graphs."
-time = "$O(N M)$"
+time = "$O(N M)$ though Benq disagrees..."
 - */
 vi blossom(vec<vi>& adj) {
   int n = adj.size(), T = -1;
@@ -39,8 +39,8 @@ vi blossom(vec<vi>& adj) {
       for (auto x : adj[v]) if (label[x] == -1) {
         label[x] = 1, par[x] = v;
         if (mate[x] == -1) return augment(x);
-        label[mate[x]] = 0, q.push_back(mate[x]); }
-      else if (label[x] == 0 && orig[v] != orig[x]) {
+        label[mate[x]] = 0, q.push_back(mate[x]);
+      } else if (label[x] == 0 && orig[v] != orig[x]) {
         int a = lca(orig[v], orig[x]);
         blossom(x, v, a), blossom(v, x, a); 
       } 

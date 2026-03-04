@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "Fast Sieve of Eratosthenes"
+name = "Fast Eratosthenes"
 [info]
 description = "Prime sieve for generating all primes smaller than LIM using segmented sieve. Despite its $n log log n$ complexity, segmented sieve is still faster than other options due to low memory usage."
 time = "$\"LIM\"=10^9 approx 1.5s$"

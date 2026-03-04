@@ -1,7 +1,7 @@
 #include "../template.h"
 #include "euclid.h"
 /* -
-name = "Chinese Remainder Theorem"
+name = "CRT"
 [info]
 description = "Computes $x$ such that $x equiv a space (mod m)$, $x equiv b space (mod n)$. If $|a| < m$ and $|b| < n$, $x$ will obey $0 <= x < lcm(m, n)$. Assumes $m n < 2^62$."
 time = "$O(log n)$"
