@@ -37,7 +37,7 @@ void del(int v, int end) {
   }
 }
 int calc() {
-  return lca.second;
+  return lca[1];
 }
 
 int main() {

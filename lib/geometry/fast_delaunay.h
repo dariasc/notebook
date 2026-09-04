@@ -49,10 +49,9 @@ pair<Q,Q> rec(const vec<P>& s) {
   }
 #define H(e) e->F(), e->p
 #define valid(e) (e->F().cross(H(base)) > 0)
-  Q A, B, ra, rb;
   int half = sz(s) / 2;
-  tie(ra, A) = rec({all(s) - half});
-  tie(B, rb) = rec({sz(s) - half + all(s)});
+  auto [ra, A] = rec({all(s) - half});
+  auto [B, rb] = rec({sz(s) - half + all(s)});
   while ((B->p.cross(H(A)) < 0 && (A = A->next())) ||
          (A->p.cross(H(B)) > 0 && (B = B->r()->o)));
   Q base = connect(B->r(), A);

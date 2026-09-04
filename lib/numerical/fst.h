@@ -8,10 +8,11 @@ time = "$O(n log n)$"
 void FST(auto& a, bool inv) {
   for (int n = sz(a), step = 1; step < n; step *= 2) {
     for (int i = 0; i < n; i += 2 * step) rep(j,i,i+step) {
-      auto &u = a[j], &v = a[j + step]; tie(u, v) =
-        inv ? pii(v - u, u) : pii(v, u + v); // AND
-        // inv ? pii(v, u - v) : pii(u + v, u); // OR
-        // pii(u + v, u - v);                   // XOR
+      auto &u = a[j], &v = a[j + step]; pii p =
+        inv ? pii{v - u, u} : pii{v, u + v}; // AND
+        // inv ? pii{v, u - v} : pii{u + v, u}; // OR
+        // pii{u + v, u - v};                   // XOR
+      u = p[0], v = p[1];
     }
   }
   // if (inv) for (auto& x : a) x /= sz(a); // XOR only

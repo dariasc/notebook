@@ -7,11 +7,10 @@ time = "$O(N M)$"
 - */
 vi edgeColoring(int N, vec<pii> eds) {
   vi cc(N + 1), ret(sz(eds)), fan(N), free(N), loc;
-  for (pii e : eds) ++cc[e.first], ++cc[e.second];
-  int u, v, ncols = *max_element(all(cc)) + 1;
+  for (pii e : eds) ++cc[e[0]], ++cc[e[1]];
+  int ncols = *max_element(all(cc)) + 1;
   vec<vi> adj(N, vi(ncols, -1));
-  for (pii e : eds) {
-    tie(u, v) = e;
+  for (auto [u, v] : eds) {
     fan[0] = v;
     loc.assign(ncols, 0);
     int at = u, end = u, d, c = free[u], ind = 0, i = 0;
@@ -33,6 +32,6 @@ vi edgeColoring(int N, vec<pii> eds) {
       for (int& z = free[y] = 0; adj[y][z] != -1; z++);
   }
   rep(i,0,sz(eds))
-    for (tie(u, v) = eds[i]; adj[u][ret[i]] != v;) ++ret[i];
+    for (auto [u, v] = eds[i]; adj[u][ret[i]] != v;) ++ret[i];
   return ret;
 }

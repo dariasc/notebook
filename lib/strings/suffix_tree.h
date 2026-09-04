@@ -36,7 +36,7 @@ struct SuffixTree {
     rep(i,0,sz(a)) ukkadd(i, toi(a[i]));
   }
   // example: find longest common substring (uses ALPHA = 28)
-  pii best;
+  pii best{};
   int lcs(int node, int i1, int i2, int olen) {
     if (l[node] <= i1 && i1 < r[node]) return 1;
     if (l[node] <= i2 && i2 < r[node]) return 2;

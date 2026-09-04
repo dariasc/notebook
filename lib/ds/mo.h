@@ -12,7 +12,7 @@ int calc(); // compute current answer
 vi mo(vec<array<int, 2>>& Q) {
   int L = 0, R = 0, blk = 350; // ~N/sqrt(Q)
   vi s(sz(Q)), res = s;
-#define K(x) pii(x[0]/blk, x[1] ^ -(x[0]/blk & 1))
+#define K(x) pii{x[0]/blk, x[1] ^ -(x[0]/blk & 1)}
   iota(all(s), 0);
   sort(all(s), [&](int s, int t){ return K(Q[s]) < K(Q[t]); });
   for (int qi : s) {
@@ -39,7 +39,7 @@ vi moTree(vec<array<int, 2>>& Q, vec<vi>& ed, int root=0){
     R[x] = N;
   };
   dfs(root, -1, 0, dfs);
-#define K(x) pii(I[x[0]] / blk, I[x[1]] ^ -(I[x[0]] / blk & 1))
+#define K(x) pii{I[x[0]] / blk, I[x[1]] ^ -(I[x[0]] / blk & 1)}
   iota(all(s), 0);
   sort(all(s), [&](int s, int t){ return K(Q[s]) < K(Q[t]); });
   for (int qi : s) rep(end,0,2) {
