@@ -31,7 +31,7 @@ vec<pii> generalMatching(int N, vec<pii>& ed) {
       rep(j,i+1,M) if (A[i][j] && mat[i][j]) {
         fi = i; fj = j; goto done;
     } assert(0); done:
-    if (fj < N) ret.emplace_back(fi, fj);
+    if (fj < N) ret.push_back({fi, fj});
     has[fi] = has[fj] = 0;
     rep(sw,0,2) {
       ll a = modpow(A[fi][fj], mod-2);
