@@ -10,7 +10,7 @@ void dfs(int v, int p, int d, vec<vi>& adj) {
   }
 }
 
-pii lca = {1e9, -1};
+pii lca = {(int)1e9, -1};
 deque<pii> path;
 void add(int v, int end) {
   pii N = {D[v], v};
@@ -24,7 +24,7 @@ void add(int v, int end) {
 void del(int v, int end) {
   pii N = {D[v], v};
   if (lca == N || sz(path) == 0) {
-    lca = {1e9, -1};
+    lca = {(int)1e9, -1};
   }
 	if (end == 0) {
 		path.pop_front();
@@ -37,7 +37,7 @@ void del(int v, int end) {
   }
 }
 int calc() {
-  return lca.second;
+  return lca[1];
 }
 
 int main() {

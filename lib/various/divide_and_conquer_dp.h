@@ -9,7 +9,7 @@ struct DP { // Modify at will:
   int lo(int ind) { return 0; }
   int hi(int ind) { return ind; }
   ll f(int ind, int k) { return dp[ind][k]; }
-  void store(int ind, int k, ll v) { res[ind] = pii(k, v); }
+  void store(int ind, int k, ll v) { res[ind] = pii{k, v}; }
   void rec(int L, int R, int LO, int HI) {
     if (L >= R) return;
     int mid = (L + R) >> 1;

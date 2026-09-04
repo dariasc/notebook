@@ -9,7 +9,7 @@ using namespace std;
 template <class T>
 using vec = vector<T>;
 using ll = int64_t;
-using pii = pair<int, int>;
+using pii = array<int, 2>;
 using vi = vec<int>;
 
 #define pb push_back

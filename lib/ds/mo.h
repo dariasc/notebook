@@ -9,10 +9,10 @@ time = "$O(n sqrt(q))$"
 void add(int ind, int end); // add a[ind] (end = 0 or 1)
 void del(int ind, int end); // remove a[ind]
 int calc(); // compute current answer
-vi mo(vec<array<int, 2>>& Q) {
+vi mo(vec<pii>& Q) {
   int L = 0, R = 0, blk = 350; // ~N/sqrt(Q)
   vi s(sz(Q)), res = s;
-#define K(x) pii(x[0]/blk, x[1] ^ -(x[0]/blk & 1))
+#define K(x) pii{x[0]/blk, x[1] ^ -(x[0]/blk & 1)}
   iota(all(s), 0);
   sort(all(s), [&](int s, int t){ return K(Q[s]) < K(Q[t]); });
   for (int qi : s) {
@@ -26,7 +26,7 @@ vi mo(vec<array<int, 2>>& Q) {
 #undef K
   return res;
 }
-vi moTree(vec<array<int, 2>>& Q, vec<vi>& ed, int root=0){
+vi moTree(vec<pii>& Q, vec<vi>& ed, int root=0){
   int N = sz(ed), pos[2] = {}, blk = 350; // ~N/sqrt(Q)
   vi s(sz(Q)), res = s, I(N), L(N), R(N), in(N), par(N);
   add(0, 0), in[0] = 1;
@@ -39,7 +39,7 @@ vi moTree(vec<array<int, 2>>& Q, vec<vi>& ed, int root=0){
     R[x] = N;
   };
   dfs(root, -1, 0, dfs);
-#define K(x) pii(I[x[0]] / blk, I[x[1]] ^ -(I[x[0]] / blk & 1))
+#define K(x) pii{I[x[0]] / blk, I[x[1]] ^ -(I[x[0]] / blk & 1)}
   iota(all(s), 0);
   sort(all(s), [&](int s, int t){ return K(Q[s]) < K(Q[t]); });
   for (int qi : s) rep(end,0,2) {
