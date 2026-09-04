@@ -15,7 +15,7 @@ int main() {
   }
   vi btoa(r, -1);
   hopcroftKarp(g, btoa);
-  vec<array<int, 2>> ans;
+  vec<pii> ans;
   for (int j = 0; j < r; j++) {
     if (btoa[j] != -1) {
       ans.push_back({btoa[j], j});

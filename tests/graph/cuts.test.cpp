@@ -7,8 +7,8 @@ int main() {
   cin.exceptions(cin.failbit);
   int n, m;
   cin >> n >> m;
-  vec<array<int, 2>> ed(m);
-  vec<vec<array<int, 2>>> adj(n);
+  vec<pii> ed(m);
+  vec<vec<pii>> adj(n);
   for (int i = 0; i < m; i++) {
     int u, v;
     cin >> u >> v;

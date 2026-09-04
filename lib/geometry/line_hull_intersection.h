@@ -19,12 +19,12 @@ template <class P> int extrVertex(vec<P>& poly, P dir) {
   return lo;
 }
 template <class P>
-array<int, 2> lineHull(P a, P b, vec<P>& poly) {
+pii lineHull(P a, P b, vec<P>& poly) {
   int endA = extrVertex(poly, (a - b).perp());
   int endB = extrVertex(poly, (b - a).perp());
   if (cmpL(endA) < 0 || cmpL(endB) > 0)
     return {-1, -1};
-  array<int, 2> res;
+  pii res;
   rep(i,0,2) {
     int lo = endB, hi = endA, n = sz(poly);
     while ((lo + 1) % n != hi) {

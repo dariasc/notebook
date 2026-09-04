@@ -15,7 +15,7 @@ int main() {
   auto mst = manhattanMST(pts);
   sort(all(mst));
   UnionFind uf(n);
-  vec<array<int, 2>> T;
+  vec<pii> T;
   ll W = 0;
   for (auto [w, i, j] : mst) {
     if (uf.join(i, j)) {

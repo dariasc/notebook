@@ -25,7 +25,7 @@ int main() {
   }
   auto values_X = compress_coords(X);
   auto values_Y = compress_coords(Y);
-  vec<vec<array<int, 2>>> Yx(sz(values_Y));
+  vec<vec<pii>> Yx(sz(values_Y));
   for (auto &[x, y, w] : P) {
     Yx[y].pb({x, w});
   }

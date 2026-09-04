@@ -10,7 +10,7 @@ struct LiChao {
   struct Line {
     ll a, b;
     ll la, lb; // lazy
-    array<int, 2> ch;
+    pii ch;
     Line(ll a_ = 0, ll b_ = LINF) :
       a(a_), b(b_), la(0), lb(0), ch({-1, -1}) {}
     ll operator ()(ll x) { return a*x + b; }

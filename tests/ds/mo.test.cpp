@@ -34,7 +34,7 @@ int main() {
     X.pb(ref(x));
   }
   compress_coords(X);
-  vec<array<int, 2>> Q(q);
+  vec<pii> Q(q);
   for (int i = 0; i < q; i++) {
     cin >> Q[i][0] >> Q[i][1]; 
   }

@@ -54,7 +54,7 @@ int main() {
   }
   D = vi(n);
   dfs(0, -1, 0, adj);
-  vec<array<int, 2>> Q(q);
+  vec<pii> Q(q);
   for (int i = 0; i < q; i++) {
     cin >> Q[i][0] >> Q[i][1]; 
   }

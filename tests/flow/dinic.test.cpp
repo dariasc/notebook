@@ -22,7 +22,7 @@ int main() {
     mf.addEdge(a, l + b, 1);
   }
   mf.calc(s, t);
-  vec<array<int, 2>> ans;
+  vec<pii> ans;
   for (int i = 0; i < l; i++) {
     for (auto e : mf.g[i]) {
       int j = e.to - l;
