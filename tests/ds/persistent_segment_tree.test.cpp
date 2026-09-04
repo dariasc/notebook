@@ -29,7 +29,7 @@ int main() {
   for (auto &[x, y, w] : P) {
     Yx[y].pb({x, w});
   }
-  SegmentTree<ll, plus<ll>{}, 0LL> tree(sz(values_X));
+  SegmentTree<ll, plus<ll>{}> tree(sz(values_X), 0LL);
   int ver = 0;
   vi last(sz(values_Y)+1);
   for (int y = 0; y < sz(Yx); y++) {

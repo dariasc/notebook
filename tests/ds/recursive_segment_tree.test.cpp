@@ -16,7 +16,7 @@ int main() {
   for (auto &[a, b] : A) {
     cin >> a >> b;
   }
-  SegmentTree<array<ll, 2>, compose, {1, 0}> tree(n);
+  SegmentTree<array<ll, 2>, compose> tree(n, {1, 0});
   tree.build(A);
   while (q--) {
     int t, x, a, b;

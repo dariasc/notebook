@@ -31,7 +31,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  SegmentTree<ll, mod_plus, 0, Tag, Tag{}> tree(n);
+  SegmentTree<ll, mod_plus, Tag> tree(n, 0, Tag{});
   vi ver(q+1);
   for (int i = 0; i < n; i++) {
     ver[0] = tree.upd(i, i+1, {0, a[i]}, ver[0]);

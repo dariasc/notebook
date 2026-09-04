@@ -6,9 +6,9 @@ name = "Segment Tree"
 description = "Recursive segment tree, with point update and range queries."
 time = "$O(log n)$"
 - */
-template <class T, auto op, T e> struct SegmentTree {
-  int n; vec<T> s;
-  SegmentTree(int n) : n(n), s(2*n, e) {}
+template <class T, auto op> struct SegmentTree {
+  int n; T e; vec<T> s;
+  SegmentTree(int n, T e) : n(n), e(e), s(2*n, e) {}
   T query(int l, int r) { return query(l, r, 1, 0, n); }
   T query(int l, int r, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return e;

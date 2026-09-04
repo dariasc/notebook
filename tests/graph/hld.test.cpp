@@ -29,8 +29,8 @@ int main() {
     adj[u].push_back(v);
     adj[v].push_back(u);
   }
-  using st = SegmentTree<ll, plus{}, 0, Tag, Tag{}>;
-  HLD<0, st> hld(adj);
+  using st = SegmentTree<ll, plus{}, Tag>;
+  HLD<0, st> hld(adj, 0LL, Tag{0});
   for (int u = 0; u < n; u++) {
     hld.modifyPath(u, u, Tag{a[u]});
   }

@@ -4,14 +4,14 @@ name = "Persistent Segment Tree"
 [info]
 time = "$O(log n)$"
 - */
-template <class T, auto op, T e> struct SegmentTree {
+template <class T, auto op> struct SegmentTree {
   struct Node {
     int l = 0, r = 0; 
-    T x = e;
+    T x;
   };
-  int n;
+  int n; T e;
   vec<Node> s;
-  SegmentTree(int n) : n(n), s(1) {}
+  SegmentTree(int n, T e) : n(n), e(e), s(1, {0, 0, e}) {}
   int copy(int v) { 
     s.emplace_back(s[v]);
     return sz(s) - 1; 

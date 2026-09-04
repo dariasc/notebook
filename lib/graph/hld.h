@@ -11,8 +11,8 @@ template <bool VALS_EDGES, class T> struct HLD {
   vec<vi> adj;
   vi par, siz, rt, pos;
   T st;
-  HLD(vec<vi> adj) : N(sz(adj)), adj(adj),
-    par(N, -1), siz(N, 1), rt(N), pos(N), st(N) { 
+  HLD(vec<vi> adj, auto... args) : N(sz(adj)), adj(adj),
+    par(N, -1), siz(N, 1), rt(N), pos(N), st(N, args...) { 
         dfsSz(0); dfsHld(0); 
   }
   void dfsSz(int v) {
