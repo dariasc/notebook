@@ -124,6 +124,7 @@
 #insert("graph/directed_mst.h")
 #insert("graph/dominator_tree.h")
 #insert("graph/matroid_intersection.h")
+#insert("graph/weighted_matroid_intersection.h")
 = Flow
 #insert("flow/hopcroft_karp.h")
 #insert("flow/dinic.h")
