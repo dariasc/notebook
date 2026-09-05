@@ -14,7 +14,6 @@ vi matroidIntersection(int n, Matroid1 M1, Matroid2 M2) {
 	while (!converged) {
 		I[0].clear(), I[1].clear();
 		for (int u = 0; u < n; u++) I[b[u]].push_back(u);
-
 		M1.build(I[1]), M2.build(I[1]);
 		vec<bool> target(n), pushed(n);
 		queue<int> q;

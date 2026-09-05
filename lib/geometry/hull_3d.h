@@ -28,7 +28,6 @@ vec<F> hull3d(const vec<P3>& A) {
   };
   rep(i,0,4) rep(j,i+1,4) rep(k,j+1,4)
     mf(i, j, k, 6 - i - j - k);
-
   rep(i,4,sz(A)) {
     rep(j,0,sz(FS)) {
       F f = FS[j];

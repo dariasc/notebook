@@ -6,7 +6,6 @@ description = "Hash map with mostly the same API as unordered_map, but \\~3x fas
 - */
 #include <bits/extc++.h>
 using namespace __gnu_pbds;
-
 struct chash {
   const uint64_t C = ll(4e18 * acos(0)) | 71;
   ll operator()(ll x) const { return __builtin_bswap64(x * C); }

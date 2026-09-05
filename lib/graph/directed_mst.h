@@ -56,7 +56,6 @@ pair<ll, vi> dmst(int n, int r, vec<Edge>& g) {
 		}
 		rep(i,0,qi) in[uf.find(Q[i].b)] = Q[i];
 	}
-
 	for (auto& [u,t,comp] : cycs) { // restore sol (optional)
 		uf.rollback(t);
 		Edge inEdge = in[u];

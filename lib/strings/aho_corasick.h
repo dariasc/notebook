@@ -32,7 +32,6 @@ struct AhoCorasick {
     rep(i,0,sz(pat)) insert(pat[i], i);
     N[0].back = sz(N);
     N.emplace_back(0);
-
     queue<int> q;
     for (q.push(0); !q.empty(); q.pop()) {
       int n = q.front(), prev = N[n].back;
