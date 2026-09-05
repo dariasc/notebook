@@ -9,7 +9,7 @@
   header-ascent: 40%,
 
   code-size: 6.5pt,
-  heading-above: 12pt,
+  heading-above: 16pt,
   snippet-below: -6pt,
   snippet-gap: -8pt,
   hash-padding: 1.5pt,
