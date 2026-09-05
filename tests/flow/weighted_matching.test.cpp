@@ -13,7 +13,7 @@ signed main() {
       cin >> A[i][j];
     }
   }
-  auto [X, p] = hungarian(A);
+  auto [X, p] = weightedMatching(A);
   cout << X << '\n';
   for (int i = 0; i < n; i++) {
     cout << p[i] << ' ';
