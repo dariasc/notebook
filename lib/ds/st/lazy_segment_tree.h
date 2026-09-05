@@ -38,10 +38,8 @@ template <class T, auto op, class U> struct SegmentTree {
     lz[v] = id;
   }
   void build(vec<T>& a) {
-    auto pw2 = bit_ceil(size(a));
-    for (int i = 0; i < n; i++)
-      s[(i + pw2) % n + n] = a[i];
-    for (int i = n - 1; i >= 1; i--)
-      s[i] = op(s[2*i], s[2*i+1]);
+    auto pw2 = bit_ceil(sz(a));
+    rep(i,0,n) s[(i + pw2) % n + n] = a[i];
+    for (int i = n - 1; i >= 1; i--) s[i] = op(s[2*i], s[2*i+1]);
   }
 };

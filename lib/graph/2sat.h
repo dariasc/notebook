@@ -11,15 +11,13 @@ struct TwoSat {
   vi values; // 0 = false, 1 = true
   TwoSat(int n = 0) : N(n), gr(2*n) {}
   void either(int f, int j) {
-    f = max(2*f, -1-2*f);
-    j = max(2*j, -1-2*j);
-    gr[f].push_back(j^1);
-    gr[j].push_back(f^1);
+    f = max(2*f, -1-2*f), j = max(2*j, -1-2*j);
+    gr[f].pb(j^1), gr[j].pb(f^1);
   }
   void setValue(int x) { either(x, x); }
   vi val, comp, z; int time = 0;
   int dfs(int i) {
-    int low = val[i] = ++time, x; z.push_back(i);
+    int low = val[i] = ++time, x; z.pb(i);
     for(int e : gr[i]) if (!comp[e])
       low = min(low, val[e] ?: dfs(e));
     if (low == val[i]) do {
