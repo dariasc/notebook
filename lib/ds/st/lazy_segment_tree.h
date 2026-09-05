@@ -7,7 +7,8 @@ time = "$O(log n)$"
 - */
 template <class T, auto op, class U> struct SegmentTree {
   int n; T e; U id; vec<T> s; vec<U> lz;
-  SegmentTree(int n, T e, U id) : n(n), e(e), id(id), s(2*n, e), lz(n, id) {}
+  SegmentTree(int n, T e, U id)
+    : n(n), e(e), id(id), s(2*n, e), lz(n, id) {}
   T query(int l, int r) { return query(l, r, 1, 0, n); }
   T query(int l, int r, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return e;

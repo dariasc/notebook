@@ -31,7 +31,8 @@ vi matroidIntersection(int n, Matroid1 M1, Matroid2 M2) {
         break;
       }
       for (int v : I[!b[u]]) if (!pushed[v]) {
-        if ((b[u] and M1.oracle(u, v)) or (b[v] and M2.oracle(v, u)))
+        if ((b[u] and M1.oracle(u, v)) ||
+            (b[v] and M2.oracle(v, u)))
           p[v] = u, pushed[v] = true, q.push(v);
       }
     }
@@ -39,12 +40,15 @@ vi matroidIntersection(int n, Matroid1 M1, Matroid2 M2) {
   return I[1];
 }
 template<typename T, typename Matroid1, typename Matroid2>
-vi weightedMatroidIntersection(int n, vec<T> w, Matroid1 M1, Matroid2 M2) {
+vi weightedMatroidIntersection(
+  int n, vec<T> w, Matroid1 M1, Matroid2 M2
+) {
   vec<bool> b(n), target(n), is_inside(n);
   vi I[2], from(n);
   vec<pair<T, int>> d(n);
   auto check_edge = [&](int u, int v) {
-    return (b[u] and M1.oracle(u, v)) or (b[v] and M2.oracle(v, u));
+    return (b[u] and M1.oracle(u, v)) ||
+           (b[v] and M2.oracle(v, u));
   };
   while (true) {
     I[0].clear(), I[1].clear();
@@ -56,7 +60,7 @@ vi weightedMatroidIntersection(int n, vec<T> w, Matroid1 M1, Matroid2 M2) {
       d[u] = {numeric_limits<T>::max(), INF};
     }
     deque<T> q;
-    sort(I[0].begin(), I[0].end(), [&](int i, int j){ return w[i] < w[j]; });
+    sort(all(I[0]), [&](int i, int j) { return w[i] < w[j]; });
     for (int u : I[0]) {
       target[u] = M2.oracle(u);
       if (M1.oracle(u)) {

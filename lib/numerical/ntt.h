@@ -21,7 +21,8 @@ struct FFT {
   FFT() {
     u k = r[2<<LG] = -p%p, b=root, e = p>>LG;
     for(; e; e/=2, b=m(b,b)) if(e%2) k=m(k, b);
-    for(int i = (2<<LG) - 1; i >= 0; i--) r[i]=red(p, m(r[i+1], k)), i&(i-1)?0:k=m(k,k);
+    for(int i = (2<<LG) - 1; i >= 0; i--)
+      r[i] = red(p, m(r[i+1], k)), i&(i-1) ? 0 : k = m(k, k);
     assert(r[2] != r[3]); assert(r[1] == r[2]);
   }
   vec<ll> cv(const vec<ll> &as, const vec<ll> &bs, u *v) {
@@ -33,7 +34,8 @@ struct FFT {
       v[i] = i<sz(as) ? u(as[i]) : 0,
       v[i+n] = i<sz(bs) ? u(bs[i]) : 0;
     for(auto s:{v,v+n})
-    for(int j = n; j >= 2; j--) for(int k=j&-j; k/=2;) rep(i,j-k,j)
+    for(int j = n; j >= 2; j--)
+    for(int k=j&-j; k/=2;) rep(i,j-k,j)
       x=s[i], y=s[i-k],
       s[i-k] = red(2*p, x+y),
       s[i] = m(2*p+y-x, r[3*k-j+i]);
@@ -55,7 +57,8 @@ vec<ll> convSmall(const vec<ll> &as, const vec<ll> &bs) {
 // for modular convolutions modulo a 62 bit prime:
 vec<ll> convBig(const vec<ll> &as, const vec<ll> &bs) {
   static uint64_t v[2<<LG];
-  static FFT<uint64_t, __uint128_t, (1ull<<62)-(18ull<<32)+1, 3> fft;
+  static const uint64_t P = (1ull<<62)-(18ull<<32)+1;
+  static FFT<uint64_t, __uint128_t, P, 3> fft;
   return fft.cv(as, bs, v);
 }
 // for modular convolutions modulo an arbitrary 32-bit modulus:

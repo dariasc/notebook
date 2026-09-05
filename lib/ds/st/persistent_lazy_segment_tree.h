@@ -12,7 +12,8 @@ template <class T, auto op, class U> struct SegmentTree {
   };
   int n; T e; U id;
   vec<Node> s;
-  SegmentTree(int n, T e, U id) : n(n), e(e), id(id), s(1, {0, 0, e, id}) {}
+  SegmentTree(int n, T e, U id)
+    : n(n), e(e), id(id), s(1, {0, 0, e, id}) {}
   int copy(int v) { 
     s.emplace_back(s[v]);
     return sz(s) - 1; 
@@ -29,7 +30,9 @@ template <class T, auto op, class U> struct SegmentTree {
     s.resize(t);
     return val;
   }
-  int upd(int l, int r, U u, int v) { return upd(l, r, u, v, 0, n); }
+  int upd(int l, int r, U u, int v) {
+    return upd(l, r, u, v, 0, n);
+  }
   int upd(int l, int r, U u, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return v;
     if (l <= tl && tr <= r) {

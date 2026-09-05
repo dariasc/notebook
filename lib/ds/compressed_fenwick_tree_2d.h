@@ -19,12 +19,14 @@ struct FT2 {
   }
   void update(int x, int y, ll dif) {
     for (; x < sz(ys); x |= x + 1)
-      for (int i = ind(x, y); i < sz(ft[x]); i |= i + 1) ft[x][i] += dif;
+      for (int i = ind(x, y); i < sz(ft[x]); i |= i + 1)
+        ft[x][i] += dif;
   }
   ll query(int x, int y) {
     ll sum = 0;
     for (; x; x &= x - 1)
-      for (int i = ind(x - 1, y); i; i &= i - 1) sum += ft[x - 1][i - 1];
+      for (int i = ind(x - 1, y); i; i &= i - 1)
+        sum += ft[x - 1][i - 1];
     return sum;
   }
 };
