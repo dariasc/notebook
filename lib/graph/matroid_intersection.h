@@ -12,7 +12,7 @@ vi matroidInter(int n, auto M1, auto M2) {
   bool converged = false;
   while (!converged) {
     I[0].clear(), I[1].clear();
-    rep(u,0,n) I[b[u]].push_back(u);
+    rep(u,0,n) I[b[u]].pb(u);
     M1.build(I[1]), M2.build(I[1]);
     vec<bool> target(n), pushed(n);
     queue<int> q;
@@ -20,8 +20,7 @@ vi matroidInter(int n, auto M1, auto M2) {
       target[u] = M2.oracle(u);
       if (M1.oracle(u)) pushed[u] = true, q.push(u);
     }
-    vi p(n, -1);
-    converged = true;
+    vi p(n, -1); converged = true;
     while (sz(q)) {
       int u = q.front(); q.pop();
       if (target[u]) {
