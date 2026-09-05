@@ -2,7 +2,7 @@
 /* -
 name = "Fast Subset Transform"
 [info]
-description = "Transform to a basis with fast convolutions of the form `c[z]` $= sum_(z = x plus.circle y)$ `a[x]` $dot$ `b[y]`, where $plus.circle$ is one of `AND`, `OR`, `XOR`. The size of $a$ must be a power of two."
+description = "Transform to a basis with fast convolutions of the form `c[z]` $= sum_(z = x xor y)$ `a[x]` $dot$ `b[y]`, where $xor$ is one of `AND`, `OR`, `XOR`. The size of $a$ must be a power of two."
 time = "$O(n log n)$"
 - */
 void FST(auto& a, bool inv) {

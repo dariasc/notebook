@@ -2,7 +2,7 @@
 
 #show: project
 
-#index()
+// #index()
 = Contest
 #insert("template.h")
 #insert(".bashrc")
