@@ -5,7 +5,6 @@ name = "Ternary Search"
 description = "Find the smallest $i in [a,b]$ that maximizes $f(i)$, assuming that $f(a) < ... < f(i) >= ... >= f(b)$. To reverse which of the sides allows non-strict inequalities, change the $<$ marked with (A) to $<=$, and reverse the loop at (B)."
 time = "$O(log(b-a))$"
 - */
-
 template<class F>
 int ternSearch(int a, int b, F f) {
   assert(a <= b);
