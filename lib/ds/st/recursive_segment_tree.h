@@ -17,7 +17,7 @@ template <class T, auto op> struct SegmentTree {
     return op(query(l, r, 2*v, tl, tm),
               query(l, r, 2*v+1, tm, tr));
   }
-  void upd(int pos, T u) { return upd(pos, u, 1, 0, n); };
+  void upd(int pos, T u) { return upd(pos, u, 1, 0, n); }
   void upd(int pos, T u, int v, int tl, int tr) {
     if (tr - tl == 1) {
       s[v] = u;
@@ -29,10 +29,8 @@ template <class T, auto op> struct SegmentTree {
     }
   }
   void build(vec<T>& a) {
-    int pw2 = bit_ceil(size(a));
-    for (int i = 0; i < n; i++)
-      s[(i + pw2) % n + n] = a[i];
-    for (int i = n - 1; i >= 1; i--)
-      s[i] = op(s[2*i], s[2*i+1]);
+    auto pw2 = bit_ceil(size(a));
+    rep(i,0,n) s[(i + pw2) % n + n] = a[i];
+    for (int i = n - 1; i >= 1; i--) s[i] = op(s[2*i], s[2*i+1]);
   }
 };
