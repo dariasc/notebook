@@ -3,12 +3,8 @@
 name = "Polynomial Hashing"
 source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/strings/hashing.h"
 [info]
+description = "Arithmetic mod $2^{64}-1$. Can work mod $10^9+7$ if birthday paradox is not an issue."
 - */
-// Arithmetic mod 2^64-1. 2x slower than mod 2^64 and more
-// code, but works on evil test data (e.g. Thue-Morse, where
-// ABBA... and BAAB... of length 2^10 hash the same mod 2^64).
-// "typedef ull H;" instead if you think test data is random,
-// or work mod 10^9+7 if the Birthday paradox is not a problem.
 typedef uint64_t ull;
 struct H {
   ull x; H(ull x=0) : x(x) {}
@@ -40,8 +36,8 @@ vec<H> getHashes(string& str, int length) {
     h = h * C + str[i], pw = pw * C;
   vec<H> ret = {h};
   rep(i,length,sz(str)) {
-    ret.push_back(h = h * C + str[i] - pw * str[i-length]);
+    ret.pb(h = h * C + str[i] - pw * str[i-length]);
   }
   return ret;
 }
-H hashString(string& s){H h{}; for(char c:s) h=h*C+c;return h;}
+H hashString(string& s) { H h{}; for (char c : s) h = h * C + c; return h; }
