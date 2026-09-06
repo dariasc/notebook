@@ -6,7 +6,7 @@ source = "https://github.com/kth-competitive-programming/kactl/blob/main/content
 description = "Compute indices of smallest set of intervals covering another interval. Intervals should be $[\"inclusive\", \"exclusive\")$. To support $[\"inclusive\", \"inclusive\"]$, change while to add `|| R.empty()`. Returns empty set on failure (or if G is empty)."
 time = "$O(n log n)$"
 - */
-template<class T>
+template <class T>
 vi cover(pair<T, T> G, vec<pair<T, T>> I) {
   vi S(sz(I)), R;
   iota(all(S), 0);

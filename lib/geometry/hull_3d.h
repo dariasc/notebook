@@ -31,7 +31,7 @@ vec<F> hull3d(const vec<P3>& A) {
   rep(i,4,sz(A)) {
     rep(j,0,sz(FS)) {
       F f = FS[j];
-      if(f.q.dot(A[i]) > f.q.dot(A[f.a])) {
+      if (f.q.dot(A[i]) > f.q.dot(A[f.a])) {
         E(a,b).rem(f.c);
         E(a,c).rem(f.b);
         E(b,c).rem(f.a);

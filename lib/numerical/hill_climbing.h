@@ -6,7 +6,7 @@ description = "Poor man's optimization for unimodal functions. Finds local minim
 time = "$O(\"iterations\")$"
 - */
 using P = array<double, 2>;
-template<class F> pair<double, P> hillClimb(P start, F f) {
+template <class F> pair<double, P> hillClimb(P start, F f) {
   pair<double, P> cur(f(start), start);
   for (double jmp = 1e9; jmp > 1e-20; jmp /= 2) {
     rep(j,0,100) rep(dx,-1,2) rep(dy,-1,2) {

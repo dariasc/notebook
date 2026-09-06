@@ -59,7 +59,7 @@ struct MCMF {
         ed[x->to][x->rev].flow -= fl;
       }
     }
-    rep(i,0,N) for(Edge& e : ed[i]) totcost += e.cost * e.flow;
+    rep(i,0,N) for (Edge& e : ed[i]) totcost += e.cost * e.flow;
     return {totflow, totcost/2};
   }
   // if some costs can be negative, call this before:

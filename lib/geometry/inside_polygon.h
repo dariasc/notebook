@@ -7,7 +7,7 @@ name = "Inside Polygon"
 description = "Returns true if a point lies within the polygon. If strict is true, it returns false for points on the boundary."
 time = "$O(n)$"
 - */
-template<class P>
+template <class P>
 bool inPolygon(vec<P> &p, P a, bool strict = true) {
   int cnt = 0, n = sz(p);
   rep(i,0,n) {

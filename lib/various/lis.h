@@ -5,7 +5,7 @@ source = "https://github.com/kth-competitive-programming/kactl/blob/main/content
 [info]
 time = "$O(n log n)$"
 - */
-template<class I> 
+template <class I> 
 vi lis(const vec<I>& S) {
 	if (S.empty()) return {};
 	vi prev(sz(S));

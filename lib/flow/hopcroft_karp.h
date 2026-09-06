@@ -7,7 +7,7 @@ description = "Fast bipartite matching algorithm. Graph $g$ should be a list of 
 usage = "`vi r(m, -1); hopcroftKarp(g, r);`"
 time = "$O\\(sqrt(V) E\\)$" 
 - */
-int hopcroftKarp(vector<vi>& g, vi& r) {
+int hopcroftKarp(vec<vi>& g, vi& r) {
 	int n = sz(g), res = 0;
 	vi l(n, -1), q(n), d(n);
 	auto dfs = [&](auto f, int u) -> bool {

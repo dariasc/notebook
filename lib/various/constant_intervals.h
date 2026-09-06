@@ -7,7 +7,7 @@ description = "Split a monotone function on $[\"from\", \"to\")$ into a minimal 
 usage = "`constantIntervals(0, sz(v), [&](int x) {return v[x];}, [&](int lo, int hi, T val) {...});`"
 time = "$O(k log n/k)$"
 - */
-template<class F, class G, class T>
+template <class F, class G, class T>
 void rec(int from, int to, F& f, G& g, int& i, T& p, T q) {
   if (p == q) return;
   if (from == to) {
@@ -19,7 +19,7 @@ void rec(int from, int to, F& f, G& g, int& i, T& p, T q) {
     rec(mid+1, to, f, g, i, p, q);
   }
 }
-template<class F, class G>
+template <class F, class G>
 void constantIntervals(int from, int to, F f, G g) {
   if (to <= from) return;
   int i = from; auto p = f(i), q = f(to-1);

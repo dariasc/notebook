@@ -6,10 +6,10 @@ source = "https://github.com/kth-competitive-programming/kactl/blob/main/content
 description = "Given a weighted bipartite graph, matches every node on the left with a node on the right such that no nodes are in two matchings and the sum of the edge weights is minimal. Takes `cost[N][M]`, where `cost[i][j]` = cost for `L[i]` to be matched with `R[j]`, and returns `(min cost, match)`, where `L[i]` is matched with `R[match[i]]`. Negate costs for max cost. Requires $N < M$."
 time = "$O(N^2 M)$"
 - */
-template<class T>
-pair<T, vi> weightedMatching(vector<vector<T>> &C) {
+template <class T>
+pair<T, vi> weightedMatching(vec<vec<T>>& C) {
 	int i = sz(C), m = i ? sz(C[0]) : 0, c, s, r;
-	vector<T> dist(m), pot(m);
+	vec<T> dist(m), pot(m);
 	vi match(i), rev(m, -1), cols(m), prev(m);
 	T d = 0, nd, cost = 0;
 	while (i--) {

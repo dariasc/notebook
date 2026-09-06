@@ -7,7 +7,7 @@ time = "$O(n log n)$"
 - */
 // the maximum length of the resulting convolution vector is 2^LG
 const int LG = 23;
-template<class u, class uu, u p, u root>
+template <class u, class uu, u p, u root>
 struct FFT {
   u r[1+(2<<LG)];
   constexpr u m(u a, u b) {

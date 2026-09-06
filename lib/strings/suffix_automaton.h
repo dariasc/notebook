@@ -8,7 +8,7 @@ time = "$O(N log K)$"
 - */
 template <class T = char> struct SuffixAutomaton {
   struct State { ll len = 0, l = -1; map<T, ll> t; };
-  vector<State> s{1}; ll p = 0;
+  vec<State> s{1}; ll p = 0;
   void extend(T c) {
     ll k = SZ(s), q; s.pb({s[p].len+1});
     for(;p != -1 && !s[p].t.count(c); p = s[p].l)s[p].t[c] = k;

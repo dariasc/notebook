@@ -15,7 +15,7 @@ d rec(F& f, d a, d b, d eps, d S) {
     return T + (T - S) / 15;
   return rec(f, a, c, eps / 2, S1) + rec(f, c, b, eps / 2, S2);
 }
-template<class F>
+template <class F>
 d quad(d a, d b, F f, d eps = 1e-8) {
   return rec(f, a, b, eps, S(a, b));
 }
