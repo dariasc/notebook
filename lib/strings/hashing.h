@@ -3,7 +3,7 @@
 name = "Polynomial Hashing"
 source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/strings/hashing.h"
 [info]
-description = "Arithmetic mod $2^{64}-1$. Can work mod $10^9+7$ if birthday paradox is not an issue."
+description = "Arithmetic mod $2^(64)-1$. Can work mod $10^9+7$ if birthday paradox is not an issue."
 - */
 typedef uint64_t ull;
 struct H {
