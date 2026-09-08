@@ -1,7 +1,7 @@
 #include "../template.h"
 #include "modmul_ll.h"
 /* -
-name = "Modular Square Root"
+name = "Modular Sqrt"
 [info]
 description = "Tonelli-Shanks algorithm for modular square roots. Finds $x$ such that $x^2 = a space (mod p)$ ($-x$ gives the other solution)."
 time = "$O(log^2 p)$"

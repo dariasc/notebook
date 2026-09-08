@@ -1,6 +1,6 @@
 #include "../template.h"
 /* -
-name = "Modular Logarithm"
+name = "Modular Log"
 [info]
 description = "Returns the smallest $x > 0$ such that $a^x = b space (mod m)$, or $-1$ if no such $x$ exists. Uses baby-step giant-step method."
 time = "$O(sqrt(m))$"
