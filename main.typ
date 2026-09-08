@@ -57,7 +57,7 @@
 #insert("numerical/poly_roots.h")
 #insert("numerical/linear_recurrence.h")
 #insert("numerical/int_determinant.h")
-#insert("numerical/tridiagonal.h")
+// #insert("numerical/tridiagonal.h")
 #insert("numerical/matrix_inv_mod.h")
 #insert("numerical/solve_linear.h")
 #insert("numerical/fst.h")
