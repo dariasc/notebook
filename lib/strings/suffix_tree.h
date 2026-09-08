@@ -6,49 +6,62 @@ source = "https://github.com/kth-competitive-programming/kactl/blob/main/content
 description = "Ukkonen's algorithm for online suffix tree construction. Each node contains indices $[l, r)$ into the string, and a list of child nodes. Suffixes are given by traversals of this tree, joining $[l, r)$ substrings. The root is $0$ (has $l = -1$, $r = 0$), non-existent children are $-1$. To get a complete tree, append a dummy symbol -- otherwise it may contain an incomplete path (still useful for substring matching, though)."
 time = "$O(26 N)$"
 - */
-struct SuffixTree {
-  enum { N = 200010, ALPHA = 26 }; // N ~ 2*maxlen+10
+template <int ALPHA = 28> struct SuffixTree {
+  struct Node {
+    int l = -1, r = 0, p = 0, s = 0;
+    array<int, ALPHA> to;
+    Node(int l = -1, int r = 0, int p = 0)
+      : l(l), r(r), p(p) { to.fill(-1); }
+  };
   int toi(char c) { return c - 'a'; }
-  string a; // v = cur node, q = cur position
-  int t[N][ALPHA],l[N],r[N],p[N],s[N],v=0,q=0,m=2;
+  string a;
+  vec<Node> t;
+  int v = 0, q = 0;
   void ukkadd(int i, int c) { suff:
-    if (r[v]<=q) {
-      if (t[v][c]==-1) { t[v][c]=m;  l[m]=i;
-        p[m++]=v; v=s[v]; q=r[v];  goto suff; }
-      v=t[v][c]; q=l[v];
+    if (t[v].r <= q) {
+      if (t[v].to[c] == -1) {
+        t[v].to[c] = sz(t);
+        t.emplace_back(i, sz(a), v);
+        v = t[v].s; q = t[v].r; goto suff;
+      }
+      v = t[v].to[c]; q = t[v].l;
     }
-    if (q==-1 || c==toi(a[q])) q++; else {
-      l[m+1]=i;  p[m+1]=m;  l[m]=l[v];  r[m]=q;
-      p[m]=p[v];  t[m][c]=m+1;  t[m][toi(a[q])]=v;
-      l[v]=q;  p[v]=m;  t[p[m]][toi(a[l[m]])]=m;
-      v=s[p[m]];  q=l[m];
-      while (q<r[m]) { v=t[v][toi(a[q])];  q+=r[v]-l[v]; }
-      if (q==r[m])  s[m]=v;  else s[m]=m+2;
-      q=r[v]-(q-r[m]);  m+=2;  goto suff;
+    if (q == -1 || c == toi(a[q])) q++; else {
+      int m = sz(t);
+      t.emplace_back(t[v].l, q, t[v].p);
+      t.emplace_back(i, sz(a), m);
+      t[m].to[c] = m + 1; t[m].to[toi(a[q])] = v;
+      t[v].l = q; t[v].p = m;
+      t[t[m].p].to[toi(a[t[m].l])] = m;
+      v = t[t[m].p].s; q = t[m].l;
+      while (q < t[m].r) {
+        v = t[v].to[toi(a[q])]; q += t[v].r - t[v].l;
+      }
+      if (q == t[m].r) t[m].s = v; else t[m].s = m + 2;
+      q = t[v].r - (q - t[m].r); goto suff;
     }
   }
   SuffixTree(string a) : a(a) {
-    fill(r,r+N,sz(a));
-    memset(s, 0, sizeof s);
-    memset(t, -1, sizeof t);
-    fill(t[1],t[1]+ALPHA,0);
-    s[0] = 1; l[0] = l[1] = -1; r[0] = r[1] = p[0] = p[1] = 0;
+    t.reserve(2 * sz(a) + 2);
+    t.emplace_back(-1, 0, 0);
+    t.emplace_back(-1, 0, 0);
+    t[1].to.fill(0); t[0].s = 1;
     rep(i,0,sz(a)) ukkadd(i, toi(a[i]));
   }
   // example: find longest common substring (uses ALPHA = 28)
   pii best{};
   int lcs(int node, int i1, int i2, int olen) {
-    if (l[node] <= i1 && i1 < r[node]) return 1;
-    if (l[node] <= i2 && i2 < r[node]) return 2;
-    int mask = 0, len = node ? olen + (r[node] - l[node]) : 0;
-    rep(c,0,ALPHA) if (t[node][c] != -1)
-      mask |= lcs(t[node][c], i1, i2, len);
+    if (t[node].l <= i1 && i1 < t[node].r) return 1;
+    if (t[node].l <= i2 && i2 < t[node].r) return 2;
+    int mask = 0, len = node ? olen + t[node].r - t[node].l : 0;
+    rep(c,0,ALPHA) if (t[node].to[c] != -1)
+      mask |= lcs(t[node].to[c], i1, i2, len);
     if (mask == 3)
-      best = max(best, {len, r[node] - len});
+      best = max(best, {len, t[node].r - len});
     return mask;
   }
   static pii LCS(string s, string t) {
-    SuffixTree st(s + (char)('z' + 1) + t + (char)('z' + 2));
+    SuffixTree st(s + char('z' + 1) + t + char('z' + 2));
     st.lcs(0, sz(s), sz(s) + 1 + sz(t), 0);
     return st.best;
   }
