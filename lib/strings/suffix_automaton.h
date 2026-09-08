@@ -10,7 +10,7 @@ template <class T = char> struct SuffixAutomaton {
   struct State { ll len = 0, l = -1; map<T, ll> t; };
   vec<State> s{1}; ll p = 0;
   void extend(T c) {
-    ll k = SZ(s), q; s.pb({s[p].len+1});
+    ll k = sz(s), q; s.pb({s[p].len+1});
     for(;p != -1 && !s[p].t.count(c); p = s[p].l)s[p].t[c] = k;
     if (p == -1) s[k].l = 0;
     else if (s[p].len + 1 == s[q = s[p].t[c]].len) s[k].l = q;
