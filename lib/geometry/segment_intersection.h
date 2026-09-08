@@ -1,3 +1,5 @@
+#pragma once
+#include "on_segment.h"
 #include "point.h"
 /* -
 name = "Segment Intersection"

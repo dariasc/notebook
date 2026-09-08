@@ -1,3 +1,5 @@
+#pragma once
+#include "point.h"
 /* -
 name = "Line Intersection"
 [info]
@@ -5,9 +7,9 @@ description = "If a unique intersection point of the lines going through `a,b` a
 - */
 template <class P>
 pair<int, P> lineInter(P a, P b, P c, P d) {
-  auto d = (b - a).cross(d - c);
-  if (d == 0) // if parallel
+  auto m = (b - a).cross(d - c);
+  if (m == 0) // if parallel
     return {-(a.cross(b, c) == 0), P(0, 0)};
   auto p = c.cross(b, d), q = c.cross(d, a);
-  return {1, (a * p + b * q) / d};
+  return {1, (a * p + b * q) / m};
 }

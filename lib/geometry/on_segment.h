@@ -1,3 +1,4 @@
+#pragma once
 #include "point.h"
 /* -
 name = "On Segment"

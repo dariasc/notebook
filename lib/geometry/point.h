@@ -1,3 +1,4 @@
+#pragma once
 /* -
 name = "Point"
 source = "https://github.com/kth-competitive-programming/kactl/blob/main/content/geometry/Point.h"
