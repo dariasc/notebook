@@ -101,7 +101,6 @@
 #insert("strings/hashing.h")
 // #insert("strings/trie.h")
 #insert("strings/suffix_array.h")
-#insert("strings/suffix_tree.h")
 #insert("strings/suffix_automaton.h")
 #insert("strings/kmp.h")
 #insert("strings/zfunc.h")
