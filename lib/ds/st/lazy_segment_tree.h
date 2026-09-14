@@ -18,7 +18,7 @@ template <class T, auto op, class U> struct SegmentTree {
     return op(query(l, r, 2*v, tl, tm),
               query(l, r, 2*v+1, tm, tr));
   }
-  void upd(int l, int r, U u) { return upd(l, r, u, 1, 0, n); }
+  void upd(int l, int r, U u) { upd(l, r, u, 1, 0, n); }
   void upd(int l, int r, U u, int v, int tl, int tr) {
     if (r <= tl || tr <= l) return;
     if (l <= tl && tr <= r) { 
