@@ -90,6 +90,7 @@
 #insert("geometry/fast_delaunay.h")
 #insert("geometry/polygon_area.h")
 #insert("geometry/inside_polygon.h")
+#insert("geometry/in_convex.h")
 #insert("geometry/polygon_cut.h")
 #insert("geometry/polygon_center.h")
 #insert("geometry/polygon_union.h")
