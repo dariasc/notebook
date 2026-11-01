@@ -20,8 +20,8 @@ struct RollbackUF {
     a = find(a), b = find(b);
     if (a == b) return false;
     if (e[a] > e[b]) swap(a, b);
-    st.push_back({a, e[a]});
-    st.push_back({b, e[b]});
+    st.pb({a, e[a]});
+    st.pb({b, e[b]});
     e[a] += e[b]; e[b] = a;
     return true;
   }

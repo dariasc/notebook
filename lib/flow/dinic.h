@@ -14,8 +14,8 @@ struct Dinic {
   vec<vec<Edge>> g;
   Dinic(int n) : lvl(n), ptr(n), q(n), g(n) {}
   void addEdge(int a, int b, ll c, ll rcap = 0) {
-    g[a].push_back({b, sz(g[b]), c, c});
-    g[b].push_back({a, sz(g[a]) - 1, rcap, rcap});
+    g[a].pb({b, sz(g[b]), c, c});
+    g[b].pb({a, sz(g[a]) - 1, rcap, rcap});
   }
   ll dfs(int v, int t, ll f) {
     if (v == t || !f) return f;

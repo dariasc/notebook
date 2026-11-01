@@ -23,15 +23,15 @@ vec<vi> dominator_tree(const vec<vi>& adj, int root) {
     sdom[co] = par[co] = bes[co] = co;
     for (auto y : adj[x]) {
       if (!label[y])
-        self(self, y), child[label[x]].push_back(label[y]);
-      radj[label[y]].push_back(label[x]);
+        self(self, y), child[label[x]].pb(label[y]);
+      radj[label[y]].pb(label[x]);
     }
   };
   dfs(dfs, root);
   for (int i = co; i >= 1; --i) {
     for (auto j : radj[i])
       sdom[i] = min(sdom[i], sdom[get(get, j)]);
-    if (i > 1) sdomChild[sdom[i]].push_back(i);
+    if (i > 1) sdomChild[sdom[i]].pb(i);
     for (auto j : sdomChild[i]) {
       int k = get(get, j);
       if (sdom[j] == sdom[k]) dom[j] = sdom[j];
@@ -40,7 +40,7 @@ vec<vi> dominator_tree(const vec<vi>& adj, int root) {
   }
   for (int i = 2; i < co + 1; ++i) {
     if (dom[i] != sdom[i]) dom[i] = dom[dom[i]];
-    ans[rlabel[dom[i]]].push_back(rlabel[i]);
+    ans[rlabel[dom[i]]].pb(rlabel[i]);
   }
   return ans;
 }
