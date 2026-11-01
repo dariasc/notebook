@@ -23,7 +23,7 @@ vec<P> halfPlaneIntersection(vec<Line> v) {
   vec<Line> c(n+2);
 #define L(a) a.p, a.q
 #define PQ(a) (a.q - a.p)
-#define I(j, k) lineInter(L(c[j]), L(c[k])).snd
+#define I(j, k) lineInter(L(c[j]), L(c[k])).second
   rep(i,0,n) {
     while (q < h && sideOf(L(v[i]), I(h, h-1), eps) < 0) h--;
     while (q < h && sideOf(L(v[i]), I(q, q+1), eps) < 0) q++;
