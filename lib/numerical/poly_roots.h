@@ -12,8 +12,8 @@ vec<double> polyRoots(Poly p, double xmin, double xmax) {
   Poly der = p;
   der.diff();
   auto dr = polyRoots(der, xmin, xmax);
-  dr.push_back(xmin-1);
-  dr.push_back(xmax+1);
+  dr.pb(xmin-1);
+  dr.pb(xmax+1);
   sort(all(dr));
   rep(i,0,sz(dr)-1) {
     double l = dr[i], h = dr[i+1];
@@ -24,7 +24,7 @@ vec<double> polyRoots(Poly p, double xmin, double xmax) {
         if ((f <= 0) ^ sign) l = m;
         else h = m;
       }
-      ret.push_back((l + h) / 2);
+      ret.pb((l + h) / 2);
     }
   }
   return ret;

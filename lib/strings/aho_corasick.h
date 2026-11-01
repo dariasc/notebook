@@ -24,7 +24,7 @@ struct AhoCorasick {
       else n = m;
     }
     if (N[n].end == -1) N[n].start = j;
-    backp.push_back(N[n].end);
+    backp.pb(N[n].end);
     N[n].end = j;
     N[n].nmatches++;
   }
@@ -53,7 +53,7 @@ struct AhoCorasick {
     vi res; // ll count = 0;
     for (char c : word) {
       n = N[n].next[c - first];
-      res.push_back(N[n].end);
+      res.pb(N[n].end);
       // count += N[n].nmatches;
     }
     return res;
@@ -64,7 +64,7 @@ struct AhoCorasick {
     rep(i,0,sz(word)) {
       int ind = r[i];
       while (ind != -1) {
-        res[i - sz(pat[ind]) + 1].push_back(ind);
+        res[i - sz(pat[ind]) + 1].pb(ind);
         ind = backp[ind];
       }
     }

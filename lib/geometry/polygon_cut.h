@@ -13,9 +13,9 @@ vec<P> polygonCut(const vec<P>& poly, P s, P e) {
     P cur = poly[i], prev = i ? poly[i-1] : poly.back();
     auto a = s.cross(e, cur), b = s.cross(e, prev);
     if ((a < 0) != (b < 0))
-      res.push_back(cur + (prev - cur) * (a / (a - b)));
+      res.pb(cur + (prev - cur) * (a / (a - b)));
     if (a < 0)
-      res.push_back(cur);
+      res.pb(cur);
   }
   return res;
 }

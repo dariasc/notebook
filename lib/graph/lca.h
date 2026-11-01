@@ -15,7 +15,7 @@ struct LCA {
   void dfs(vec<vi>& C, int v, int par) {
     time[v] = T++;
     for (int y : C[v]) if (y != par) {
-      path.push_back(v), ret.push_back(time[v]);
+      path.pb(v), ret.pb(time[v]);
       dfs(C, y, v);
     }
   }
